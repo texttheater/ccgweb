@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Jura:600|Noto+Sans');
+
+
+/* center contents */
+
+main {
+	position: absolute;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%);
+}
+
+
+/* align the lexical constituents */
+
+table.constituent {
+	border-collapse: collapse;
+}
+
+td.daughter {
+	vertical-align: top;
+	padding: 0;
+}
+
+
+/* no wrapping */
+
+table.constituent {
+	white-space: nowrap;
+}
+
+
+/* padding in visual blocks */
+
+td.token, td.cat, td.rulecat, td.spanconstraint-selectable {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+td.token, td.rulecat {
+	padding-top: 5px;
+}
+
+td.cat, td.rulecat {
+	padding-bottom: 5px;
+}
+
+
+/* padding between visual blocks */
+
+/* every table.constituent that is the descendant of some table.constituent =
+every table.constituent except the outermost one */
+table.constituent table.constituent {
+	margin-bottom: 8px;
+}
+
+td.daughter-right {
+	padding-left: 8px;
+}
+
+
+/* padding around visual blocks */
+
+div.der {
+	padding: 8px;
+}
+
+
+/* detach span constraint selectables */
+
+td.spanconstraint-selectable {
+	margin-top: 8px;
+	display: block;
+}
+
+
+/* align rule symbols */
+
+span.rule {
+	float: right;
+}
+
+
+/* colors and borders */
+
+div.der {
+	background: #f0f0f0;
+	/*border: #d0d0d0 solid 1px;*/
+	/*border-top: 2px solid #b0b0b0;*/
+	font-family: 'Noto Sans', sans-serif;
+	color: #404040;
+}
+
+td.token, td.cat, td.rulecat, td.spanconstraint-selectable {
+	background: #d0d0d0;
+}
+
+td.token, td.rulecat {
+	border-top: 2px solid #b0b0b0;
+}
+
+
+/* print styles */
+
+@media print {
+	/* black lines instead of gray areas */
+
+	td.token, td.cat, td.rulecat {
+		background: none;
+	}
+
+	td.spanconstraint-selectable {
+		display: none;
+	}
+
+	div.der {
+		color: black;
+	}
+
+	td.token, td.rulecat {
+		border-top: 2px solid black;
+	}
+}
+
+
+/* for debugging */
+
+table.constituent {
+	/*border: 1px solid magenta;*/
+}
