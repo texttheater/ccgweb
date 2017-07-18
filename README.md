@@ -4,8 +4,8 @@ CCGWeb
 CCGWeb is a web application that lets users enter sentences, parses them and
 lets users modify the parses.
 
-Installation
-------------
+Installing a Development Version
+--------------------------------
 
 Make sure the subdirectory `ext` exists and contains the following Git
 repositories as subdirectories:
@@ -23,12 +23,15 @@ made available as directories at `models/parse/en.model` and
 `models/tok.iob/en.model`, respectively. Default models are provided on the
 respective tools web site.
 
-Create the subdirectories `out` and `log` and make sure your Web server can
-write to them.
+Running the Development Version
+-------------------------------
 
-You should also make sure that the contents of `ext`, `log` and `models` are
-not exposed by the Web server. For example, if you are using Apache, this can
-usually be accomplished by placing a file called `.htaccess` in each of these
-directories with the following contents:
+    php -S localhost:8080
 
-    deny from all
+Deploying to a Public Web Server
+--------------------------------
+
+TODO
+
+* protect sensitive directories (`log`, `models`, `src`)
+* make sure the Web server can write to `log` and `models`

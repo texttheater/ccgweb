@@ -24,8 +24,8 @@ $log = "$logbase.log";
 $derxml = "$base.der.xml";
 
 if (!file_exists($raw)) {
-	mkdir(dirname($raw));
-	mkdir(dirname($log));
+	shell_exec('mkdir -p ' . dirname($raw));
+	shell_exec('mkdir -p ' . dirname($log));
 	file_put_contents($raw, $sentence);
 }
 
