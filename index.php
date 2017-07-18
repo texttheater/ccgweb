@@ -3,8 +3,6 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-umask(2);
-
 $errors = [];
 
 if (!isset($_GET['sentence'])) {
