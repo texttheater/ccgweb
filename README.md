@@ -23,6 +23,16 @@ made available as directories at `models/parse/en.model` and
 `models/tok.iob/en.model`, respectively. Default models are provided on the
 respective tools web site.
 
+The Web server needs to be able to create and modify files in the `.viasock`,
+`log` and `out` subdirectories. The developer should be able to do the same
+from his or her own account, and both should not clash. On Ubuntu with Apache,
+this can be ensured by running the following commands *before* those three
+directories are created:
+
+    sudo usermod -a -G www-data $USER # add user to www-data group
+    chown :www-data . # change group of ccgweb directory to www-data
+    chmod g+s . # set setgid bit on the ccgweb directory
+
 Running the Development Version
 -------------------------------
 

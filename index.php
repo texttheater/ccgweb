@@ -3,6 +3,8 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+umask(2);
+
 $errors = [];
 
 if (!isset($_GET['sentence'])) {
@@ -22,12 +24,12 @@ $log = "$logbase.log";
 $derxml = "$base.der.xml";
 
 if (!file_exists($raw)) {
-	shell_exec('mkdir -p ' . dirname($raw));
-	shell_exec('mkdir -p ' . dirname($log));
+	shell_exec('umask 0002; mkdir -p ' . dirname($raw));
+	shell_exec('umask 0002; mkdir -p ' . dirname($log));
 	file_put_contents($raw, $sentence);
 }
 
-shell_exec("./ext/produce/produce $derxml 2> $log");
+shell_exec("umask 0002; ./ext/produce/produce $derxml 2> $log");
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +44,7 @@ shell_exec("./ext/produce/produce $derxml 2> $log");
 		<main>
 
 <?php
-echo `xsltproc src/xslt/der.xsl $base.der.xml`;
+echo `umask 0002; xsltproc src/xslt/der.xsl $base.der.xml`;
 ?>
 
 		</main>
