@@ -8,7 +8,7 @@ class Sentence:
 
     def on_get(self, req, res, sentence):
         # TODO refuse sentences not in our database
-        sentence_hash = hashlib.sha256(sentence.encode('UTF-8')).hexdigest()
+        sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
         dirname = os.path.join('out', sentence_hash[:2])
         rawname = os.path.join(dirname, sentence_hash + '.raw')
         if not os.path.isfile(rawname):
