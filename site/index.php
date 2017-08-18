@@ -16,7 +16,7 @@ if (strlen($_GET['sentence']) > 1024) {
 $sentence = $_GET['sentence'];
 
 try {
-	$response = Requests::get("$api/sentences/" . urlencode($sentence));
+	$response = Requests::get("$api/sentences/" . rawurlencode($sentence));
 } catch (Requests_Exception $e) {
 	die('ERROR: could not connect to REST server. Is it running?');
 }
