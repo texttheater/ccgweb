@@ -5,7 +5,7 @@ require('vendor/autoload.php');
 require('util.inc.php');
 require('config.inc.php');
 
-if (!$_GET['sentence']) {
+if (!isset($_GET['sentence']) || !$_GET['sentence']) {
 	die('ERROR: sentence parameter must be given');
 }
 
@@ -15,7 +15,11 @@ if (strlen($_GET['sentence']) > 1024) {
 
 $sentence = $_GET['sentence'];
 
-$response = Requests::get("$api/sentences/" . urlencode($sentence));
+try {
+	$response = Requests::get("$api/sentences/" . urlencode($sentence));
+} catch (Requests_Exception $e) {
+	die('ERROR: could not connect to REST server. Is it running?');
+}
 
 if (!$response->success) {
 	die('ERROR: bad API response status');
