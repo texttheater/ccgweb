@@ -1,16 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Jura:600|Noto+Sans');
 
 
-/* center contents */
-
-main {
-	position: absolute;
-	left: 50%;
-	margin-right: -50%;
-	transform: translate(-50%);
-}
-
-
 /* align the lexical constituents */
 
 table.constituent {
