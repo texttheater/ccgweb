@@ -1,0 +1,5 @@
+{ "db_host": "localhost",
+  "db_name": "ccgweb",
+  "db_user": "ccgweb",
+  "db_pass": ""
+}

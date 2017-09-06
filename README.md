@@ -9,6 +9,24 @@ parts:
 * a REST server
 * a PHP frontend
 
+Database
+--------
+
+The REST server requires a MySQL database to store its data. Assuming you want
+to use a database called `ccgweb` on `localhost` with user `ccgweb` and password
+`topsecret123`, this is how you can create it:
+it:
+
+    $ mysql -u root -p
+    mysql> CREATE DATABASE ccgweb;
+    mysql> GRANT ALL PRIVILEGES ON ccgweb.* TO 'ccgweb'@'localhost' IDENTIFIED BY 'topsecret123';
+    mysql> EXIT;
+
+TODO create tables
+
+Also create a file `config.json` that contains your database credentials. Use
+`config.json.sample` as a template.
+
 Pipeline
 --------
 
@@ -38,7 +56,7 @@ REST API
 
 To install the dependencies for the REST server on Ubuntu 16.04:
 
-    sudo apt install python3-falcon gunicorn3
+    sudo apt install python3-falcon gunicorn3 python3-mysqldb
 
 To start it:
 

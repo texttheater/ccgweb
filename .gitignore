@@ -4,4 +4,4 @@
 /models
 /ext
 *.pyc
-/config.ini
+/config.json

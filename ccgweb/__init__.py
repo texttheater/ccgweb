@@ -6,6 +6,9 @@ import subprocess
 
 class Sentence:
 
+    def __init__(self, db):
+        self.db = db
+
     def on_get(self, req, res, sentence):
         sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
         hash_group = sentence_hash[:2]
