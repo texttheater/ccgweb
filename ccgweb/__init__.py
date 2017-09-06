@@ -21,3 +21,13 @@ class Sentence:
         res.content_type = 'application/xml'
         with open(der_file, 'rb') as f:
             res.data = f.read()
+
+
+def create_app():
+    api = falcon.API()
+    api.add_route('/sentences/{sentence}', Sentence())
+    return api
+
+
+def get_app():
+    return create_app()
