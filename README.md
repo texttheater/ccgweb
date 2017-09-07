@@ -14,15 +14,14 @@ Database
 
 The REST server requires a MySQL database to store its data. Assuming you want
 to use a database called `ccgweb` on `localhost` with user `ccgweb` and password
-`topsecret123`, this is how you can create it:
-it:
+`topsecret123`, this is how you can create it (enter the respective passwords
+when asked):
 
     $ mysql -u root -p
     mysql> CREATE DATABASE ccgweb;
     mysql> GRANT ALL PRIVILEGES ON ccgweb.* TO 'ccgweb'@'localhost' IDENTIFIED BY 'topsecret123';
     mysql> EXIT;
-
-TODO create tables
+    $ mysql -u ccgweb -p ccgweb < db_structure.sql
 
 Also create a file `config.json` that contains your database credentials. Use
 `config.json.sample` as a template.
