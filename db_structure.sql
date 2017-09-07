@@ -19,16 +19,16 @@
 -- Table structure for table `bows_supertag`
 --
 
-DROP TABLE IF EXISTS `bows_supertag`;
+DROP TABLE IF EXISTS `bows_super`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `bows_supertag` (
+CREATE TABLE `bows_super` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(32) NOT NULL,
+  `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `offset_from` int(11) NOT NULL,
   `offset_to` int(11) NOT NULL,
-  `supertag` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `tag` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `sentence` (`sentence_id`)

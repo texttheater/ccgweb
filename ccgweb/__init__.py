@@ -1,13 +1,25 @@
 import hashlib
+import json
+import MySQLdb
 import os
 import ccgweb.util
 import subprocess
 
 
-class Sentence:
+class DB:
 
-    def __init__(self, db):
-        self.db = db
+    def __init__(self, connection_object):
+        self.cursor = connection_object.cursor()
+
+    def get(self, sql, *args):
+        self.cursor.execute(sql, args)
+        return self.cursor.fetchall()
+
+    def execute(self, sql, *args):
+        self.cursor.execute(sql, args)
+
+
+class Sentence:
 
     def on_get(self, req, res, sentence):
         sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
@@ -26,11 +38,9 @@ class Sentence:
             res.data = f.read()
 
 
-def create_app():
-    api = falcon.API()
-    api.add_route('/sentences/{sentence}', Sentence())
-    return api
+with open('config.json') as f:
+    config = json.load(f)
 
 
-def get_app():
-    return create_app()
+db = DB(MySQLdb.connect(config['db_host'], config['db_user'],
+                        config['db_pass'], config['db_name']))
