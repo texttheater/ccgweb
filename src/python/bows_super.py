@@ -14,7 +14,7 @@ if __name__ == '__main__':
     tag_by_offsets = {}
     with open(bowfile) as f:
         for line in f:
-            offset_from, offset_to, tag = bowfile.split()
+            offset_from, offset_to, tag = line.split()
             tag_by_offsets[(offset_from, offset_to)] = tag
     with open(offfile) as f:
         for line in f:
