@@ -7,6 +7,12 @@ document.querySelectorAll('table.lex td.cat').forEach(td => {
             input.value = currentCat
             td.removeChild(td.firstChild)
             td.appendChild(input)
+	    input.focus()
+            input.onblur = event => {
+                const textNode = document.createTextNode(td.firstChild.value)
+                td.removeChild(td.firstChild)
+                td.appendChild(textNode)
+            }
         }
     }
 })
