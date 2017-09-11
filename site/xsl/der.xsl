@@ -45,21 +45,17 @@
 						<xsl:attribute name="class">rule</xsl:attribute>
 						<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
 						<xsl:choose>
-							<xsl:when test="@type='fa'">&gt;</xsl:when>
-							<xsl:when test="@type='fc'">&gt;B</xsl:when>
-							<xsl:when test="@type='gfc'">&gt;B<span style="vertical-align: super;">n</span></xsl:when>
-							<xsl:when test="@type='gbc'">&lt;B<span style="vertical-align: super;">n</span></xsl:when>
-							<xsl:when test="@type='bc'">&lt;B</xsl:when>
-							<xsl:when test="@type='fs'">&gt;S</xsl:when>
-							<xsl:when test="@type='bs'">&lt;S</xsl:when>
-							<xsl:when test="@type='conj'">&#8744;</xsl:when>
-							<xsl:when test="@type='bxc'">&lt;</xsl:when>
-							<xsl:when test="@type='fxc'">&gt;</xsl:when>
-							<xsl:when test="@type='gbxc'">&lt;<span style="vertical-align: super;">n</span></xsl:when>
-							<xsl:when test="@type='gfxc'">&gt;<span style="vertical-align: super;">n</span></xsl:when>
-							<xsl:when test="@type='fxs'">&gt;</xsl:when>
-							<xsl:when test="@type='bxs'">&lt;</xsl:when>
-							<xsl:when test="@type='ba'">&lt;</xsl:when>
+							<xsl:when test="@type='fa'">&gt;<sup>0</sup></xsl:when>
+							<xsl:when test="@type='fc'">&gt;<sup>1</sup></xsl:when>
+							<xsl:when test="@type='gfc'">&gt;<sup><i>n</i></sup></xsl:when>
+							<xsl:when test="@type='gbc'">&lt;<sup><i>n</i></sup></xsl:when>
+							<xsl:when test="@type='bc'">&lt;<sup>1</sup></xsl:when>
+							<xsl:when test="@type='conj'">∨</xsl:when>
+							<xsl:when test="@type='bxc'">&lt;<sup>1</sup><sub>×</sub></xsl:when>
+							<xsl:when test="@type='fxc'">&gt;<sup>1</sup></xsl:when>
+							<xsl:when test="@type='gbxc'">&lt;<sup><i>n</i></sup><sub>×</sub></xsl:when>
+							<xsl:when test="@type='gfxc'">&gt;<sup><i>n</i></sup></xsl:when>
+							<xsl:when test="@type='ba'">&lt;<sup>0</sup></xsl:when>
 						</xsl:choose>
 					</xsl:element>
 					<xsl:element name="span">

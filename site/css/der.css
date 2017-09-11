@@ -71,6 +71,13 @@ span.rule {
 }
 
 
+/* superscript and subscript */
+
+span.rule sub {
+	margin-left: -0.5em;
+}
+
+
 /* colors and borders */
 
 div.der {
