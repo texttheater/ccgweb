@@ -97,6 +97,13 @@ td.token, td.rulecat {
 }
 
 
+/* category styling */
+
+td.cat, span.cat {
+	font-size: 90%;
+}
+
+
 /* print styles */
 
 @media print {
