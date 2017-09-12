@@ -28,11 +28,11 @@ td.token, td.cat, td.rulecat, td.spanconstraint-selectable {
 }
 
 td.token, td.rulecat {
-	padding-top: 5px;
+	padding-top: 3px;
 }
 
 td.cat, td.rulecat {
-	padding-bottom: 5px;
+	padding-bottom: 1px;
 }
 
 
