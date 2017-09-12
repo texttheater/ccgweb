@@ -1,7 +1,9 @@
+import falcon
 import hashlib
 import json
 import MySQLdb
 import os
+import ccgweb.users
 import ccgweb.util
 import subprocess
 
@@ -38,6 +40,18 @@ class Sentence:
         res.content_type = 'application/xml'
         with open(der_file, 'rb') as f:
             res.data = f.read()
+
+
+class Login:
+
+    def on_post(self, req, res):
+        session_id = ccgweb.users.login(req.params['user_id'],
+                                        req.params['password'])
+        if session_id:
+            body = { 'session_id': session_id }
+            res.body = json.dumps(body)
+        else:
+            res.status = falcon.HTTP_401
 
 
 with open('config.json') as f:
