@@ -16,7 +16,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `bows_supertag`
+-- Table structure for table `bows_super`
 --
 
 DROP TABLE IF EXISTS `bows_super`;
@@ -34,6 +34,21 @@ CREATE TABLE `bows_super` (
   KEY `sentence` (`sentence_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `password_hash` mediumblob NOT NULL,
+  `session_id` varchar(32) CHARACTER SET armscii8 COLLATE armscii8_bin DEFAULT NULL,
+  `session_expires` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -44,4 +59,4 @@ CREATE TABLE `bows_super` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-07 17:02:10
+-- Dump completed on 2017-09-12 14:23:43

@@ -8,15 +8,17 @@ import subprocess
 
 class DB:
 
-    def __init__(self, connection_object):
-        self.cursor = connection_object.cursor()
+    def __init__(self, conn):
+        self.conn = conn
 
     def get(self, sql, *args):
-        self.cursor.execute(sql, args)
-        return self.cursor.fetchall()
+        with self.conn as cursor:
+            cursor.execute(sql, args)
+            return cursor.fetchall()
 
     def execute(self, sql, *args):
-        self.cursor.execute(sql, args)
+        with self.conn as cursor:
+            cursor.execute(sql, args)
 
 
 class Sentence:
