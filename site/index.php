@@ -5,6 +5,8 @@ require('vendor/autoload.php');
 require('util.inc.php');
 require('config.inc.php');
 
+require('session.inc.php');
+
 if (!isset($_GET['sentence']) || !$_GET['sentence']) {
 	die('ERROR: sentence parameter must be given');
 }
@@ -32,6 +34,16 @@ if (!$response->success) {
 		<title>CCGWeb</title>
 		<link rel=stylesheet href=css/main.css>
 		<link rel=stylesheet href=css/der.css>
+		<script>
+<?php
+if ($is_user_logged_in) {
+	echo "const isUserLoggedIn = true\n";
+	echo "const userName = ". json_encode($user_name) . "\n";
+} else {
+	echo "const isUserLoggedIn = false\n";
+}
+?>
+		</script>
 	</head>
 	<body>
 		<main>

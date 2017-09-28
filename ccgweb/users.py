@@ -27,3 +27,11 @@ def login(name, password):
                          session_expires = NOW() + INTERVAL 1 YEAR
                          WHERE id = %s''', session_id, name)
     return session_id
+
+
+def get_session_info(session_id):
+    rows = ccgweb.db.get('''SELECT id FROM users
+                            WHERE session_id = %s''', session_id)
+    if not rows:
+        return
+    return { 'user_id': rows[0][0] }
