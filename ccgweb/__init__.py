@@ -48,6 +48,7 @@ class Login:
         session_id = ccgweb.users.login(req.params['user_id'],
                                         req.params['password'])
         if session_id:
+            # TODO move this info to Set-Cookie header?
             body = { 'session_id': session_id }
             res.body = json.dumps(body)
         else:
