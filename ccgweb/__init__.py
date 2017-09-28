@@ -54,10 +54,10 @@ class Login:
             res.status = falcon.HTTP_401
 
 
-class ContinueSession:
+class Session:
 
-    def on_post(self, req, res):
-        session_id = req.params['session_id']
+    def on_get(self, req, res):
+        session_id = req.cookies['session_id']
         body = ccgweb.users.get_session_info(session_id)
         res.body = json.dumps(body)
 

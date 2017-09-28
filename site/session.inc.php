@@ -3,10 +3,9 @@ session_start();
 
 if (isset($_SESSION['ccgweb_api_session_id'])) {
 	try {
-		$data = [
-			'session_id' => $_SESSION['ccgweb_api_session_id'],
-		];
-		$response = Requests::post("$api/continueSession", [], $data);
+		$response = Requests::get("$api/session", [
+			'Cookie' => 'session_id=' . $_SESSION['ccgweb_api_session_id']
+		]);
 	} catch (Requests_Exception $e) {
 		die('ERROR: could not connect to REST server. Is it running?');
 	}
