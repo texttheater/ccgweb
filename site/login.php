@@ -42,11 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 		<main>
 			<h1>Login – CCGWeb</h1>
 			<form id=login_form action=<?= $_SERVER['PHP_SELF'] ?> method=POST>
-				<label for=user_id>Username</label>
-				<input type=text maxlength=32 name=user_id id=user_id>
-				<label for=password>Password</label>
-				<input type=password name=password id=password>
-				<input type=submit value=Login>
+				<p>
+					<label for=user_id>Username</label><br>
+					<input type=text maxlength=32 name=user_id id=user_id>
+				</p>
+				<p>
+					<label for=password>Password</label><br>
+					<input type=password name=password id=password>
+				</p>
+				<p>
+					<input type=submit value=Login>
+				</p>
 			</form>
 		</main>
 	</body>
