@@ -31,9 +31,26 @@ if (!$response->success) {
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>CCGWeb</title>
+
+		<!-- Bootstrap styles -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Our styles -->
 		<link rel=stylesheet href=css/main.css>
 		<link rel=stylesheet href=css/der.css>
+	</head>
+	<body>
+<?php
+require('navbar.inc.php');
+?>
+		<main>
+			<?= xslTransform('xsl/der.xsl', $response->body) ?>
+		</main>
+
+		<!-- Our scripts -->
 		<script>
 <?php
 if ($is_user_logged_in) {
@@ -44,11 +61,6 @@ if ($is_user_logged_in) {
 }
 ?>
 		</script>
-	</head>
-	<body>
-		<main>
-			<?= xslTransform('xsl/der.xsl', $response->body) ?>
-		</main>
 		<script src=js/der.js></script>
 	</body>
 </html>

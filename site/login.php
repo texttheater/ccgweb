@@ -35,23 +35,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Login – CCGWeb</title>
+
+		<!-- Bootstrap styles -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Our styles -->
 		<link rel=stylesheet href=css/main.css>
 	</head>
 	<body>
-		<main>
-			<h1>Login – CCGWeb</h1>
+<?php
+require('navbar.inc.php');
+?>
+		<main class=container>
+			<h1>Login</h1>
 			<form id=login_form action=<?= $_SERVER['PHP_SELF'] ?> method=POST>
 				<p>
 					<label for=user_id>Username</label><br>
-					<input type=text maxlength=32 name=user_id id=user_id>
+					<input class=form-control type=text maxlength=32 name=user_id id=user_id>
 				</p>
 				<p>
 					<label for=password>Password</label><br>
-					<input type=password name=password id=password>
+					<input class=form-control type=password name=password id=password>
 				</p>
 				<p>
-					<input type=submit value=Login>
+					<button type=submit class="btn btn-default">Login</button>
 				</p>
 			</form>
 		</main>

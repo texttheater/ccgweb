@@ -7,16 +7,3 @@ main {
 	transform: translate(-50%);
 	min-width: 800px;
 }
-
-/* basic styles */
-
-body {
-	font-family: sans-serif;
-}
-
-/* form elements */
-
-input[type=text], input[type=password], input[type=submit] {
-	border: 1px solid black;
-	background: white;
-}
