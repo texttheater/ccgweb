@@ -77,4 +77,4 @@ To create a test installation at `http://localhost/ccgweb`:
 
 To create a config file:
 
-    cp site/config.inc.php.sample site/config.inc.php
+    cp site/inc/config.inc.php.sample site/inc/config.inc.php

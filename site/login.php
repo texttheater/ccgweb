@@ -2,8 +2,8 @@
 error_reporting(-1);
 ini_set("display_errors", 1);
 require('vendor/autoload.php');
-require('util.inc.php');
-require('config.inc.php');
+require('inc/util.inc.php');
+require('inc/config.inc.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'
 	&& $_POST['user_id']
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 	</head>
 	<body>
 <?php
-require('navbar.inc.php');
+require('inc/navbar.inc.php');
 ?>
 		<main class=container>
 			<h1>Login</h1>

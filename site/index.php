@@ -2,10 +2,10 @@
 error_reporting(-1);
 ini_set("display_errors", 1);
 require('vendor/autoload.php');
-require('util.inc.php');
-require('config.inc.php');
+require('inc/util.inc.php');
+require('inc/config.inc.php');
 
-require('session.inc.php');
+require('inc/session.inc.php');
 
 if (!isset($_GET['sentence']) || !$_GET['sentence']) {
 	die('ERROR: sentence parameter must be given');
@@ -44,7 +44,7 @@ if (!$response->success) {
 	</head>
 	<body>
 <?php
-require('navbar.inc.php');
+require('inc/navbar.inc.php');
 ?>
 		<main>
 			<?= xslTransform('xsl/der.xsl', $response->body) ?>
