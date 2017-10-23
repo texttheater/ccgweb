@@ -8,10 +8,10 @@ if (isUserLoggedIn) {
                 input.value = currentCat
                 td.removeChild(td.firstChild)
                 td.appendChild(input)
-    	    input.focus()
+                input.focus()
                 input.onblur = event => {
-                    const textNode = document.createTextNode(td.firstChild.value)
-                    td.removeChild(td.firstChild)
+                    const textNode = document.createTextNode(input.value)
+                    td.removeChild(input)
                     td.appendChild(textNode)
                 }
             }
