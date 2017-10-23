@@ -109,7 +109,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="cat">
+				<td class="cat" tabindex="0">
 					<xsl:apply-templates select="cat"/>
 				</td>
 			</tr>

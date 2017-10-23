@@ -1,6 +1,6 @@
 if (isUserLoggedIn) {
     document.querySelectorAll('table.lex td.cat').forEach(td => {
-        td.onclick = event => {
+        td.onfocus = event => {
             if (td.firstChild.nodeType == Node.TEXT_NODE) {
                 const currentCat = td.textContent
                 const input = document.createElement('input')
