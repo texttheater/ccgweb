@@ -35,3 +35,15 @@ def get_session_info(session_id):
     if not rows:
         return
     return { 'user_id': rows[0][0] }
+
+
+def current_user(req):
+    if not 'session_id' in req.cookies:
+        return None
+    session_id = req.cookies['session_id']
+    rows = ccgweb.db.get('''SELECT id FROM users
+                            WHERE session_id = %s''', session_id)
+    if not rows:
+        return None
+    return rows[0][0]
+

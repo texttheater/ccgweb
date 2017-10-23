@@ -41,6 +41,34 @@ class Sentence:
         with open(der_file, 'rb') as f:
             res.data = f.read()
 
+    def on_post(self, req, res, sentence):
+        if 'api_action' not in req.params:
+            res.status = falcon.HTTP_400
+            return
+        if req.params['api_action'] == 'add_super_bow':
+            user = ccgweb.users.current_user(req)
+            if not user:
+                res.status = falcon.HTTP_401
+                return
+            sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+            if 'offset_from' not in req.params \
+                    or 'offset_to' not in req.params:
+                res.status = falcon.HTTP_400
+                return
+            try:
+                offset_from = int(req.params['offset_from'])
+                offset_to = int(req.params['offset_to'])
+            except ValueError:
+                res.status = falcon.HTTP_400
+                return
+            db.execute('''INSERT INTO bows_super
+                (user_id, time, sentence_id, offset_from, offset_to, tag)
+                VALUES (%s, NOW(), %s, %s, %s, %s)''', user, sentence_hash,
+                offset_from, offset_to, req.params['tag'])
+        else:
+            res.status = falcon.HTTP_400
+            return
+
 
 class Login:
 

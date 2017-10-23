@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `bows_super`;
 CREATE TABLE `bows_super` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `time` datetime NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `offset_from` int(11) NOT NULL,
   `offset_to` int(11) NOT NULL,
