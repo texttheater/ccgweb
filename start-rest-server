@@ -1,3 +1,4 @@
 #!/bin/bash
 
+export PYTHONPATH=src/python:$PYTHONPATH
 gunicorn3 --reload ccgweb.app
