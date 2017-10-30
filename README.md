@@ -50,6 +50,10 @@ Specifically, the following directories and files are expected to exist:
 * `ext/viasock`, the [Viasock](https://github.com/texttheater/produce)
   serverizer.
 
+Further dependencies can be installed as follows on Ubuntu 16.04:
+
+    sudo apt install python-lxml
+
 REST API
 --------
 
