@@ -36,8 +36,8 @@ Specifically, the following directories and files are expected to exist:
 
 * `ext/boxer/boxer2`, the Boxer 2 binary by Johan Bos. Requires the
   [SWI-Prolog](http://www.swi-prolog.org) 7 runtime library to be installed.
-* `ext/easyccg`: the [Parallel Meaning Bank patched version of Mike Lewis’s
-  EasyCCG parser](https://github.com/ParallelMeaningBank/easyccg)
+* `ext/easyccg/easyccg.jar`: the [Parallel Meaning Bank patched version of Mike
+  Lewis’s EasyCCG parser](https://github.com/ParallelMeaningBank/easyccg)
 * `models/parse/en.model`: the EasyCCG model trained on the Rebanked CCGbank,
   available via the
   [EasyCCG website](http://homepages.inf.ed.ac.uk/s1049478/easyccg.html).
