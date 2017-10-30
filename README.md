@@ -42,7 +42,7 @@ Specifically, the following directories and files are expected to exist:
   available via the
   [EasyCCG website](http://homepages.inf.ed.ac.uk/s1049478/easyccg.html).
 * `ext/elephant`, the
-  [https://github.com/ParallelMeaningBank/elephant](Elephant) tokenizer
+  [Elephant](https://github.com/ParallelMeaningBank/elephant) tokenizer
 * `models/tok.iob/en.model`, an Elephant model for English, available via the
   [Elephant website](http://gmb.let.rug.nl/elephant/about.php).
 * `ext/produce`, the [Produce](https://github.com/texttheater/produce) build
