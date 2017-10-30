@@ -73,7 +73,7 @@ To install the dependencies for the PHP frontend on Ubuntu 16.04:
 
 To create a test installation at `http://localhost/ccgweb`:
 
-    sudo ln -s /var/www/html/ccgweb site
+    sudo ln -s site /var/www/html/ccgweb
 
 To create a config file:
 
