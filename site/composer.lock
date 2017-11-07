@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "470f7209da253f2055888927ff80c7d7",
     "content-hash": "8f5a3a4fa9ea352a4fe5bc150a11d917",
     "packages": [
         {
@@ -54,7 +53,7 @@
                 "iri",
                 "sockets"
             ],
-            "time": "2016-10-13 00:11:37"
+            "time": "2016-10-13T00:11:37+00:00"
         }
     ],
     "packages-dev": [],

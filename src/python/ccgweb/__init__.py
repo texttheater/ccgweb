@@ -25,13 +25,13 @@ class DB:
 
 class Sentence:
 
-    def on_get(self, req, res, sentence):
+    def on_get(self, req, res, sentence, user_id):
         sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
         hash_group = sentence_hash[:2]
         raw_dir = os.path.join('raw', hash_group)
         raw_file = os.path.join(raw_dir, sentence_hash + '.raw')
         out_dir = os.path.join('out', hash_group, sentence_hash)
-        der_file = os.path.join(out_dir, 'auto.der.xml')
+        der_file = os.path.join(out_dir, user_id + '.der.xml')
         if not os.path.isfile(raw_file):
             ccgweb.util.makedirs(raw_dir)
             with open(raw_file, 'w', encoding='UTF-8') as f:
@@ -41,7 +41,7 @@ class Sentence:
         with open(der_file, 'rb') as f:
             res.data = f.read()
 
-    def on_post(self, req, res, sentence):
+    def on_post(self, req, res, sentence, user_id):
         if 'api_action' not in req.params:
             res.status = falcon.HTTP_400
             return

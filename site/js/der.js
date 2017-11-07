@@ -19,7 +19,7 @@ if (isUserLoggedIn) {
                     const req = new XMLHttpRequest()
                     req.open('POST', 'api.php')
                     const formData = new FormData()
-                    formData.append('api_resource', 'sentences/' + encodeURIComponent(sentence))
+                    formData.append('api_resource', 'sentences/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName))
                     formData.append('api_action', 'add_super_bow')
                     formData.append('offset_from', table.dataset['from'])
                     formData.append('offset_to', table.dataset['to'])
