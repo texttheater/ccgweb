@@ -47,8 +47,30 @@ if (!$response->success) {
 require('inc/navbar.inc.php');
 ?>
 		<main>
-			<?= xslTransform('xsl/der.xsl', $response->body) ?>
+			<h2>Sentence</h2>
+
+			<p><?= htmlspecialchars($sentence); ?></p>
+
+			<h2>Parse</h2>
+
+			<ul class="nav nav-tabs">
+				<li class=active><a data-toggle=tab href=#parses_parser>Parser</a></li>
+				<li><a data-toggle=tab href=#parses_mine>Mine</a></li>
+			</ul>
+			<div class=tab-content>
+				<div id=parses_parser class="tab-pane active">
+					<?= xslTransform('xsl/der.xsl', $response->body) ?>
+				</div>
+				<div id=parses_mine class="tab-pane">
+				</div>
+			</div>
 		</main>
+
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap scripts -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 		<!-- Our scripts -->
 		<script>

@@ -81,19 +81,19 @@ span.rule sub {
 /* colors and borders */
 
 div.der {
-	background: #f0f0f0;
-	/*border: #d0d0d0 solid 1px;*/
-	/*border-top: 2px solid #b0b0b0;*/
+	/*background: #f0f0f0;*/
+	/*border: #ffe6cc solid 1px;*/
+	/*border-top: 2px solid #d79b00;*/
 	font-family: 'Noto Sans', sans-serif;
 	color: #404040;
 }
 
 td.token, td.cat, td.rulecat, td.spanconstraint-selectable {
-	background: #d0d0d0;
+	background: #ffe6cc;
 }
 
 td.token, td.rulecat {
-	border-top: 2px solid #b0b0b0;
+	border-top: 2px solid #d79b00;
 }
 
 
