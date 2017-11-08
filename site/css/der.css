@@ -81,19 +81,19 @@ span.rule sub {
 /* colors and borders */
 
 div.der {
-	/*background: #f0f0f0;*/
-	/*border: #ffe6cc solid 1px;*/
-	/*border-top: 2px solid #d79b00;*/
+	/* background: #f0f0f0;*/
+	/*border: #d0d0d0 solid 1px;*/
+	/*border-top: 2px solid #9d9d9d;*/
 	font-family: 'Noto Sans', sans-serif;
 	color: #404040;
 }
 
-td.token, td.cat, td.rulecat, td.spanconstraint-selectable {
-	background: #ffe6cc;
+td.rulecat {
+	border-top: 2px solid #9d9d9d;
 }
 
-td.token, td.rulecat {
-	border-top: 2px solid #d79b00;
+td.spanconstraint-selectable {
+	background: #9d9d9d;
 }
 
 
