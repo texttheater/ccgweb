@@ -3,7 +3,7 @@ if (isUserLoggedIn) {
         const td = table.querySelector('td.cat')
         td.onfocus = event => {
             if (td.firstChild.nodeType == Node.TEXT_NODE) {
-                const currentCat = td.textContent
+                const currentCat = td.textContent.trim()
                 const input = document.createElement('input')
                 input.type = 'text'
                 input.value = currentCat
@@ -11,7 +11,13 @@ if (isUserLoggedIn) {
                 td.appendChild(input)
                 input.focus()
                 input.onblur = event => {
-                    const textNode = document.createTextNode(input.value)
+                    let newCat = input.value.trim()
+
+                    if (newCat == '') {
+                        newCat = '\u00A0' // non-breaking space
+                    }
+
+                    const textNode = document.createTextNode(newCat)
                     td.removeChild(input)
                     td.appendChild(textNode)
                 }

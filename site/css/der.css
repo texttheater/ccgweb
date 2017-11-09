@@ -78,6 +78,18 @@ span.rule sub {
 }
 
 
+/* lexlists */
+
+div.lexlist {
+	display: table;
+}
+
+div.lexlist table.lex {
+	padding-right: 8px;
+	display: table-cell;
+}
+
+
 /* colors and borders */
 
 div.der {

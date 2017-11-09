@@ -91,6 +91,14 @@
 			</tr>
 		</table>
 	</xsl:template>
+	<xsl:template match="lexlist">
+		<xsl:element name="div">
+			<xsl:attribute name="class">lexlist</xsl:attribute>
+			<td>
+				<xsl:apply-templates />
+			</td>
+		</xsl:element>
+	</xsl:template>
 	<xsl:template match="lex">
 		<xsl:element name="table">
 			<xsl:attribute name="class">constituent lex</xsl:attribute>
@@ -110,7 +118,15 @@
 			</tr>
 			<tr>
 				<td class="cat" tabindex="0">
-					<xsl:apply-templates select="cat"/>
+					<xsl:choose>
+						<xsl:when test="cat">
+							<xsl:apply-templates select="cat"/>
+						</xsl:when>
+						<xsl:when test="tag[@type = 'super']">
+							<xsl:apply-templates select="tag[@type = 'super']"/>
+						</xsl:when>
+						<xsl:otherwise>&#160;</xsl:otherwise>
+					</xsl:choose>
 				</td>
 			</tr>
 			<tr>
