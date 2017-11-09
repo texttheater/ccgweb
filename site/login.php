@@ -4,6 +4,7 @@ ini_set("display_errors", 1);
 require('vendor/autoload.php');
 require('inc/util.inc.php');
 require('inc/config.inc.php');
+require('inc/session.inc.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'
 	&& $_POST['user_id']

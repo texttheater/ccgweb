@@ -73,5 +73,17 @@ require('inc/head.inc.php');
 </div>
 
 <?php
+require('inc/js.inc.php');
+?>
+
+<script>
+<?php
+echo "const sentence = " . json_encode($sentence) . "\n";
+?>
+</script>
+
+<script src=js/der.js></script>
+
+<?php
 require('inc/foot.inc.php');
 ?>
