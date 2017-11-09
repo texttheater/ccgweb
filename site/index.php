@@ -42,70 +42,35 @@ if ($is_user_logged_in) {
 	
 	$user_parse = $response->body;
 }
+
+$title = 'CCGWeb';
+
+require('inc/head.inc.php');
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>CCGWeb</title>
 
-		<!-- Bootstrap styles -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<h2>Sentence</h2>
 
-		<!-- Our styles -->
-		<link rel=stylesheet href=css/main.css>
-		<link rel=stylesheet href=css/der.css>
-	</head>
-	<body>
-		<?php require('inc/navbar.inc.php'); ?>
-		<main>
-			<h2>Sentence</h2>
+<p><?= htmlspecialchars($sentence); ?></p>
 
-			<p><?= htmlspecialchars($sentence); ?></p>
+<h2>Parse</h2>
 
-			<h2>Parse</h2>
+<ul class="nav nav-tabs">
+	<li class="<?= $is_user_logged_in ? '' : 'active' ?>"><a data-toggle=tab href=#parses_parser>Parser</a></li>
+	<?php if ($is_user_logged_in) { ?>
+		<li class=active><a data-toggle=tab href=#parses_mine>Mine</a></li>
+	<?php } ?>
+</ul>
+<div class=tab-content>
+	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
+		<?= xslTransform('xsl/der.xsl', $parser_parse) ?>
+	</div>
+	<?php if ($is_user_logged_in) { ?>
+		<div id=parses_mine class="tab-pane active">
+			<?= xslTransform('xsl/der.xsl', $user_parse) ?>
+		</div>
+	<?php } ?>
+</div>
 
-			<ul class="nav nav-tabs">
-				<li class="<?= $is_user_logged_in ? '' : 'active' ?>"><a data-toggle=tab href=#parses_parser>Parser</a></li>
-				<?php if ($is_user_logged_in) { ?>
-					<li class=active><a data-toggle=tab href=#parses_mine>Mine</a></li>
-				<?php } ?>
-			</ul>
-			<div class=tab-content>
-				<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-					<?= xslTransform('xsl/der.xsl', $parser_parse) ?>
-				</div>
-				<?php if ($is_user_logged_in) { ?>
-					<div id=parses_mine class="tab-pane active">
-						<?= xslTransform('xsl/der.xsl', $user_parse) ?>
-					</div>
-				<?php } ?>
-			</div>
-		</main>
-
-		<!-- jQuery -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-		<!-- Bootstrap scripts -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-		<!-- Our scripts -->
-		<script>
 <?php
-echo "const api = " .json_encode($api) . "\n";
-
-if ($is_user_logged_in) {
-	echo "const isUserLoggedIn = true\n";
-	echo "const userName = ". json_encode($user_name) . "\n";
-} else {
-	echo "const isUserLoggedIn = false\n";
-}
-
-echo "const sentence = " . json_encode($sentence) . "\n";
+require('inc/foot.inc.php');
 ?>
-		</script>
-		<script src=js/der.js></script>
-	</body>
-</html>
