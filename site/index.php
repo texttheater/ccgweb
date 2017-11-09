@@ -8,7 +8,8 @@ require('inc/config.inc.php');
 require('inc/session.inc.php');
 
 if (!isset($_GET['sentence']) || !$_GET['sentence']) {
-	die('ERROR: sentence parameter must be given');
+	header('Location: ./?sentence=' . rawurlencode("I don't want to be famous."));
+	die();
 }
 
 if (strlen($_GET['sentence']) > 1024) {

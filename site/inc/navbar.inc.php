@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-static-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">CCGWeb</a>
+			<a class="navbar-brand" href=".">CCGWeb</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li>
