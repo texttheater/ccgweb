@@ -1,6 +1,7 @@
 <?php
 require('vendor/autoload.php');
 require('inc/config.inc.php');
+require('inc/util.inc.php');
 
 session_start();
 
@@ -14,16 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$resource = $params['api_resource'];
 	unset($params['api_resource']);
-	$query = http_build_query($params, null,
-		ini_get('arg_separator.output'), PHP_QUERY_RFC3986);
-	$headers = [];
-
-	if (isset($_SESSION['ccgweb_api_session_id'])) {
-		$headers['Cookie'] = 'session_id=' . $_SESSION['ccgweb_api_session_id'];
-	}
 
 	try {
-		Requests::get($api . '/' . $resouce . '?' . $query, $headers);
+		$response = api($resource, 'get', $params);
 	} catch(Requests_Exception $e) {
 		http_response_code(500);
 		die('ERROR: could not connect to REST server. Is it running?');
@@ -44,21 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		die('ERROR: api_resource parameter missing');
 	}
 
+	$resource = $params['api_resource'];
+	unset($params['api_resource']);
+
 	if (!isset($params['api_action'])) {
 		http_response_code(400);
 		die('ERROR: api_action parameter missing');
 	}
 
-	$resource = $params['api_resource'];
-	unset($params['api_resource']);
-	$headers = [];
-
-	if (isset($_SESSION['ccgweb_api_session_id'])) {
-		$headers['Cookie'] = 'session_id=' . $_SESSION['ccgweb_api_session_id'];
-	}
+	$action = $params['api_action'];
+	unset($params['api_action']);
 
 	try {
-		$response = Requests::post("$api/" . $resource, $headers, $params);
+		$response = api($resource, $action, $params);
 	} catch(Requests_Exception $e) {
 		http_response_code(500);
 		die('ERROR: could not connect to REST server. Is it running?');
@@ -69,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	if ($response->success) {
 		echo $response->body;
 	} else {
-		die ('ERROR: API error (' . $resource . ')');
+		die('ERROR: API error (' . $resource . ')');
 	}
 } else {
 	die('ERROR: bad method');

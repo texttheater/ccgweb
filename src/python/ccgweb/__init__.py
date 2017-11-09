@@ -70,25 +70,36 @@ class Sentence:
             return
 
 
-class Login:
-
-    def on_post(self, req, res):
-        session_id = ccgweb.users.login(req.params['user_id'],
-                                        req.params['password'])
-        if session_id:
-            # TODO move this info to Set-Cookie header?
-            body = { 'session_id': session_id }
-            res.body = json.dumps(body)
-        else:
-            res.status = falcon.HTTP_401
-
-
 class Session:
 
     def on_get(self, req, res):
         session_id = req.cookies['session_id']
         body = ccgweb.users.get_session_info(session_id)
         res.body = json.dumps(body)
+
+    def on_post(self, req, res):
+        if 'api_action' not in req.params:
+            res.status = falcon.HTTP_400
+            return
+        if req.params['api_action'] == 'login':
+            session_id = ccgweb.users.login(req.params['user_id'],
+                                            req.params['password'])
+            if session_id:
+                # TODO move this info to Set-Cookie header?
+                body = { 'session_id': session_id }
+                res.body = json.dumps(body)
+            else:
+                res.status = falcon.HTTP_401
+        elif req.params['api_action'] == 'logout':
+            try:
+                session_id = req.cookies['session_id']
+            except ValueError:
+                res.status = falcon.HTTP_400
+                return
+            ccgweb.users.logout(session_id)
+        else:
+            res.status = falcon.HTTP_400
+            return
 
 
 with open('config.json') as f:

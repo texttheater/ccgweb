@@ -10,11 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'
 	&& $_POST['user_id']
 	&& $_POST['password']) {
 	try {
-		$data = [
+		$response = api('session', 'login', [
 			'user_id' => $_POST['user_id'],
-			'password' => $_POST['password'],
-		];
-		$response = Requests::post("$api/login", [], $data);
+			'password' => $_POST['password']]);
 	} catch (Requests_Exception $e) {
 		die('ERROR: could not connect to REST server. Is it running?');
 	}

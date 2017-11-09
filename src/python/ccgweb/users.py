@@ -29,6 +29,12 @@ def login(name, password):
     return session_id
 
 
+def logout(session_id):
+    ccgweb.db.execute('''UPDATE users
+                         SET session_id = NULL
+                         WHERE session_id = %s''', session_id)
+
+
 def get_session_info(session_id):
     rows = ccgweb.db.get('''SELECT id FROM users
                             WHERE session_id = %s''', session_id)
