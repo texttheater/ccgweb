@@ -22,18 +22,18 @@ if (isUserLoggedIn) {
                     td.appendChild(textNode)
                 }
                 input.onchange = event => {
-                    const req = new XMLHttpRequest()
-                    req.open('POST', 'api.php')
-                    const formData = new FormData()
-                    formData.append('api_resource', 'sentences/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName))
-                    formData.append('api_action', 'add_super_bow')
-                    formData.append('offset_from', table.dataset['from'])
-                    formData.append('offset_to', table.dataset['to'])
-                    formData.append('tag', input.value)
-                    req.onload = function() {
-                        console.log(this.responseText)
-                    }
-                    req.send(formData)
+                    api(
+                        'sentences/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                        'add_super_bow',
+                        {
+                            offset_from: table.dataset['from'],
+                            offset_to: table.dataset['to'],
+                            tag: input.value
+                        },
+                        function() {
+                            console.log(this.responseText)
+                        }
+                    )
                 }
             }
         }
