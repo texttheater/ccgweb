@@ -26,6 +26,22 @@ try {
 if (!$response->success) {
 	die('ERROR: bad API response status');
 }
+
+$parser_parse = $response->body;
+
+if ($is_user_logged_in) {
+	try {
+		$response = Requests::get("$api/sentences/" . rawurlencode($sentence) . "/" . $user_name);
+	} catch (Requests_Exception $e) {
+		die('ERROR: could not connect to REST server. Is it running?');
+	}
+	
+	if (!$response->success) {
+		die('ERROR: bad API response status');
+	}
+	
+	$user_parse = $response->body;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +59,7 @@ if (!$response->success) {
 		<link rel=stylesheet href=css/der.css>
 	</head>
 	<body>
-<?php
-require('inc/navbar.inc.php');
-?>
+		<?php require('inc/navbar.inc.php'); ?>
 		<main>
 			<h2>Sentence</h2>
 
@@ -54,15 +68,20 @@ require('inc/navbar.inc.php');
 			<h2>Parse</h2>
 
 			<ul class="nav nav-tabs">
-				<li class=active><a data-toggle=tab href=#parses_parser>Parser</a></li>
-				<li><a data-toggle=tab href=#parses_mine>Mine</a></li>
+				<li class="<?= $is_user_logged_in ? '' : 'active' ?>"><a data-toggle=tab href=#parses_parser>Parser</a></li>
+				<?php if ($is_user_logged_in) { ?>
+					<li class=active><a data-toggle=tab href=#parses_mine>Mine</a></li>
+				<?php } ?>
 			</ul>
 			<div class=tab-content>
-				<div id=parses_parser class="tab-pane active">
-					<?= xslTransform('xsl/der.xsl', $response->body) ?>
+				<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
+					<?= xslTransform('xsl/der.xsl', $parser_parse) ?>
 				</div>
-				<div id=parses_mine class="tab-pane">
-				</div>
+				<?php if ($is_user_logged_in) { ?>
+					<div id=parses_mine class="tab-pane active">
+						<?= xslTransform('xsl/der.xsl', $user_parse) ?>
+					</div>
+				<?php } ?>
 			</div>
 		</main>
 
