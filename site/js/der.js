@@ -1,5 +1,5 @@
 if (isUserLoggedIn) {
-    document.querySelectorAll('table.lex').forEach(table => {
+    document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
         const td = table.querySelector('td.cat')
         td.onfocus = event => {
             if (td.firstChild.nodeType == Node.TEXT_NODE) {
