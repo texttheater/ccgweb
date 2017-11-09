@@ -6,11 +6,11 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li>
 <?php
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'login.php') {
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'user.php') {
 } elseif ($is_user_logged_in) {
 	echo '<a href=user.php><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ' . htmlspecialchars($user_name) . "</a>\n";
 } else {
-	echo "<a href=login.php>Sign in</a>\n";
+	echo "<a href=user.php>Sign in</a>\n";
 }
 ?>
 			</li>
