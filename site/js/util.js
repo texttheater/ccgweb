@@ -1,6 +1,6 @@
 function api(resource, action, params, onload) {
     const req = new XMLHttpRequest()
-        req.onload = onload
+    req.onload = onload
 
     if (action.toLowerCase() == 'get') {
         let url = 'api.php?api_resource=' + encodeURIComponent(resource)
@@ -12,7 +12,6 @@ function api(resource, action, params, onload) {
         req.open('GET', url)
         req.send()
     } else {
-        req.open('POST', 'api.php')
         const formData = new FormData()
 
         Object.keys(params).forEach(key => {
@@ -22,6 +21,7 @@ function api(resource, action, params, onload) {
         formData.append('api_resource', resource)
         formData.append('api_action', action)
 
+        req.open('POST', 'api.php')
         req.send(formData)
     }
 }
