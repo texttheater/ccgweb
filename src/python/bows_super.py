@@ -20,6 +20,6 @@ if __name__ == '__main__':
         for line in f:
             offset_from, offset_to, tokid, tok = line.split(maxsplit=3)
             if (offset_from, offset_to) in tag_by_offsets:
-                print(tag)
+                print(tag_by_offsets[(offset_from, offset_to)])
             else:
                 print()
