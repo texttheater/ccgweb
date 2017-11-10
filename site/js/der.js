@@ -1,3 +1,8 @@
+function transferTabOrder(from, to) {
+    to.tabIndex = from.tabIndex
+    from.removeAttribute('tabindex')
+}
+
 document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
     const td = table.querySelector('td.cat')
     td.onfocus = event => {
@@ -7,12 +12,14 @@ document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
         if (td.firstChild.nodeType == Node.TEXT_NODE) {
             const currentCat = td.textContent.trim()
             const input = document.createElement('input')
+            transferTabOrder(td, input)
             input.type = 'text'
             input.value = currentCat
             td.removeChild(td.firstChild)
             td.appendChild(input)
             input.focus()
             input.onblur = event => {
+                transferTabOrder(input, td)
                 let newCat = input.value.trim()
 
                 if (newCat == '') {
