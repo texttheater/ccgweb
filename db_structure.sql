@@ -47,7 +47,7 @@ CREATE TABLE `users` (
   `id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `password_hash` mediumblob NOT NULL,
   `session_id` varchar(32) CHARACTER SET armscii8 COLLATE armscii8_bin DEFAULT NULL,
-  `session_expires` date DEFAULT NULL
+  `session_expires` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
