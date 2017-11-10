@@ -1,6 +1,9 @@
 document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
     const td = table.querySelector('td.cat')
     td.onfocus = event => {
+        if (busy) {
+            return
+        }
         if (td.firstChild.nodeType == Node.TEXT_NODE) {
             const currentCat = td.textContent.trim()
             const input = document.createElement('input')
@@ -21,6 +24,7 @@ document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
                 td.appendChild(textNode)
             }
             input.onchange = event => {
+                busy = true
                 api(
                     'sentences/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
                     'add_super_bow',
@@ -31,6 +35,7 @@ document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
                     },
                     function() {
                         console.log(this.responseText)
+                        window.location.reload()
                     }
                 )
             }

@@ -15,4 +15,5 @@ if ($is_user_logged_in) {
 	echo "const isUserLoggedIn = false\n";
 }
 ?>
+let busy = false;
 </script>
