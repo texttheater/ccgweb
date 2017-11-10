@@ -40,12 +40,20 @@ document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
                         offset_to: table.dataset['to'],
                         tag: input.value
                     },
-                    function() {
+                    () => {
                         console.log(this.responseText)
                         window.location.reload()
                     }
                 )
             }
         }
+    }
+    const draggable = table.querySelector('span.span-draggable')
+    draggable.ondragstart = event => {
+        const dragImage = event.target.cloneNode(true)
+        dragImage.style.display = 'none'
+        document.body.appendChild(dragImage)
+        event.dataTransfer.setDragImage(dragImage, 0, 0)
+        event.dataTransfer.effectAllowed = 'none' // does not work in Chromium >:(
     }
 })

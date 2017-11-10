@@ -22,7 +22,7 @@ table.constituent {
 
 /* padding in visual blocks */
 
-td.token, td.cat, td.rulecat, td.spanconstraint-selectable {
+td.token, td.cat, td.rulecat, td.span-swiper {
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -58,7 +58,7 @@ div.der {
 
 /* detach span constraint selectables */
 
-td.spanconstraint-selectable {
+td.span-swiper {
 	margin-top: 8px;
 	display: block;
 }
@@ -104,7 +104,7 @@ td.rulecat {
 	border-top: 2px solid #9d9d9d;
 }
 
-td.spanconstraint-selectable {
+td.span-swiper {
 	background: #9d9d9d;
 }
 
@@ -125,7 +125,7 @@ td.cat, span.cat {
 		background: none;
 	}
 
-	td.spanconstraint-selectable {
+	td.span-swiper {
 		display: none;
 	}
 
@@ -136,6 +136,13 @@ td.cat, span.cat {
 	td.token, td.rulecat {
 		border-top: 2px solid black;
 	}
+}
+
+
+/* creating span BOWs */
+
+span.span-draggable {
+	display: block;
 }
 
 
