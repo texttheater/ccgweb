@@ -108,7 +108,7 @@ function initSpanBOWs() {
                 },
                 () => {
                     console.log(this.responseText)
-                    //window.location.reload()
+                    window.location.reload()
                 }
             )
         }

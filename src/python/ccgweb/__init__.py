@@ -51,20 +51,33 @@ class Sentence:
                 res.status = falcon.HTTP_401
                 return
             sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
-            if 'offset_from' not in req.params \
-                    or 'offset_to' not in req.params:
-                res.status = falcon.HTTP_400
-                return
             try:
                 offset_from = int(req.params['offset_from'])
                 offset_to = int(req.params['offset_to'])
-            except ValueError:
+                tag = req.params['tag']
+            except (KeyError, ValueError):
                 res.status = falcon.HTTP_400
                 return
             db.execute('''INSERT INTO bows_super
                 (user_id, time, sentence_id, offset_from, offset_to, tag)
                 VALUES (%s, NOW(), %s, %s, %s, %s)''', user, sentence_hash,
-                offset_from, offset_to, req.params['tag'])
+                offset_from, offset_to, tag)
+        elif req.params['api_action'] == 'add_span_bow':
+            user = ccgweb.users.current_user(req)
+            if not user:
+                res.status = falcon.HTTP_401
+                return
+            sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+            try:
+                offset_from = int(req.params['offset_from'])
+                offset_to = int(req.params['offset_to'])
+            except (KeyError, ValueError):
+                res.status = falcon.HTTP_400
+                return
+            db.execute('''INSERT INTO bows_span
+                (user_id, time, sentence_id, offset_from, offset_to)
+                VALUES (%s, NOW(), %s, %s,%s)''', user, sentence_hash,
+                offset_from, offset_to)
         else:
             res.status = falcon.HTTP_400
             return
