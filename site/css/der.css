@@ -141,8 +141,8 @@ td.cat, span.cat {
 
 /* creating span BOWs */
 
-span.span-draggable {
-	display: block;
+table.lex.selected td.span-swiper {
+	background: orange;
 }
 
 

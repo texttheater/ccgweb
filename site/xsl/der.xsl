@@ -130,7 +130,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="span-swiper"><span class="span-draggable" draggable="true">&#160;</span></td>
+				<td class="span-swiper">&#160;</td>
 			</tr>
 		</xsl:element>
 	</xsl:template>
