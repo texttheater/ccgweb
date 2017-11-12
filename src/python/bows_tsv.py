@@ -15,9 +15,18 @@ if __name__ == '__main__':
         bows = ccgweb.db.get('''SELECT offset_from, offset_to, tag
                                 FROM bows_super
                                 WHERE sentence_id = %s
-                                AND user_id = %s''', sid, uid)
+                                AND user_id = %s
+                                ORDER BY time ASC''', sid, uid)
         for offset_from, offset_to, tag in bows:
             print(offset_from, offset_to, tag)
+    elif layer == 'span':
+        bows = ccgweb.db.get('''SELECT offset_from, offset_to
+                                FROM bows_span
+                                WHERE sentence_id = %s
+                                AND user_id = %s
+                                ORDER BY time ASC''', sid, uid)
+        for offset_from, offset_to in bows:
+            print(offset_from, offset_to)
     else:
         print('ERROR: unknown layer:', layer, file=sys.stderr)
         sys.exit(1)
