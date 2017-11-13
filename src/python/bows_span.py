@@ -42,7 +42,7 @@ if __name__ == '__main__':
     old_spans = spans
     spans = []
     for span in old_spans:
-        spans = [s for s in spans if not conflict(s, span)]
+        spans = [s for s in spans if not conflict(s, span) and not s == span]
         spans.append(span)
     # Eliminate spans that do not match token boundaries:
     spans = [span for span in spans if matches(span, tokens)]
