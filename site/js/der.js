@@ -36,7 +36,7 @@ function initSuperBOWs() {
                 input.onchange = event => {
                     busy = true
                     api(
-                        'sentences/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                        'sentences/eng/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
                         'add_super_bow',
                         {
                             offset_from: table.dataset['from'],
@@ -95,12 +95,11 @@ function initSpanBOWs() {
                 lex.classList.remove('selected')
             }
         } else {
-            console.log(selectedLexes[0])
             const spanFrom = selectedLexes[0].dataset['from']
             const spanTo = selectedLexes[selectedLexes.length - 1].dataset['to']
             busy = true
             api(
-                'sentences/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                'sentences/eng/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
                 'add_span_bow',
                 {
                     offset_from: spanFrom,

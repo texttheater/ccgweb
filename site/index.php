@@ -19,7 +19,7 @@ if (strlen($_GET['sentence']) > 1024) {
 $sentence = $_GET['sentence'];
 
 try {
-	$response = Requests::get("$api/sentences/" . rawurlencode($sentence) . "/auto");
+	$response = api('sentences/eng/' . rawurlencode($sentence) . '/auto', 'get', []);
 } catch (Requests_Exception $e) {
 	die('ERROR: could not connect to REST server. Is it running?');
 }
@@ -32,7 +32,7 @@ $parser_parse = $response->body;
 
 if ($is_user_logged_in) {
 	try {
-		$response = Requests::get("$api/sentences/" . rawurlencode($sentence) . "/" . $user_name);
+		$response = api('sentences/eng/' . rawurlencode($sentence) . '/' . rawurlencode($user_name), 'get', []);
 	} catch (Requests_Exception $e) {
 		die('ERROR: could not connect to REST server. Is it running?');
 	}

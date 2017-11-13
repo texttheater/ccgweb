@@ -25,8 +25,9 @@ class DB:
 
 class Sentence:
 
-    def on_get(self, req, res, sentence, user_id):
-        sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+    def on_get(self, req, res, lang, sentence, user_id):
+        assert lang == 'eng'
+        sentence_hash = sentence2hash(sentence)
         hash_group = sentence_hash[:2]
         raw_dir = os.path.join('raw', hash_group)
         raw_file = os.path.join(raw_dir, sentence_hash + '.raw')
@@ -41,7 +42,8 @@ class Sentence:
         with open(der_file, 'rb') as f:
             res.data = f.read()
 
-    def on_post(self, req, res, sentence, user_id):
+    def on_post(self, req, res, lang, sentence, user_id):
+        assert lang == 'eng'
         if 'api_action' not in req.params:
             res.status = falcon.HTTP_400
             return
@@ -50,7 +52,7 @@ class Sentence:
             if not user:
                 res.status = falcon.HTTP_401
                 return
-            sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+            sentence_hash = sentence2hash(sentence)
             try:
                 offset_from = int(req.params['offset_from'])
                 offset_to = int(req.params['offset_to'])
@@ -67,7 +69,7 @@ class Sentence:
             if not user:
                 res.status = falcon.HTTP_401
                 return
-            sentence_hash = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+            sentence_hash = sentence2hash(sentence)
             try:
                 offset_from = int(req.params['offset_from'])
                 offset_to = int(req.params['offset_to'])
@@ -122,3 +124,7 @@ with open('config.json') as f:
 db = DB(MySQLdb.connect(config['db_host'], config['db_user'],
                         config['db_pass'], config['db_name']))
 db.execute('SET NAMES "utf8mb4"')
+
+
+def sentence2hash(sentence):
+    return hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
