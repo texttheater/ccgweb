@@ -61,7 +61,7 @@ function initSpanBOWs() {
     for (const lex of lexes) {
         const swiper = lex.querySelector('td.span-swiper')
         if (swiper == null) {
-            return
+            continue
         }
         swiper.onmousedown = event => {
             if (busy) {
@@ -80,7 +80,7 @@ function initSpanBOWs() {
         for (const lex of lexes) {
             const swiper = lex.querySelector('td.span-swiper')
             if (swiper == null) {
-                return
+                continue
             }
             const rect = swiper.getBoundingClientRect()
             if ((spanStart < rect.left && spanEnd < rect.left) ||
