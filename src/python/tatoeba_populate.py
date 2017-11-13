@@ -31,4 +31,4 @@ if __name__ == '__main__':
                     continue
                 cursor.execute('''INSERT INTO text_links (lang1, id1, lang2, id2)
                                   VALUES (%s, %s, %s, %s)''',
-                               (lang1, id2, lang2, id2))
+                               (lang1, id1, lang2, id2))
