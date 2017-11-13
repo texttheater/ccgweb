@@ -129,9 +129,11 @@
 					</xsl:choose>
 				</td>
 			</tr>
-			<tr>
-				<td class="span-swiper">&#160;</td>
-			</tr>
+			<xsl:if test="not(tag[@type='to'] = '-1')">
+				<tr>
+					<td class="span-swiper">&#160;</td>
+				</tr>
+			</xsl:if>
 		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
