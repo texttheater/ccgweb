@@ -55,4 +55,4 @@ if __name__ == '__main__':
         for span_from, span_to in spans:
             if token_to == span_to:
                 parens.append(')')
-        print(''.join(parens))
+        print(' '.join(parens))
