@@ -9,7 +9,7 @@ function initSuperBOWs() {
     document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
         const td = table.querySelector('td.cat')
         td.onfocus = event => {
-            if (busy) {
+            if (busy || isMarkedCorrect()) {
                 return
             }
             if (td.firstChild.nodeType == Node.TEXT_NODE) {
@@ -34,9 +34,9 @@ function initSuperBOWs() {
                     td.appendChild(textNode)
                 }
                 input.onchange = event => {
-                    busy = true
+                    goBusy()
                     api(
-                        'sentences/eng/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                        'sentences/' + lang + '/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
                         'add_super_bow',
                         {
                             offset_from: table.dataset['from'],
@@ -64,7 +64,7 @@ function initSpanBOWs() {
             continue
         }
         swiper.onmousedown = event => {
-            if (busy) {
+            if (busy || isMarkedCorrect()) {
                 return
             }
             spanStart = event.clientX
@@ -103,9 +103,9 @@ function initSpanBOWs() {
         } else {
             const spanFrom = selectedLexes[0].dataset['from']
             const spanTo = selectedLexes[selectedLexes.length - 1].dataset['to']
-            busy = true
+            goBusy()
             api(
-                'sentences/eng/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                'sentences/' + lang +'/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
                 'add_span_bow',
                 {
                     offset_from: spanFrom,
@@ -121,6 +121,34 @@ function initSpanBOWs() {
     })
 }
 
+function initMarkCorrect() {
+    const input = document.querySelector('div#mark-correct input')
+    input.onchange = event => {
+        goBusy()
+        api(
+            'sentences/' + lang + '/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+            'mark_correct',
+            {
+                correct: true
+            },
+            () => {
+                window.location.reload()
+            }
+        )
+    }
+}
+
+function isMarkedCorrect() {
+    const input = document.querySelector('div#mark-correct input')
+    return input.checked
+}
+
+function goBusy() {
+    busy = true
+    document.querySelector('div#mark-correct input').disabled = true
+}
+
 let busy = false
 initSuperBOWs()
 initSpanBOWs()
+initMarkCorrect()
