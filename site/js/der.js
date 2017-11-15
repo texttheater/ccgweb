@@ -123,6 +123,9 @@ function initSpanBOWs() {
 
 function initMarkCorrect() {
     const input = document.querySelector('div#mark-correct input')
+    if (input == null) {
+        return
+    }
     input.onchange = event => {
         goBusy()
         api(
