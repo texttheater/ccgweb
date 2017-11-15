@@ -85,6 +85,7 @@ require('inc/js.inc.php');
 <script>
 <?php
 echo "const sentence = " . json_encode($sentence) . "\n";
+echo "const lang = " . json_encode($lang) . "\n";
 ?>
 </script>
 
