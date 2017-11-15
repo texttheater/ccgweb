@@ -38,13 +38,12 @@ Specifically, the following directories and files are expected to exist:
   [SWI-Prolog](http://www.swi-prolog.org) 7 runtime library to be installed.
 * `ext/easyccg/easyccg.jar`: the [Parallel Meaning Bank patched version of Mike
   Lewis’s EasyCCG parser](https://github.com/ParallelMeaningBank/easyccg)
-* `models/parse/en.model`: the EasyCCG model trained on the Rebanked CCGbank,
-  available via the
-  [EasyCCG website](http://homepages.inf.ed.ac.uk/s1049478/easyccg.html).
+* `models/parse/{eng,deu,ita.nld}.model`: EasyCCG models for English, German,
+  Italian and Dutch.
 * `ext/elephant`, the
   [Elephant](https://github.com/ParallelMeaningBank/elephant) tokenizer
-* `models/tok.iob/en.model`, an Elephant model for English, available via the
-  [Elephant website](http://gmb.let.rug.nl/elephant/about.php).
+* `models/tok.iob/{eng,deu,ita.nld}.model`, Elephant models for English,
+  German, Italian and Dutch.
 * `ext/produce`, the [Produce](https://github.com/texttheater/produce) build
   system.
 * `ext/viasock`, the [Viasock](https://github.com/texttheater/produce)
