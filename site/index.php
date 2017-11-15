@@ -7,19 +7,25 @@ require('inc/config.inc.php');
 
 require('inc/session.inc.php');
 
-if (!isset($_GET['sentence']) || !$_GET['sentence']) {
-	header('Location: ./?sentence=' . rawurlencode("I don't want to be famous."));
+if (!isset($_GET['sentence']) || !$_GET['sentence']
+		|| !isset($_GET['lang']) || !$_GET['lang']) {
+	header('Location: ./?lang=eng&sentence=' . rawurlencode("I don't want to be famous."));
 	die();
+}
+
+if (!in_array($_GET['lang'], ['eng', 'deu', 'ita', 'nld'])) {
+	die('ERROR: lang parameter must be one of eng, deu, ita, nld.');
 }
 
 if (strlen($_GET['sentence']) > 1024) {
 	die('ERROR: sentence too long. Only 1024 bytes allowed.');
 }
 
+$lang = $_GET['lang'];
 $sentence = $_GET['sentence'];
 
 try {
-	$response = api('sentences/eng/' . rawurlencode($sentence) . '/auto', 'get', []);
+	$response = api("sentences/$lang/" . rawurlencode($sentence) . '/auto', 'get', []);
 } catch (Requests_Exception $e) {
 	die('ERROR: could not connect to REST server. Is it running?');
 }
@@ -32,7 +38,7 @@ $parser_parse = $response->body;
 
 if ($is_user_logged_in) {
 	try {
-		$response = api('sentences/eng/' . rawurlencode($sentence) . '/' . rawurlencode($user_name), 'get', []);
+		$response = api("sentences/$lang/" . rawurlencode($sentence) . '/' . rawurlencode($user_name), 'get', []);
 	} catch (Requests_Exception $e) {
 		die('ERROR: could not connect to REST server. Is it running?');
 	}
@@ -51,7 +57,7 @@ require('inc/head.inc.php');
 
 <h2>Sentence</h2>
 
-<p><?= htmlspecialchars($sentence); ?></p>
+<p><span class=badge><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
 
 <h2>Parse</h2>
 
