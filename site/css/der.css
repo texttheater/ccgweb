@@ -95,17 +95,17 @@ div.lexlist table.lex {
 div.der {
 	/* background: #f0f0f0;*/
 	/*border: #d0d0d0 solid 1px;*/
-	/*border-top: 2px solid #9d9d9d;*/
+	/*border-top: 2px solid #999;*/
 	font-family: 'Noto Sans', sans-serif;
 	color: #404040;
 }
 
 td.rulecat {
-	border-top: 2px solid #9d9d9d;
+	border-top: 2px solid #999;
 }
 
 td.span-swiper {
-	background: #9d9d9d;
+	background: #999;
 }
 
 
