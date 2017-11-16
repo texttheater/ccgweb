@@ -1,5 +1,6 @@
 import ccgweb
 import ccgweb.users
+import ccgweb.util
 import falcon
 import hashlib
 import json
@@ -18,7 +19,7 @@ class Sentence:
             AND sentence_id = %s
             AND user_id = %s''', lang, sentence_hash, user_id)
         if rows:
-            derxml = rows[0][0].decode('UTF-8')
+            derxml = rows[0][0]
         else:
             raw_path = get_raw_path(lang, sentence_hash)
             if not os.path.isfile(raw_path):
@@ -82,7 +83,7 @@ class Sentence:
                 res.status = falcon.HTTP_400
                 return
             if correct:
-                with open(get_path(lang, sentence_hash, user, 'der.xml')) as f:
+                with open(get_path(lang, sentence_hash, user, 'der.xml'), 'rb') as f:
                     derxml = f.read()
                 ccgweb.db.execute('''INSERT INTO correct
                     (lang, sentence_id, user_id, time, derxml)

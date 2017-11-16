@@ -70,7 +70,7 @@ CREATE TABLE `correct` (
   `sentence_id` varchar(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` datetime NOT NULL,
-  `derxml` blob NOT NULL,
+  `derxml` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`lang`,`sentence_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,4 +134,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-16 16:22:52
+-- Dump completed on 2017-11-16 17:21:32

@@ -22,5 +22,5 @@ with open('config.json') as f:
 
 
 db = DB(MySQLdb.connect(config['db_host'], config['db_user'],
-                        config['db_pass'], config['db_name']))
-db.execute('SET NAMES "utf8mb4"')
+                        config['db_pass'], config['db_name'],
+                        charset='utf8'))
