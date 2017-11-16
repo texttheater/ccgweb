@@ -34,7 +34,7 @@ if (!$response->success) {
 	die('ERROR: bad API response status');
 }
 
-$parser_parse = json_decode($response->body)->derxml;
+$parser_sentence = json_decode($response->body);
 
 if ($is_user_logged_in) {
 	try {
@@ -47,7 +47,7 @@ if ($is_user_logged_in) {
 		die('ERROR: bad API response status');
 	}
 	
-	$user_parse = json_decode($response->body)->derxml;
+	$user_sentence = json_decode($response->body);
 }
 
 $title = 'CCGWeb';
@@ -69,16 +69,16 @@ require('inc/head.inc.php');
 </ul>
 <div class=tab-content>
 	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-		<?= xslTransform('xsl/der.xsl', $parser_parse) ?>
+		<?= xslTransform('xsl/der.xsl', $parser_sentence->derxml) ?>
 	</div>
 	<?php if ($is_user_logged_in) { ?>
 		<div id=parses_mine class="tab-pane active">
-			<?= xslTransform('xsl/der.xsl', $user_parse) ?>
+			<?= xslTransform('xsl/der.xsl', $user_sentence->derxml) ?>
 			<p>&nbsp;</p>
-			<div class="well well-sm">
+			<div class="well well-sm <?= $user_sentence->marked_correct ? 'well-success' : '' ?>">
 				<div class=checkbox style="display: inline;" id=mark-correct>
 					<label>
-						<input type=checkbox> mark correct
+						<input type=checkbox <?= $user_sentence->marked_correct ? 'checked' : '' ?>> mark correct
 					</label>
 				</div>
 			</div>

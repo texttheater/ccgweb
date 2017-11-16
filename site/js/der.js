@@ -132,7 +132,7 @@ function initMarkCorrect() {
             'sentences/' + lang + '/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
             'mark_correct',
             {
-                correct: true
+                correct: input.checked
             },
             () => {
                 window.location.reload()
