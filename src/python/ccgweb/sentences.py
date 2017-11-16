@@ -1,3 +1,6 @@
+import ccgweb
+import ccgweb.users
+import falcon
 import hashlib
 import os
 import subprocess
@@ -40,7 +43,7 @@ class Sentence:
             except (KeyError, ValueError):
                 res.status = falcon.HTTP_400
                 return
-            db.execute('''INSERT INTO bows_super
+            ccgweb.db.execute('''INSERT INTO bows_super
                 (user_id, time, sentence_id, offset_from, offset_to, tag)
                 VALUES (%s, NOW(), %s, %s, %s, %s)''', user, sentence_hash,
                 offset_from, offset_to, tag)
@@ -56,7 +59,7 @@ class Sentence:
             except (KeyError, ValueError):
                 res.status = falcon.HTTP_400
                 return
-            db.execute('''INSERT INTO bows_span
+            ccgweb.db.execute('''INSERT INTO bows_span
                 (user_id, time, sentence_id, offset_from, offset_to)
                 VALUES (%s, NOW(), %s, %s,%s)''', user, sentence_hash,
                 offset_from, offset_to)
