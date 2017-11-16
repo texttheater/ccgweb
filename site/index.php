@@ -6,25 +6,8 @@ require('inc/util.inc.php');
 require('inc/config.inc.php');
 require('inc/session.inc.php');
 
-if (!isset($_GET['sentence']) || !$_GET['sentence']
-		|| !isset($_GET['lang']) || !$_GET['lang']) {
-	header('Location: ./?lang=eng&sentence=' . rawurlencode("I don't want to be famous."));
-	die();
-}
-
-if (!in_array($_GET['lang'], ['eng', 'deu', 'ita', 'nld'])) {
-	die('ERROR: lang parameter must be one of eng, deu, ita, nld.');
-}
-
-if (strlen($_GET['sentence']) > 1024) {
-	die('ERROR: sentence too long. Only 1024 bytes allowed.');
-}
-
-$lang = $_GET['lang'];
-$sentence = $_GET['sentence'];
-
 try {
-	$response = api("sentences/$lang/" . rawurlencode($sentence) . '/auto', 'get', []);
+	$response = api('assignment', 'get', []);
 } catch (Requests_Exception $e) {
 	die('ERROR: could not connect to REST server. Is it running?');
 }
@@ -33,56 +16,51 @@ if (!$response->success) {
 	die('ERROR: bad API response status');
 }
 
-$parser_sentence = json_decode($response->body);
-
-if ($is_user_logged_in) {
-	try {
-		$response = api("sentences/$lang/" . rawurlencode($sentence) . '/' . rawurlencode($user_name), 'get', []);
-	} catch (Requests_Exception $e) {
-		die('ERROR: could not connect to REST server. Is it running?');
-	}
-	
-	if (!$response->success) {
-		die('ERROR: bad API response status');
-	}
-	
-	$user_sentence = json_decode($response->body);
-}
+$assignment = json_decode($response->body);
 
 $title = 'CCGWeb';
 
 require('inc/head.inc.php');
 ?>
 
-<h2>Sentence</h2>
+<div class=container>
 
-<p><span class=badge><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
+<h2>My Assignment</h2>
 
-<h2>Parse</h2>
+<ul class=list-unstyled>
 
-<ul class="nav nav-tabs">
-	<li class="<?= $is_user_logged_in ? '' : 'active' ?>"><a data-toggle=tab href=#parses_parser>Parser</a></li>
-	<?php if ($is_user_logged_in) { ?>
-		<li class=active><a data-toggle=tab href=#parses_mine>Mine</a></li>
-	<?php } ?>
+<?php
+foreach ($assignment as $sentence) {
+?>
+
+<li>
+	<span class="label label-default">
+		<?= htmlspecialchars($sentence->lang) ?>
+	</span>
+	&nbsp;
+	<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
+		<?= htmlspecialchars($sentence->sentence) ?>
+	</a>
+
+<?php
+if ($sentence->done) {
+?>
+
+<span class="glyphicon glyphicon-ok" title="done" aria-hidden="true"></span>
+<span class="sr-only">done</span>
+
+<?php
+}
+?>
+
+</li>
+	
+<?php
+}
+?>
+
 </ul>
-<div class=tab-content>
-	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-		<?= xslTransform('xsl/der.xsl', $parser_sentence->derxml) ?>
-	</div>
-	<?php if ($is_user_logged_in) { ?>
-		<div id=parses_mine class="tab-pane active">
-			<?= xslTransform('xsl/der.xsl', $user_sentence->derxml) ?>
-			<p>&nbsp;</p>
-			<div class="well well-sm <?= $user_sentence->marked_correct ? 'well-success' : '' ?>">
-				<div class=checkbox style="display: inline;" id=mark-correct>
-					<label>
-						<input type=checkbox <?= $user_sentence->marked_correct ? 'checked' : '' ?>> mark correct
-					</label>
-				</div>
-			</div>
-		</div>
-	<?php } ?>
+
 </div>
 
 <?php
