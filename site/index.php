@@ -34,7 +34,7 @@ if (!$response->success) {
 	die('ERROR: bad API response status');
 }
 
-$parser_parse = $response->body;
+$parser_parse = json_decode($response->body)->derxml;
 
 if ($is_user_logged_in) {
 	try {
@@ -47,7 +47,7 @@ if ($is_user_logged_in) {
 		die('ERROR: bad API response status');
 	}
 	
-	$user_parse = $response->body;
+	$user_parse = json_decode($response->body)->derxml;
 }
 
 $title = 'CCGWeb';

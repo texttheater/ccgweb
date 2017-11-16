@@ -2,6 +2,7 @@ import ccgweb
 import ccgweb.users
 import falcon
 import hashlib
+import json
 import os
 import subprocess
 
@@ -21,9 +22,11 @@ class Sentence:
             with open(raw_file, 'w', encoding='UTF-8') as f:
                 f.write(sentence)
         subprocess.check_call(('./ext/produce/produce', der_file))
-        res.content_type = 'application/xml'
-        with open(der_file, 'rb') as f:
-            res.data = f.read()
+        body = {}
+        with open(der_file, 'r') as f:
+            body['derxml'] = f.read()
+        res.content_type = 'application/json'
+        res.body = json.dumps(body)
 
     def on_post(self, req, res, lang, sentence, user_id):
         assert lang in ['eng', 'deu', 'ita', 'nld']
