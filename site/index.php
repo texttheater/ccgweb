@@ -4,7 +4,6 @@ ini_set("display_errors", 1);
 require('vendor/autoload.php');
 require('inc/util.inc.php');
 require('inc/config.inc.php');
-
 require('inc/session.inc.php');
 
 if (!isset($_GET['sentence']) || !$_GET['sentence']

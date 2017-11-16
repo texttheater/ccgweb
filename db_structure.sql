@@ -102,7 +102,9 @@ CREATE TABLE `sentences` (
   `lang` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `assigned` tinyint(4) NOT NULL,
   UNIQUE KEY `lang` (`lang`,`sentence_id`),
+  KEY `assigned` (`assigned`),
   FULLTEXT KEY `sentence` (`sentence`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -132,4 +134,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-16 15:17:24
+-- Dump completed on 2017-11-16 16:22:52
