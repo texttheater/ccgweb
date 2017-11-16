@@ -7,3 +7,11 @@ main {
 	transform: translate(-50%);
 	min-width: 800px;
 }
+
+
+/* "mark correct" well turns green when checked */
+
+.well-success {
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}

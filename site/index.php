@@ -74,10 +74,13 @@ require('inc/head.inc.php');
 	<?php if ($is_user_logged_in) { ?>
 		<div id=parses_mine class="tab-pane active">
 			<?= xslTransform('xsl/der.xsl', $user_parse) ?>
-			<div class=checkbox id=mark-correct>
-				<label>
-					<input type=checkbox> mark correct
-				</label>
+			<p>&nbsp;</p>
+			<div class="well well-sm">
+				<div class=checkbox style="display: inline;" id=mark-correct>
+					<label>
+						<input type=checkbox> mark correct
+					</label>
+				</div>
 			</div>
 		</div>
 	<?php } ?>
