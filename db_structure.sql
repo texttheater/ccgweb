@@ -26,13 +26,14 @@ CREATE TABLE `bows_span` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` datetime NOT NULL,
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `offset_from` int(11) NOT NULL,
   `offset_to` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `sentence` (`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +47,7 @@ CREATE TABLE `bows_super` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` datetime NOT NULL,
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `offset_from` int(11) NOT NULL,
   `offset_to` int(11) NOT NULL,
@@ -53,39 +55,39 @@ CREATE TABLE `bows_super` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `sentence` (`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `text_links`
+-- Table structure for table `sentences`
 --
 
-DROP TABLE IF EXISTS `text_links`;
+DROP TABLE IF EXISTS `sentences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `text_links` (
+CREATE TABLE `sentences` (
+  `lang` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `sentence` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  UNIQUE KEY `lang` (`lang`,`sentence_id`),
+  FULLTEXT KEY `sentence` (`sentence`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sentences_links`
+--
+
+DROP TABLE IF EXISTS `sentences_links`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sentences_links` (
   `lang1` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id1` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `lang2` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id2` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   KEY `text1` (`lang1`,`id1`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `texts`
---
-
-DROP TABLE IF EXISTS `texts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `texts` (
-  `lang` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `sentence` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  UNIQUE KEY `lang` (`lang`,`sentence_id`),
-  FULLTEXT KEY `sentence` (`sentence`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +101,8 @@ CREATE TABLE `users` (
   `id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `password_hash` mediumblob NOT NULL,
   `session_id` varchar(32) CHARACTER SET armscii8 COLLATE armscii8_bin DEFAULT NULL,
-  `session_expires` datetime DEFAULT NULL
+  `session_expires` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +115,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-13 16:07:42
+-- Dump completed on 2017-11-16 14:28:09
