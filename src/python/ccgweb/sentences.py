@@ -47,9 +47,9 @@ class Sentence:
                 res.status = falcon.HTTP_400
                 return
             ccgweb.db.execute('''INSERT INTO bows_super
-                (user_id, time, sentence_id, offset_from, offset_to, tag)
-                VALUES (%s, NOW(), %s, %s, %s, %s)''', user, sentence_hash,
-                offset_from, offset_to, tag)
+                (user_id, time, lang, sentence_id, offset_from, offset_to, tag)
+                VALUES (%s, NOW(), %s, %s, %s, %s, %s)''', user, lang,
+                sentence_hash, offset_from, offset_to, tag)
         elif req.params['api_action'] == 'add_span_bow':
             user = ccgweb.users.current_user(req)
             if not user:
@@ -63,8 +63,8 @@ class Sentence:
                 res.status = falcon.HTTP_400
                 return
             ccgweb.db.execute('''INSERT INTO bows_span
-                (user_id, time, sentence_id, offset_from, offset_to)
-                VALUES (%s, NOW(), %s, %s,%s)''', user, sentence_hash,
+                (user_id, time, lang, sentence_id, offset_from, offset_to)
+                VALUES (%s, NOW(), %s, %s, %s,%s)''', user, lang, sentence_hash,
                 offset_from, offset_to)
         else:
             res.status = falcon.HTTP_400
