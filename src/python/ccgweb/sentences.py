@@ -10,30 +10,20 @@ import subprocess
 
 class Sentence:
 
-    def on_get(self, req, res, lang, sentence, user_id):
+    def on_get(self, req, res, lang, sentence):
         assert lang in ['eng', 'deu', 'ita', 'nld']
+        user = ccgweb.users.current_user(req)
         sentence_hash = sentence2hash(sentence)
-        rows = ccgweb.db.get('''SELECT derxml
-            FROM correct
-            WHERE lang = %s
-            AND sentence_id = %s
-            AND user_id = %s''', lang, sentence_hash, user_id)
-        if rows:
-            derxml = rows[0][0]
-        else:
-            raw_path = get_raw_path(lang, sentence_hash)
-            if not os.path.isfile(raw_path):
-                ccgweb.util.makedirs(os.path.split(raw_path)[0])
-                with open(raw_path, 'w', encoding='UTF-8') as f:
-                    f.write(sentence)
-            der_path = get_path(lang, sentence_hash, user_id, 'der.xml')
-            subprocess.check_call(('./ext/produce/produce', der_path))
-            with open(der_path, 'r') as f:
-                derxml = f.read()
+        auto_derxml, _ = get_contents(lang, sentence_hash, 'auto', 'der.xml')
+        body = {'auto_derxml': auto_derxml}
+        if user:
+            user_derxml, marked_correct = get_contents(lang, sentence_hash, user, 'der.xml')
+            body['user_derxml'] = user_derxml
+            body['marked_correct'] = marked_correct
         res.content_type = 'application/json'
-        res.body = json.dumps({'derxml': derxml, 'marked_correct': bool(rows)})
+        res.body = json.dumps(body)
 
-    def on_post(self, req, res, lang, sentence, user_id):
+    def on_post(self, req, res, lang, sentence):
         assert lang in ['eng', 'deu', 'ita', 'nld']
         if 'api_action' not in req.params:
             res.status = falcon.HTTP_400
@@ -113,3 +103,28 @@ def get_raw_path(lang, sentence_hash):
 def get_path(lang, sentence_hash, user, extension):
     out_dir = os.path.join('out', lang, sentence_hash[:2], sentence_hash)
     return os.path.join(out_dir, '.'.join((user, extension)))
+
+
+def get_contents(lang, sentence_hash, user, extension):
+    """Get the data for a specific annotation layer for some user.
+
+    Returns a tuple (contents, marked_correct) where contents is the data as
+    a string and marked_correct is boolean.
+    """
+    rows = ccgweb.db.get('''SELECT derxml
+        FROM correct
+        WHERE lang = %s
+        AND sentence_id = %s
+        AND user_id = %s''', lang, sentence_hash, user)
+    if rows:
+        return (rows[0][0], True)
+    else:
+        raw_path = get_raw_path(lang, sentence_hash)
+        if not os.path.isfile(raw_path):
+            ccgweb.util.makedirs(os.path.split(raw_path)[0])
+            with open(raw_path, 'w', encoding='UTF-8') as f:
+                f.write(sentence)
+        der_path = get_path(lang, sentence_hash, user, 'der.xml')
+        subprocess.check_call(('./ext/produce/produce', der_path))
+        with open(der_path, 'r') as f:
+            return (f.read(), False)

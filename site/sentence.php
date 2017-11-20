@@ -26,7 +26,7 @@ $lang = $_GET['lang'];
 $sentence = $_GET['sentence'];
 
 try {
-	$response = api("sentences/$lang/" . rawurlencode($sentence) . '/auto', 'get', []);
+	$response = api("sentences/$lang/" . rawurlencode($sentence), 'get', []);
 } catch (Requests_Exception $e) {
 	die('ERROR: could not connect to REST server. Is it running?');
 }
@@ -35,20 +35,12 @@ if (!$response->success) {
 	die('ERROR: bad API response status');
 }
 
-$parser_sentence = json_decode($response->body);
+$body = json_decode($response->body);
+
+$parser_sentence = $body->auto_derxml;
 
 if ($is_user_logged_in) {
-	try {
-		$response = api("sentences/$lang/" . rawurlencode($sentence) . '/' . rawurlencode($user_name), 'get', []);
-	} catch (Requests_Exception $e) {
-		die('ERROR: could not connect to REST server. Is it running?');
-	}
-	
-	if (!$response->success) {
-		die('ERROR: bad API response status');
-	}
-	
-	$user_sentence = json_decode($response->body);
+	$user_sentence = $body->user_derxml;
 }
 
 $title = 'CCGWeb - ' . htmlspecialchars($sentence);
@@ -83,16 +75,16 @@ require('inc/head.inc.php');
 </ul>
 <div class=tab-content>
 	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-		<?= xslTransform('xsl/der.xsl', $parser_sentence->derxml) ?>
+		<?= xslTransform('xsl/der.xsl', $parser_sentence) ?>
 	</div>
 	<?php if ($is_user_logged_in) { ?>
 		<div id=parses_mine class="tab-pane active">
-			<?= xslTransform('xsl/der.xsl', $user_sentence->derxml) ?>
+			<?= xslTransform('xsl/der.xsl', $user_sentence) ?>
 			<p>&nbsp;</p>
-			<div class="well well-sm <?= $user_sentence->marked_correct ? 'well-success' : '' ?>">
+			<div class="well well-sm <?= $body->marked_correct ? 'well-success' : '' ?>">
 				<div class=checkbox style="display: inline;" id=mark-correct>
 					<label>
-						<input type=checkbox <?= $user_sentence->marked_correct ? 'checked' : '' ?>> mark correct
+						<input type=checkbox <?= $body->marked_correct ? 'checked' : '' ?>> mark correct
 					</label>
 				</div>
 			</div>
