@@ -48,8 +48,7 @@ foreach ($assignment as $sentence) {
 if ($sentence->done) {
 ?>
 
-<span class="glyphicon glyphicon-ok" title="done" aria-hidden="true"></span>
-<span class="sr-only">done</span>
+<span class="label label-success">marked correct</span>
 
 <?php
 }

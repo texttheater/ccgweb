@@ -9,14 +9,6 @@ main {
 }
 
 
-/* "mark correct" well turns green when checked */
-
-div.well-success {
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
-}
-
-
 /* navigation arrows */
 
 div#nav-arrows {

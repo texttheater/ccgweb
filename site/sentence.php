@@ -92,12 +92,13 @@ require('inc/head.inc.php');
 		<div id=parses_mine class="tab-pane active">
 			<?= xslTransform('xsl/der.xsl', $user_sentence) ?>
 			<p>&nbsp;</p>
-			<div class="well well-sm <?= $body->marked_correct ? 'well-success' : '' ?>">
-				<div class=checkbox style="display: inline;" id=mark-correct>
-					<label>
-						<input type=checkbox <?= $body->marked_correct ? 'checked' : '' ?>> mark correct
-					</label>
-				</div>
+			<div class=checkbox style="display: inline;" id=mark-correct>
+				<label>
+					<input type=checkbox <?= $body->marked_correct ? 'checked' : '' ?>>
+					<span class="label <?= $body->marked_correct ? 'label-success' : 'label-default' ?>">
+						mark correct
+					</span>
+				</label>
 			</div>
 		</div>
 	<?php } ?>
