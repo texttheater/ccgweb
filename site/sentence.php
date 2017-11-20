@@ -70,7 +70,7 @@ require('inc/head.inc.php');
 
 </div>
 
-<main>
+<div class=container>
 
 <h2>Sentence</h2>
 
@@ -104,7 +104,7 @@ require('inc/head.inc.php');
 	<?php } ?>
 </div>
 
-</main>
+</div>
 
 <?php
 require('inc/js.inc.php');

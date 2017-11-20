@@ -57,7 +57,7 @@ if ($is_user_logged_in) {
 require('inc/head.inc.php');
 ?>
 
-<main>
+<div class=container>
 
 <?php if ($is_user_logged_in) { ?>
 
@@ -89,7 +89,7 @@ require('inc/head.inc.php');
 
 <?php } ?>
 
-</main>
+</div>
 
 <?php
 require('inc/foot.inc.php');
