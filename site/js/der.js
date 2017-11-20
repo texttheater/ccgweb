@@ -43,8 +43,8 @@ function initSuperBOWs() {
                             offset_to: table.dataset['to'],
                             tag: input.value
                         },
-                        () => {
-                            console.log(this.responseText)
+                        req => {
+                            console.log(req.responseText)
                             window.location.reload()
                         }
                     )

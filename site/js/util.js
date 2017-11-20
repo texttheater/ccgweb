@@ -1,6 +1,8 @@
 function api(resource, action, params, onload) {
     const req = new XMLHttpRequest()
-    req.onload = onload
+    req.onload = () => {
+        onload(req)
+    }
 
     if (action.toLowerCase() == 'get') {
         let url = 'api.php?api_resource=' + encodeURIComponent(resource)
