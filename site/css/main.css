@@ -1,3 +1,10 @@
+/* body padding */
+
+body {
+	padding-bottom: 50px;
+}
+
+
 /* navigation arrows */
 
 div#nav-arrows {
