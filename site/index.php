@@ -23,6 +23,8 @@ $title = 'CCGWeb';
 require('inc/head.inc.php');
 ?>
 
+<main>
+
 <div class=container>
 
 <h2>My Assignment</h2>
@@ -62,6 +64,8 @@ if ($sentence->done) {
 </ul>
 
 </div>
+
+</main>
 
 <?php
 require('inc/js.inc.php');

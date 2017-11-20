@@ -15,4 +15,3 @@
 	</head>
 	<body>
 		<?php require('inc/navbar.inc.php'); ?>
-		<main>

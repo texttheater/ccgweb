@@ -57,6 +57,8 @@ if ($is_user_logged_in) {
 require('inc/head.inc.php');
 ?>
 
+<main>
+
 <?php if ($is_user_logged_in) { ?>
 
 <p>Logged in as <?= htmlspecialchars($user_name) ?>.</p>
@@ -86,6 +88,8 @@ require('inc/head.inc.php');
 </form>
 
 <?php } ?>
+
+</main>
 
 <?php
 require('inc/foot.inc.php');

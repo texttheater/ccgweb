@@ -56,6 +56,8 @@ $title = 'CCGWeb - ' . htmlspecialchars($sentence);
 require('inc/head.inc.php');
 ?>
 
+<main>
+
 <h2>Sentence</h2>
 
 <p><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
@@ -86,6 +88,8 @@ require('inc/head.inc.php');
 		</div>
 	<?php } ?>
 </div>
+
+</main>
 
 <?php
 require('inc/js.inc.php');
