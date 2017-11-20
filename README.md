@@ -62,7 +62,7 @@ To install the dependencies for the REST server on Ubuntu 16.04:
 
 To start it:
 
-    ./start-rest-server
+    ./rest-server
 
 PHP Frontend
 ------------
