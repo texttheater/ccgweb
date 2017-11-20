@@ -49,14 +49,25 @@ require('inc/head.inc.php');
 ?>
 
 <div id=nav-arrows>
-	<a class=nav-arrow id=nav-arrow-prev href="">
+
+<?php if (isset($body->prev)) { ?>
+
+	<a class=nav-arrow id=nav-arrow-prev href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
 		<span class="glyphicon glyphicon-arrow-left" title="previous sentence" aria-hidden="true"></span>
 		<span class=sr-only>previous sentence</span>
 	</a>
-	<a class=nav-arrow id=nav-arrow-next href="">
+
+<?php } ?>
+
+<?php if (isset($body->next)) { ?>
+
+		<a class=nav-arrow id=nav-arrow-next href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
 		<span class="glyphicon glyphicon-arrow-right" title="next sentence" aria-hidden="true"></span>
 		<span class=sr-only>next sentence</span>
 	</a>
+
+<?php } ?>
+
 </div>
 
 <main>

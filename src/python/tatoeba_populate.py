@@ -8,17 +8,17 @@ if __name__ == '__main__':
     sid2langhash = {}
     with ccgweb.db.conn as cursor:
         with open('data/tatoeba/sentences.csv') as f:
-                for i, line in enumerate(f):
-                    if i % 1000 == 0:
-                        print('sentence', i)
-                    sid, lang, text = line.split(maxsplit=2)
-                    text_hash = ccgweb.sentence2hash(text)
-                    text = text.encode('UTF-8')
-                    cursor.execute('''INSERT INTO texts (lang, sentence_id, sentence)
-                                      VALUES (%s, %s, %s)
-                                      ON DUPLICATE KEY UPDATE sentence=%s''',
-                                   (lang, text_hash, text, text))
-                    sid2langhash[sid] = (lang, text_hash)
+            for i, line in enumerate(f):
+                if i % 1000 == 0:
+                    print('sentence', i)
+                sid, lang, text = line.split(maxsplit=2)
+                text_hash = ccgweb.sentence2hash(text)
+                text = text.encode('UTF-8')
+                cursor.execute('''INSERT INTO texts (lang, sentence_id, sentence)
+                                  VALUES (%s, %s, %s)
+                                  ON DUPLICATE KEY UPDATE sentence=%s''',
+                               (lang, text_hash, text, text))
+                sid2langhash[sid] = (lang, text_hash)
         with open('data/tatoeba/links.csv') as f:
             for i, line in enumerate(f):
                 if i % 1000 == 0:

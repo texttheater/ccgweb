@@ -33,7 +33,7 @@ CREATE TABLE `bows_span` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `sentence` (`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ DROP TABLE IF EXISTS `sentences`;
 CREATE TABLE `sentences` (
   `lang` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `sentence` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `sentence` text COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT 'Should contain one trailing LF character. Should not contain any other line breaks or traling whitespace.',
   `assigned` tinyint(4) NOT NULL,
   UNIQUE KEY `lang` (`lang`,`sentence_id`),
   KEY `assigned` (`assigned`),
@@ -134,4 +134,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-16 17:21:32
+-- Dump completed on 2017-11-20 15:33:32

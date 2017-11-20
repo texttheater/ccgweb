@@ -41,4 +41,19 @@ function api($resource, $action, $params) {
 			$params);
 	}
 }
+
+function sitelink($page, $params) {
+	$result = $page . '.php';
+	$paramstrings = [];
+
+	foreach ($params as $k => $v) {
+		$paramstrings[] = rawurlencode($k) . '=' . rawurlencode($v);
+	}
+
+	if (!empty($paramstrings)) {
+		$result .= '?' . join('&', $paramstrings);
+	}
+
+	return $result;
+}
 ?>

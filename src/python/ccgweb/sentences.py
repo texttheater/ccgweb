@@ -1,4 +1,5 @@
 import ccgweb
+import ccgweb.assignments
 import ccgweb.users
 import ccgweb.util
 import falcon
@@ -13,11 +14,19 @@ class Sentence:
     def on_get(self, req, res, lang, sentence):
         assert lang in ['eng', 'deu', 'ita', 'nld']
         user = ccgweb.users.current_user(req)
-        sentence_hash = sentence2hash(sentence)
-        auto_derxml, _ = get_contents(lang, sentence_hash, 'auto', 'der.xml')
-        body = {'auto_derxml': auto_derxml}
+        body = {}
+        assignment = ccgweb.assignments.get_assignment(user if user else 'auto')
+        for i, s in enumerate(assignment):
+            if s['sentence'] == sentence:
+                if i > 0:
+                    body['prev'] = assignment[i - 1]['sentence']
+                if i + 1 < len(assignment):
+                    body['next'] = assignment[i + 1]['sentence']
+                break
+        auto_derxml, _ = get_contents(lang, sentence, 'auto', 'der.xml')
+        body['auto_derxml'] = auto_derxml
         if user:
-            user_derxml, marked_correct = get_contents(lang, sentence_hash, user, 'der.xml')
+            user_derxml, marked_correct = get_contents(lang, sentence, user, 'der.xml')
             body['user_derxml'] = user_derxml
             body['marked_correct'] = marked_correct
         res.content_type = 'application/json'
@@ -92,6 +101,8 @@ class Sentence:
 
 
 def sentence2hash(sentence):
+    if not sentence.endswith('\n'):
+        sentence += '\n'
     return hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
     
 
@@ -105,12 +116,13 @@ def get_path(lang, sentence_hash, user, extension):
     return os.path.join(out_dir, '.'.join((user, extension)))
 
 
-def get_contents(lang, sentence_hash, user, extension):
+def get_contents(lang, sentence, user, extension):
     """Get the data for a specific annotation layer for some user.
 
     Returns a tuple (contents, marked_correct) where contents is the data as
     a string and marked_correct is boolean.
     """
+    sentence_hash = sentence2hash(sentence)
     rows = ccgweb.db.get('''SELECT derxml
         FROM correct
         WHERE lang = %s
