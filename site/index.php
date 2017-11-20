@@ -71,15 +71,6 @@ if ($sentence->done) {
 require('inc/js.inc.php');
 ?>
 
-<script>
-<?php
-echo "const sentence = " . json_encode($sentence) . "\n";
-echo "const lang = " . json_encode($lang) . "\n";
-?>
-</script>
-
-<script src=js/der.js></script>
-
 <?php
 require('inc/foot.inc.php');
 ?>
