@@ -11,7 +11,31 @@ main {
 
 /* "mark correct" well turns green when checked */
 
-.well-success {
+div.well-success {
 	background-color: #dff0d8;
 	border-color: #d6e9c6;
+}
+
+
+/* navigation arrows */
+
+div#nav-arrows {
+	position: fixed;
+	top: 50%;
+	width: 100%;
+}
+
+a.nav-arrow {
+	font-size: xx-large;
+	font-weight: bold;
+	background: #bbb;
+	padding: 10px;
+}
+
+a#nav-arrow-prev {
+	float: left;
+}
+
+a#nav-arrow-next {
+	float: right;
 }

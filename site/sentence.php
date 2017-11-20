@@ -56,6 +56,17 @@ $title = 'CCGWeb - ' . htmlspecialchars($sentence);
 require('inc/head.inc.php');
 ?>
 
+<div id=nav-arrows>
+	<a class=nav-arrow id=nav-arrow-prev href="">
+		<span class="glyphicon glyphicon-arrow-left" title="previous sentence" aria-hidden="true"></span>
+		<span class=sr-only>previous sentence</span>
+	</a>
+	<a class=nav-arrow id=nav-arrow-next href="">
+		<span class="glyphicon glyphicon-arrow-right" title="next sentence" aria-hidden="true"></span>
+		<span class=sr-only>next sentence</span>
+	</a>
+</div>
+
 <main>
 
 <h2>Sentence</h2>
