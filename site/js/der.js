@@ -36,7 +36,7 @@ function initSuperBOWs() {
                 input.onchange = event => {
                     goBusy()
                     api(
-                        'sentences/' + lang + '/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                        'sentences/' + lang + '/' + encodeURIComponent(sentence),
                         'add_super_bow',
                         {
                             offset_from: table.dataset['from'],
@@ -105,7 +105,7 @@ function initSpanBOWs() {
             const spanTo = selectedLexes[selectedLexes.length - 1].dataset['to']
             goBusy()
             api(
-                'sentences/' + lang +'/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+                'sentences/' + lang +'/' + encodeURIComponent(sentence),
                 'add_span_bow',
                 {
                     offset_from: spanFrom,
@@ -129,7 +129,7 @@ function initMarkCorrect() {
     input.onchange = event => {
         goBusy()
         api(
-            'sentences/' + lang + '/' + encodeURIComponent(sentence) + '/' + encodeURIComponent(userName),
+            'sentences/' + lang + '/' + encodeURIComponent(sentence),
             'mark_correct',
             {
                 correct: input.checked
