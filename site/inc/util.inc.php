@@ -33,8 +33,6 @@ function api($resource, $action, $params) {
 	if (strtolower($action) == 'get') {
 		$query = http_build_query($params, null,
 			ini_get('arg_separator.output'), PHP_QUERY_RFC3986);
-		$headers = [];
-
 		return Requests::get($api . '/' . $resource . '?' . $query,
 			$headers);
 	} else {
