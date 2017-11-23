@@ -37,12 +37,6 @@ if (!$response->success) {
 
 $body = json_decode($response->body);
 
-$parser_sentence = $body->auto_derxml;
-
-if ($is_user_logged_in) {
-	$user_sentence = $body->user_derxml;
-}
-
 $title = 'CCGWeb - ' . htmlspecialchars($sentence);
 
 require('inc/head.inc.php');
@@ -52,19 +46,19 @@ require('inc/head.inc.php');
 
 <?php if (isset($body->prev)) { ?>
 
-	<a class=nav-arrow id=nav-arrow-prev href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
-		<span class="glyphicon glyphicon-arrow-left" title="previous sentence" aria-hidden="true"></span>
-		<span class=sr-only>previous sentence</span>
-	</a>
+<a class="label label-primary nav-arrow" nav-arrow id=nav-arrow-prev href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
+	<span class="glyphicon glyphicon-arrow-left" title="previous sentence" aria-hidden="true"></span>
+	<span class=sr-only>previous sentence</span>
+</a>
 
 <?php } ?>
 
 <?php if (isset($body->next)) { ?>
 
-		<a class=nav-arrow id=nav-arrow-next href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
-		<span class="glyphicon glyphicon-arrow-right" title="next sentence" aria-hidden="true"></span>
-		<span class=sr-only>next sentence</span>
-	</a>
+<a class="label label-primary nav-arrow" id=nav-arrow-next href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
+	<span class="glyphicon glyphicon-arrow-right" title="next sentence" aria-hidden="true"></span>
+	<span class=sr-only>next sentence</span>
+</a>
 
 <?php } ?>
 
@@ -86,11 +80,11 @@ require('inc/head.inc.php');
 </ul>
 <div class=tab-content>
 	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-		<?= xslTransform('xsl/der.xsl', $parser_sentence) ?>
+		<?= xslTransform('xsl/der.xsl', $body->auto_derxml) ?>
 	</div>
 	<?php if ($is_user_logged_in) { ?>
 		<div id=parses_mine class="tab-pane active">
-			<?= xslTransform('xsl/der.xsl', $user_sentence) ?>
+			<?= xslTransform('xsl/der.xsl', $body->user_derxml) ?>
 			<p>&nbsp;</p>
 			<div class=checkbox style="display: inline;" id=mark-correct>
 				<label>

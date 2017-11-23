@@ -15,15 +15,17 @@ div#nav-arrows {
 
 a.nav-arrow {
 	font-size: xx-large;
-	font-weight: bold;
+	/*font-weight: bold;
 	background: #bbb;
-	padding: 10px;
+	padding: 10px;*/
 }
 
 a#nav-arrow-prev {
 	float: left;
+	margin-left: .5em;
 }
 
 a#nav-arrow-next {
 	float: right;
+	margin-right: .5em;
 }
