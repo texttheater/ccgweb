@@ -34,8 +34,6 @@ dumped into the `out` directory. Its software dependencies must be placed into
 the `ext` directory and models into the `models` directory before use.
 Specifically, the following directories and files are expected to exist:
 
-* `ext/boxer/boxer2`, the Boxer 2 binary by Johan Bos. Requires the
-  [SWI-Prolog](http://www.swi-prolog.org) 7 runtime library to be installed.
 * `ext/easyccg/easyccg.jar`: the [Parallel Meaning Bank patched version of Mike
   Lewis’s EasyCCG parser](https://github.com/ParallelMeaningBank/easyccg)
 * `models/parse/{eng,deu,ita.nld}.model`: EasyCCG models for English, German,
@@ -58,7 +56,7 @@ REST API
 
 To install the dependencies for the REST server on Ubuntu 16.04:
 
-    sudo apt install python3-falcon gunicorn3 python3-mysqldb python3-passlib
+    sudo apt install python3-falcon gunicorn3 python3-mysqldb python3-passlib swi-prolog
 
 To start it:
 
