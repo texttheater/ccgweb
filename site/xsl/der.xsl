@@ -83,22 +83,24 @@
 			</tr>
 			<tr>
 				<td class="rulecat">
-					<xsl:element name="span">
-						<xsl:attribute name="class">rule</xsl:attribute>
-						<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
-						<xsl:choose>
-							<xsl:when test="@type = 'ftr'">
-								T<sup>&gt;</sup>
-							</xsl:when>
-							<xsl:otherwise>
-								T<sup>&lt;</sup>
-							</xsl:otherwise>
-						</xsl:choose>
-					</xsl:element>
-					<xsl:element name="span">
-						<xsl:attribute name="class">cat</xsl:attribute>
-						<xsl:apply-templates select="cat"/>
-					</xsl:element>
+					<div class="rulecat">
+						<xsl:element name="div">
+							<xsl:attribute name="class">cat</xsl:attribute>
+							<xsl:apply-templates select="cat"/>
+						</xsl:element>
+						<xsl:element name="div">
+							<xsl:attribute name="class">rule</xsl:attribute>
+							<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
+							<xsl:choose>
+								<xsl:when test="@type = 'ftr'">
+									T<sup>&gt;</sup>
+								</xsl:when>
+								<xsl:otherwise>
+									T<sup>&lt;</sup>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:element>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -112,15 +114,17 @@
 			</tr>
 			<tr>
 				<td class="rulecat">
-					<xsl:element name="span">
-						<xsl:attribute name="class">rule</xsl:attribute>
-						<xsl:attribute name="title">Type Changing</xsl:attribute>
-						*
-					</xsl:element>
-					<xsl:element name="span">
-						<xsl:attribute name="class">cat</xsl:attribute>
-						<xsl:apply-templates select="cat"/>
-					</xsl:element>
+					<div class="rulecat">
+						<xsl:element name="div">
+							<xsl:attribute name="class">cat</xsl:attribute>
+							<xsl:apply-templates select="cat"/>
+						</xsl:element>
+						<xsl:element name="div">
+							<xsl:attribute name="class">rule</xsl:attribute>
+							<xsl:attribute name="title">Type Changing</xsl:attribute>
+							*
+						</xsl:element>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -137,27 +141,29 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="rulecat">
-					<xsl:element name="span">
-						<xsl:attribute name="class">rule</xsl:attribute>
-						<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
-						<xsl:choose>
-							<xsl:when test="@type='fa'">&gt;<sup>0</sup></xsl:when>
-							<xsl:when test="@type='fc'">&gt;<sup>1</sup></xsl:when>
-							<xsl:when test="@type='gfc'">&gt;<sup><i>n</i></sup></xsl:when>
-							<xsl:when test="@type='gbc'">&lt;<sup><i>n</i></sup></xsl:when>
-							<xsl:when test="@type='bc'">&lt;<sup>1</sup></xsl:when>
-							<xsl:when test="@type='conj'">∨</xsl:when>
-							<xsl:when test="@type='bxc'">&lt;<sup>1</sup><sub>×</sub></xsl:when>
-							<xsl:when test="@type='fxc'">&gt;<sup>1</sup></xsl:when>
-							<xsl:when test="@type='gbxc'">&lt;<sup><i>n</i></sup><sub>×</sub></xsl:when>
-							<xsl:when test="@type='gfxc'">&gt;<sup><i>n</i></sup></xsl:when>
-							<xsl:when test="@type='ba'">&lt;<sup>0</sup></xsl:when>
-						</xsl:choose>
-					</xsl:element>
-					<xsl:element name="span">
-						<xsl:attribute name="class">cat</xsl:attribute>
-						<xsl:apply-templates select="cat"/>
-					</xsl:element>
+					<div class="rulecat">
+						<xsl:element name="div">
+							<xsl:attribute name="class">cat</xsl:attribute>
+							<xsl:apply-templates select="cat"/>
+						</xsl:element>
+						<xsl:element name="div">
+							<xsl:attribute name="class">rule</xsl:attribute>
+							<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
+							<xsl:choose>
+								<xsl:when test="@type='fa'">&gt;<sup>0</sup></xsl:when>
+								<xsl:when test="@type='fc'">&gt;<sup>1</sup></xsl:when>
+								<xsl:when test="@type='gfc'">&gt;<sup><i>n</i></sup></xsl:when>
+								<xsl:when test="@type='gbc'">&lt;<sup><i>n</i></sup></xsl:when>
+								<xsl:when test="@type='bc'">&lt;<sup>1</sup></xsl:when>
+								<xsl:when test="@type='conj'">∨</xsl:when>
+								<xsl:when test="@type='bxc'">&lt;<sup>1</sup><sub>×</sub></xsl:when>
+								<xsl:when test="@type='fxc'">&gt;<sup>1</sup></xsl:when>
+								<xsl:when test="@type='gbxc'">&lt;<sup><i>n</i></sup><sub>×</sub></xsl:when>
+								<xsl:when test="@type='gfxc'">&gt;<sup><i>n</i></sup></xsl:when>
+								<xsl:when test="@type='ba'">&lt;<sup>0</sup></xsl:when>
+							</xsl:choose>
+						</xsl:element>
+					</div>
 				</td>
 			</tr>
 		</table>

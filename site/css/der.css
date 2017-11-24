@@ -64,16 +64,28 @@ td.span-swiper {
 }
 
 
-/* align rule symbols */
+/* rule symbols */
 
-span.rule {
-	float: right;
+div.rulecat {
+	display: table;
+	width: 100%;
+}
+
+div.rulecat div.cat {
+	display: table-cell;
+}
+
+div.rulecat div.rule {
+	display: table-cell;
+	text-align: right;
+	padding-left: 1em;
+	font-size: 90%;
 }
 
 
 /* superscript and subscript */
 
-span.rule sub {
+div.rule sub {
 	margin-left: -0.5em;
 }
 
@@ -111,7 +123,7 @@ td.span-swiper {
 
 /* category styling */
 
-td.cat, span.cat {
+td.cat, div.cat {
 	font-size: 90%;
 }
 
