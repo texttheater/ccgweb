@@ -95,8 +95,11 @@
 								<xsl:when test="@type = 'ftr'">
 									T<sup>&gt;</sup>
 								</xsl:when>
-								<xsl:otherwise>
+								<xsl:when test="@type = 'btr'">
 									T<sup>&lt;</sup>
+								</xsl:when>
+								<xsl:otherwise>
+									*
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:element>
