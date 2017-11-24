@@ -85,8 +85,15 @@
 				<td class="rulecat">
 					<xsl:element name="span">
 						<xsl:attribute name="class">rule</xsl:attribute>
-						<xsl:attribute name="title">Type Changing</xsl:attribute>
-						*
+						<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
+						<xsl:choose>
+							<xsl:when test="@type = 'ftr'">
+								T<sup>&gt;</sup>
+							</xsl:when>
+							<xsl:otherwise>
+								T<sup>&lt;</sup>
+							</xsl:otherwise>
+						</xsl:choose>
 					</xsl:element>
 					<xsl:element name="span">
 						<xsl:attribute name="class">cat</xsl:attribute>
