@@ -72,7 +72,7 @@ const2xml(bc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(fc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Forward Composition">'),
+  format('<binaryrule type="fc" description="Forward Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
@@ -82,7 +82,7 @@ const2xml(fc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(bxc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Backward Crossed Composition">'),
+  format('<binaryrule type="bxc" description="Backward Crossed Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
@@ -92,7 +92,7 @@ const2xml(bxc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(fxc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Forward Crossed Composition">'),
+  format('<binaryrule type="fxc" description="Forward Crossed Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
@@ -102,7 +102,7 @@ const2xml(fxc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(gbc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Backward Composition">'),
+  format('<binaryrule type="gbc" description="Backward Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
@@ -112,7 +112,7 @@ const2xml(gbc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(gfc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Forward Composition">'),
+  format('<binaryrule type="gfc" description="Forward Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
@@ -122,7 +122,7 @@ const2xml(gfc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(gbxc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Backward Crossed Composition">'),
+  format('<binaryrule type="gbxc" description="Backward Crossed Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
@@ -132,7 +132,7 @@ const2xml(gbxc(Cat, D1, D2)) :-
   format('</binaryrule>').
 const2xml(gfxc(Cat, D1, D2)) :-
   !,
-  format('<binaryrule type="bc" description="Forward Crossed Composition">'),
+  format('<binaryrule type="gfxc" description="Forward Crossed Composition">'),
   format('<cat>'),
   cat2xml(Cat),
   format('</cat>'),
