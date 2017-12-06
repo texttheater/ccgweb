@@ -44,7 +44,7 @@ Specifically, the following directories and files are expected to exist:
   German, Italian and Dutch.
 * `ext/produce`, the [Produce](https://github.com/texttheater/produce) build
   system.
-* `ext/viasock`, the [Viasock](https://github.com/texttheater/produce)
+* `ext/viasock`, the [Viasock](https://github.com/texttheater/viasock)
   serverizer.
 
 Further dependencies can be installed as follows on Ubuntu 16.04:
