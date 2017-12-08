@@ -165,6 +165,7 @@ const2xml(lx(NewCat, _OldCat, D)) :-
   const2xml(D),
   format('</unaryrule>').
 const2xml(conj(Cat, D1, D2)) :-
+  !,
   format('<binaryrule type="conj" description="Conjunction">'),
   format('<cat>'),
   cat2xml(Cat),
@@ -173,6 +174,18 @@ const2xml(conj(Cat, D1, D2)) :-
   const2xml(D1),
   const2xml(D2),
   format('</binaryrule>').
+const2xml(rp(Cat, D1, D2)) :-
+  !,
+  format('<binaryrule type="rp" description="Remove Punctuation">'),
+  format('<cat>'),
+  cat2xml(Cat),
+  format('</cat>'),
+  format('<sem><var>nil</var></sem>'),
+  const2xml(D1),
+  const2xml(D2),
+  format('</binaryrule>').
+const2xml(Const) :-
+  raise_exception(unknown_constituent_type(Const)).
 
 cat2xml(X/Y) :-
   !,
