@@ -89,7 +89,7 @@ require('inc/head.inc.php');
 			<form class=form-inline>
 				<div class=checkbox>
 					<label>
-						<input type=checkbox <?= $body->marked_correct ? 'checked' : '' ?>>
+						<input type=checkbox id=mark-correct <?= $body->marked_correct ? 'checked' : '' ?>>
 						<span class="label <?= $body->marked_correct ? 'label-success' : 'label-default' ?>">
 							mark correct
 						</span>

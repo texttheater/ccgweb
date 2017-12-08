@@ -67,6 +67,7 @@ function initSpanBOWs() {
             if (busy || isMarkedCorrect()) {
                 return
             }
+            event.preventDefault()
             spanStart = event.clientX
             lex.classList.add('selected')
         }
@@ -122,7 +123,7 @@ function initSpanBOWs() {
 }
 
 function initMarkCorrect() {
-    const input = document.querySelector('div#mark-correct input')
+    const input = document.querySelector('input#mark-correct')
     if (input == null) {
         return
     }
@@ -142,13 +143,13 @@ function initMarkCorrect() {
 }
 
 function isMarkedCorrect() {
-    const input = document.querySelector('div#mark-correct input')
+    const input = document.querySelector('input#mark-correct')
     return input.checked
 }
 
 function goBusy() {
     busy = true
-    document.querySelector('div#mark-correct input').disabled = true
+    document.querySelector('input#mark-correct').disabled = true
 }
 
 let busy = false
