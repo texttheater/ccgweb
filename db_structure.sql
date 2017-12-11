@@ -66,7 +66,7 @@ DROP TABLE IF EXISTS `correct`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `correct` (
-  `lang` varchar(4) NOT NULL,
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` varchar(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` datetime NOT NULL,
