@@ -101,9 +101,21 @@ class Sentence:
 
 
 def sentence2hash(sentence):
+    # Deprecated, use sentid instead.
     if not sentence.endswith('\n'):
         sentence += '\n'
     return hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+
+
+def sentid(sentence):
+    """Returns the canonicalized form of a sentence and its ID.
+
+    Given as a pair (sentence, sentence_id). Canonicalized means that all
+    trailing whitespace is replaced by a single LF character.
+    """
+    sentence = sentence.rstrip() + '\n'
+    hsh = hashlib.sha1(sentence.encode('UTF-8')).hexdigest()
+    return sentence, hsh
     
 
 def get_raw_path(lang, sentence_hash):
