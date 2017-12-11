@@ -83,7 +83,7 @@ DROP TABLE IF EXISTS `sentence_links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sentence_links` (
-  `lang1` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `lang1` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id1` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `lang2` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id2` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `sentences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sentences` (
-  `lang` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence` text COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT 'Should contain one trailing LF character. Should not contain any other line breaks or traling whitespace.',
   `assigned` tinyint(4) NOT NULL,
