@@ -102,7 +102,7 @@ CREATE TABLE `sentences` (
   `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence` text COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT 'Should contain one trailing LF character. Should not contain any other line breaks or traling whitespace.',
-  `assigned` tinyint(4) NOT NULL,
+  `assigned` tinyint(4) NOT NULL DEFAULT '0',
   UNIQUE KEY `lang` (`lang`,`sentence_id`),
   KEY `assigned` (`assigned`),
   FULLTEXT KEY `sentence` (`sentence`)
