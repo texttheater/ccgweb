@@ -49,14 +49,14 @@ Specifically, the following directories and files are expected to exist:
 
 Further dependencies can be installed as follows on Ubuntu 16.04:
 
-    sudo apt install python-lxml
+    sudo apt install python-lxml swi-prolog
 
 REST API
 --------
 
 To install the dependencies for the REST server on Ubuntu 16.04:
 
-    sudo apt install python3-falcon gunicorn3 python3-mysqldb python3-passlib swi-prolog
+    sudo apt install python3-falcon gunicorn3 python3-mysqldb python3-passlib
 
 To start it:
 
