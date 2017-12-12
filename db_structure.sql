@@ -33,7 +33,7 @@ CREATE TABLE `bows_span` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `sentence` (`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `bows_super` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `sentence` (`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,6 +89,22 @@ CREATE TABLE `sentence_links` (
   `id2` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   KEY `text1` (`lang1`,`id1`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sentence_pmbids`
+--
+
+DROP TABLE IF EXISTS `sentence_pmbids`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sentence_pmbids` (
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `pmb_part` char(2) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `pmb_doc_id` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  PRIMARY KEY (`lang`,`sentence_id`,`pmb_part`,`pmb_doc_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -134,4 +150,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-20 15:33:32
+-- Dump completed on 2017-12-11 18:20:47
