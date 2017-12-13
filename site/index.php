@@ -25,7 +25,7 @@ require('inc/head.inc.php');
 
 <div class=container>
 
-<h2>My Assignment</h2>
+<h2>Sentences to Annotate</h2>
 
 <ul class=list-unstyled>
 
@@ -34,7 +34,7 @@ foreach ($assignment as $sentence) {
 ?>
 
 <li>
-	<span class="label label-default">
+	<span class="label label-primary">
 		<?= htmlspecialchars($sentence->lang) ?>
 	</span>
 	&nbsp;

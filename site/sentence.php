@@ -68,7 +68,7 @@ require('inc/head.inc.php');
 
 <h2>Sentence</h2>
 
-<p><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
+<p><span class="label label-primary"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
 
 <h2>Parse</h2>
 
