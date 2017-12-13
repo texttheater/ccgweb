@@ -42,33 +42,13 @@ $title = 'CCGWeb - ' . htmlspecialchars($sentence);
 require('inc/head.inc.php');
 ?>
 
-<div id=nav-arrows>
-
-<?php if (isset($body->prev)) { ?>
-
-<a class="label label-primary nav-arrow" nav-arrow id=nav-arrow-prev href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
-	<span class="glyphicon glyphicon-arrow-left" title="previous sentence" aria-hidden="true"></span>
-	<span class=sr-only>previous sentence</span>
-</a>
-
-<?php } ?>
-
-<?php if (isset($body->next)) { ?>
-
-<a class="label label-primary nav-arrow" id=nav-arrow-next href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
-	<span class="glyphicon glyphicon-arrow-right" title="next sentence" aria-hidden="true"></span>
-	<span class=sr-only>next sentence</span>
-</a>
-
-<?php } ?>
-
-</div>
-
 <div class=container>
 
 <h2>Sentence</h2>
 
-<p><span class="label label-primary"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
+<p><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
+
+<hr>
 
 <h2>Parse</h2>
 
@@ -84,9 +64,7 @@ require('inc/head.inc.php');
 	</div>
 	<?php if ($is_user_logged_in) { ?>
 		<div id=parses_mine class="tab-pane active">
-			<?= xslTransform('xsl/der.xsl', $body->user_derxml) ?>
-			<p>&nbsp;</p>
-			<form class=form-inline>
+			<!--<p><form class=form-inline>-->
 				<div class=checkbox>
 					<label>
 						<input type=checkbox id=mark-correct <?= $body->marked_correct ? 'checked' : '' ?>>
@@ -95,10 +73,51 @@ require('inc/head.inc.php');
 						</span>
 					</label>
 				</div>
-			</form>
+			<!--</form></p>-->
+			<?= xslTransform('xsl/der.xsl', $body->user_derxml) ?>
 		</div>
 	<?php } ?>
 </div>
+
+<hr>
+
+<h2>Translations</h2>
+
+<ul class=list-unstyled>
+<?php
+foreach($body->translations as $translation) {
+	print_link_to_sentence($translation);
+}
+?>
+</ul>
+
+<hr>
+
+<nav aria-label="Navigation through sentences">
+	<ul class="pagination">
+
+<?php if (isset($body->prev)) { ?>
+
+<li class=page-item>
+	<a href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
+		Previous
+	</a>
+</li>
+
+<?php } ?>
+
+<?php if (isset($body->next)) { ?>
+
+<li class=page-item>
+	<a href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
+		Next
+	</a>
+</li>
+
+<?php } ?>
+
+	</ul>
+</nav>
 
 </div>
 

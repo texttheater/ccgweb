@@ -30,6 +30,9 @@ class Sentence:
             user_derxml, marked_correct = get_contents(lang, sentence, user, 'der.xml')
             body['user_derxml'] = user_derxml
             body['marked_correct'] = marked_correct
+        else:
+            user = 'auto'
+        body['translations'] = get_translations(lang, sentence, user)
         res.content_type = 'application/json'
         res.body = json.dumps(body)
 
@@ -154,3 +157,16 @@ def get_contents(lang, sentence, user, extension):
         subprocess.check_call(('./ext/produce/produce', der_path))
         with open(der_path, 'r') as f:
             return (f.read(), False)
+
+
+def get_translations(lang, sentence, user):
+    sentence, sentence_hash = sentid(sentence)
+    rows = ccgweb.db.get('''SELECT DISTINCT t.lang, t.sentence, c.time IS NOT NULL AS done
+        FROM sentence_links AS l
+        INNER JOIN sentences AS t ON l.lang2 = t.lang AND l.id2 = t.sentence_ID
+        LEFT OUTER JOIN correct AS c ON l.lang2 = c.lang AND l.id2 = c.sentence_id AND c.user_id = %s
+        WHERE l.lang1 = %s
+        AND l.id1 = %s
+        AND t.assigned = 1''', user, lang, sentence_hash)
+    return [{'lang': lang, 'sentence': sentence.rstrip(), 'done': bool(done)}
+            for lang, sentence, done in rows]

@@ -60,7 +60,7 @@ function sitelink($page, $params) {
 function print_link_to_sentence($sentence) {
 	?>
 	<li>
-		<span class="label label-primary">
+		<span class="label label-default">
 			<?= htmlspecialchars($sentence->lang) ?>
 		</span>
 		&nbsp;
@@ -75,6 +75,10 @@ function print_link_to_sentence($sentence) {
 	<span class="label label-success">marked correct</span>
 	<?php
 	}
+	?>
+
+	</li>
+	<?php
 }
 
 ?>
