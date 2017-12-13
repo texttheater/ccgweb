@@ -58,4 +58,4 @@ if __name__ == '__main__':
                     ccgweb.db.execute('''INSERT INTO sentence_links (lang1, id1, lang2, id2)
                                          VALUES (%s, %s, %s, %s)
                                          ON DUPLICATE KEY UPDATE lang1 = %s''',
-                                      langmap[lang], sid, olang, osid, langmap[lang])
+                                      langmap[lang], sid, langmap[olang], osid, langmap[lang])
