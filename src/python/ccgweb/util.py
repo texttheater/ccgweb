@@ -1,4 +1,5 @@
 import errno
+import falcon
 import os
 
 
@@ -18,3 +19,12 @@ def slurp(path, encodings=('UTF-8',)):
         except UnicodeDecodeError:
             pass
     raise RuntimeError('File could not be read with any of the specified encodings.')
+
+
+def fix_encoding(string):
+    # Workaround for a character encoding bug affecting route components in
+    # older versions of Falcon
+    if int(falcon.__version__.split('.')[0]) < 1:
+        return string.encode('Windows-1252').decode('UTF-8')
+    else:
+        return string

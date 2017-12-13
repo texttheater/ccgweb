@@ -12,6 +12,7 @@ import subprocess
 class Sentence:
 
     def on_get(self, req, res, lang, sentence):
+        sentence = ccgweb.util.fix_encoding(sentence)
         assert lang in ['eng', 'deu', 'ita', 'nld']
         user = ccgweb.users.current_user(req)
         body = {}
@@ -33,6 +34,7 @@ class Sentence:
         res.body = json.dumps(body)
 
     def on_post(self, req, res, lang, sentence):
+        sentence = ccgweb.util.fix_encoding(sentence)
         assert lang in ['eng', 'deu', 'ita', 'nld']
         if 'api_action' not in req.params:
             res.status = falcon.HTTP_400
