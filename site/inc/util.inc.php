@@ -56,4 +56,25 @@ function sitelink($page, $params) {
 
 	return $result;
 }
+
+function print_link_to_sentence($sentence) {
+	?>
+	<li>
+		<span class="label label-primary">
+			<?= htmlspecialchars($sentence->lang) ?>
+		</span>
+		&nbsp;
+		<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
+			<?= htmlspecialchars($sentence->sentence) ?>
+		</a>
+	
+	<?php
+	if ($sentence->done) {
+	?>
+	
+	<span class="label label-success">marked correct</span>
+	<?php
+	}
+}
+
 ?>
