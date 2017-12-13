@@ -25,6 +25,6 @@ def fix_encoding(string):
     # Workaround for a character encoding bug affecting route components in
     # older versions of Falcon
     if int(falcon.__version__.split('.')[0]) < 1:
-        return string.encode('Windows-1252').decode('UTF-8')
+        return string.encode('Latin-1').decode('UTF-8')
     else:
         return string
