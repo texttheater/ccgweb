@@ -5,6 +5,9 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li>
+				<a href="about.php">About</a>
+			</li>
+			<li>
 				<a href="download.php">Download</a>
 			</li>
 		</ul>
