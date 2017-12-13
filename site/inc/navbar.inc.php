@@ -3,6 +3,11 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" href=".">CCGWeb</a>
 		</div>
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="download.php">Download</a>
+			</li>
+		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li>
 <?php

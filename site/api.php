@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	http_response_code($response->status_code);
 
 	if ($response->success) {
+		header('Content-Type: application/json'); # HACK, should read that from response
 		echo $response->body;
 	} else {
 		die ('ERROR: API error (' . $resource . '?' . $query . ')');
@@ -59,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	http_response_code($response->status_code);
 
 	if ($response->success) {
+		header('Content-Type: application/json'); # HACK, should read that from response
 		echo $response->body;
 	} else {
 		die('ERROR: API error (' . $resource . ')');
