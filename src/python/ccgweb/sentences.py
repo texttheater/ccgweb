@@ -134,7 +134,7 @@ def get_contents(lang, sentence, user, extension):
     Returns a tuple (contents, marked_correct) where contents is the data as
     a string and marked_correct is boolean.
     """
-    sentence_hash = sentence2hash(sentence)
+    sentence, sentence_hash = sentid(sentence)
     rows = ccgweb.db.get('''SELECT derxml
         FROM correct
         WHERE lang = %s
