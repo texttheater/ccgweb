@@ -5,10 +5,14 @@ import json
 class BOWs:
 
     def on_get(self, req, res):
-        span_bows = ccgweb.db.get('''SELECT user_id, DATE_FORMAT(time, '%%Y-%%m-%%e %%H:%%i:%%s') AS time, lang, sentence_id, offset_from, offset_to
-                                     FROM bows_span''')
-        super_bows = ccgweb.db.get('''SELECT user_id, DATE_FORMAT(time, '%%Y-%%m-%%e %%H:%%i:%%s') AS time, lang, sentence_id, offset_from, offset_to, tag
-                                      FROM bows_super''')
+        span_bows = ccgweb.db.get('''SELECT user_id, DATE_FORMAT(time, '%%Y-%%m-%%e %%H:%%i:%%s') AS time, b.lang, b.sentence_id, offset_from, offset_to
+                                     FROM bows_span AS b
+                                     INNER JOIN sentences AS s ON b.lang = s.lang and b.sentence_id = s.sentence_id
+                                     WHERE s.assigned = 1''')
+        super_bows = ccgweb.db.get('''SELECT user_id, DATE_FORMAT(time, '%%Y-%%m-%%e %%H:%%i:%%s') AS time, b.lang, b.sentence_id, offset_from, offset_to, tag
+                                      FROM bows_super AS b
+                                      INNER JOIN sentences AS s ON b.lang = s.lang and b.sentence_id = s.sentence_id
+                                      WHERE s.assigned = 1''')
         sentences = set()
         sentences.update((lang, sentence_id)
                          for (user_id, time, lang, sentence_id, offset_from, offset_to)
