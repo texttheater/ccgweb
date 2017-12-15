@@ -83,6 +83,8 @@ if ($is_user_logged_in) {
 							mark correct
 						</span>
 					</label>
+					&nbsp;
+					<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]) . "\n\n"]) ?>>report issue</a>
 				</div>
 			<?php } ?>
 			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
@@ -110,7 +112,7 @@ foreach($body->translations as $translation) {
 <?php if (isset($body->prev)) { ?>
 
 <li class=page-item>
-	<a href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
+	<a href="<?= url('sentence.php', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
 		Previous
 	</a>
 </li>
@@ -120,7 +122,7 @@ foreach($body->translations as $translation) {
 <?php if (isset($body->next)) { ?>
 
 <li class=page-item>
-	<a href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
+	<a href="<?= url('sentence.php', ['lang' => $lang, 'sentence' => $body->next]) ?>">
 		Next
 	</a>
 </li>

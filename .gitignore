@@ -7,3 +7,4 @@
 *.pyc
 /config.json
 /db_data.sql
+/nohup.out

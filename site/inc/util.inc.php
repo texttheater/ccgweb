@@ -42,8 +42,8 @@ function api($resource, $action, $params) {
 	}
 }
 
-function sitelink($page, $params) {
-	$result = $page . '.php';
+function url($page, $params) {
+	$result = $page;
 	$paramstrings = [];
 
 	foreach ($params as $k => $v) {
