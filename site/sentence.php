@@ -112,7 +112,7 @@ foreach($body->translations as $translation) {
 <?php if (isset($body->prev)) { ?>
 
 <li class=page-item>
-	<a href="<?= url('sentence.php', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
+	<a href="<?= url('sentence.php', ['lang' => $body->prev->lang, 'sentence' => $body->prev->sentence]) ?>">
 		Previous
 	</a>
 </li>
@@ -122,7 +122,7 @@ foreach($body->translations as $translation) {
 <?php if (isset($body->next)) { ?>
 
 <li class=page-item>
-	<a href="<?= url('sentence.php', ['lang' => $lang, 'sentence' => $body->next]) ?>">
+	<a href="<?= url('sentence.php', ['lang' => $body->next->lang, 'sentence' => $body->next->sentence]) ?>">
 		Next
 	</a>
 </li>

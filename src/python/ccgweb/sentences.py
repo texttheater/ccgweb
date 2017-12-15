@@ -24,9 +24,9 @@ class Sentence:
         for i, s in enumerate(assignment):
             if s['sentence'] == sentence:
                 if i > 0:
-                    body['prev'] = assignment[i - 1]['sentence']
+                    body['prev'] = assignment[i - 1]
                 if i + 1 < len(assignment):
-                    body['next'] = assignment[i + 1]['sentence']
+                    body['next'] = assignment[i + 1]
                 break
         # Annotations
         if user == 'auto':
