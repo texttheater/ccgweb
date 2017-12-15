@@ -64,19 +64,13 @@ function print_link_to_sentence($sentence) {
 			<?= htmlspecialchars($sentence->lang) ?>
 		</span>
 		&nbsp;
+		<?php if ($sentence->done) { ?>
+		<span class="label label-success">marked correct</span>
+		<?php } ?>
+		&nbsp;
 		<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
 			<?= htmlspecialchars($sentence->sentence) ?>
 		</a>
-	
-	<?php
-	if ($sentence->done) {
-	?>
-	
-	<span class="label label-success">marked correct</span>
-	<?php
-	}
-	?>
-
 	</li>
 	<?php
 }
