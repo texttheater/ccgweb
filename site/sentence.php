@@ -88,6 +88,7 @@ if ($is_user_logged_in) {
 				</div>
 			<?php } ?>
 			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
+			<!--<code><?= htmlspecialchars(json_encode($annotation->constituents)) ?></code>-->
 		</div>
 	<?php $i++; } ?>
 </div>
