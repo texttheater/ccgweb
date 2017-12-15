@@ -52,31 +52,42 @@ require('inc/head.inc.php');
 
 <h2>Parse</h2>
 
+<?php
+if ($is_user_logged_in) {
+	$active_tab = $user_name;
+} else {
+	$active_tab = 'auto';
+}
+?>
+
 <ul class="nav nav-tabs">
-	<li class="<?= $is_user_logged_in ? '' : 'active' ?>"><a data-toggle=tab href=#parses_parser>Parser</a></li>
-	<?php if ($is_user_logged_in) { ?>
-		<li class=active><a data-toggle=tab href=#parses_mine>Mine</a></li>
-	<?php } ?>
+	<?php $i = 0; foreach($body->annotations as $annotation) { ?>
+		<?php $mine = $annotation->user_id == $active_tab ?>
+		<li class="<?= $mine ? 'active' : '' ?>">
+			<a data-toggle=tab href=#parse<?= $i ?>>
+				<?= htmlspecialchars($annotation->user_id) ?>
+			</a>
+		</li>
+	<?php $i++; } ?>
 </ul>
+
 <div class=tab-content>
-	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-		<?= xslTransform('xsl/der.xsl', $body->auto_derxml) ?>
-	</div>
-	<?php if ($is_user_logged_in) { ?>
-		<div id=parses_mine class="tab-pane active">
-			<!--<p><form class=form-inline>-->
+	<?php $i = 0; foreach($body->annotations as $annotation) { ?>
+		<?php $mine = $annotation->user_id == $active_tab ?>
+		<div id=parse<?= $i ?> class="tab-pane <?= $mine ? 'active editable' : '' ?>">
+			<?php if ($is_user_logged_in && $mine) { ?>
 				<div class=checkbox>
 					<label>
-						<input type=checkbox id=mark-correct <?= $body->marked_correct ? 'checked' : '' ?>>
-						<span class="label <?= $body->marked_correct ? 'label-success' : 'label-default' ?>">
+						<input type=checkbox id=mark-correct <?= $annotation->marked_correct ? 'checked' : '' ?>>
+						<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
 							mark correct
 						</span>
 					</label>
 				</div>
-			<!--</form></p>-->
-			<?= xslTransform('xsl/der.xsl', $body->user_derxml) ?>
+			<?php } ?>
+			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
 		</div>
-	<?php } ?>
+	<?php $i++; } ?>
 </div>
 
 <hr>
