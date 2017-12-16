@@ -23,4 +23,4 @@ with open('config.json') as f:
 
 db = DB(MySQLdb.connect(config['db_host'], config['db_user'],
                         config['db_pass'], config['db_name'],
-                        charset='utf8'))
+                        charset='utf8mb4'))
