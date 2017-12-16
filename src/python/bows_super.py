@@ -15,10 +15,6 @@ if __name__ == '__main__':
     with open(bowfile) as f:
         for line in f:
             offset_from, offset_to, tag = line.split()
-            if tag == ')':
-                tag = 'RRB'
-            elif tag == '(':
-                tag = 'LRB'
             tag_by_offsets[(offset_from, offset_to)] = tag
     with open(offfile) as f:
         for line in f:
