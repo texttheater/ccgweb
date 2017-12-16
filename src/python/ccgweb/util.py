@@ -3,6 +3,9 @@ import falcon
 import os
 
 
+from lxml import etree
+
+
 def makedirs(path):
     try:
         os.makedirs(path)
@@ -28,3 +31,44 @@ def fix_encoding(string):
         return string.encode('Latin-1').decode('UTF-8')
     else:
         return string
+
+
+def constituents(derxmlstring):
+    constituents = set()
+    tree = etree.fromstring(derxmlstring.encode('UTF-8'))
+    for ruletype in ('binaryrule', 'unaryrule', 'lex'):
+        for rule in tree.iter(ruletype):
+            cat = cat2string(rule.find('cat')[0])
+            if ruletype == 'lex':
+                fr = rule.findtext("tag[@type='from']")
+                to = rule.findtext("tag[@type='to']")
+            else:
+                lexes = list(rule.iter('lex'))
+                fr = lexes[0].findtext("tag[@type='from']")
+                to = lexes[-1].findtext("tag[@type='to']")
+            constituents.add((fr, to, cat))
+    return constituents
+
+
+def cat2string(cat, embedded=False):
+    if cat.tag == 'atomic':
+        return cat.text + feat_string(cat)
+    elif cat.tag == 'backward':
+        result = r'{}\{}'.format(cat2string(cat[0], embedded=True),
+                cat2string(cat[1], embedded=True))
+    elif cat.tag == 'forward':
+        result = r'{}/{}'.format(cat2string(cat[0], embedded=True),
+                cat2string(cat[1], embedded=True))
+    else:
+        die('unknown kind of CCG category: ' + cat.tag)
+    if embedded:
+        return '({})'.format(result)
+    else:
+        return result
+
+
+def feat_string(cat):
+    try:
+        return '[' + cat.attrib['feature'] + ']'
+    except KeyError:
+        return ''

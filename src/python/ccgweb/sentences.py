@@ -39,6 +39,7 @@ class Sentence:
         for version in versions:
             derxml, marked_correct = get_contents(lang, sentence, version, 'der.xml')
             body['annotations'].append({'user_id': version, 'derxml': derxml,
+                                        'constituents': list(ccgweb.util.constituents(derxml)),
                                         'marked_correct': marked_correct})
         # Translations
         body['translations'] = get_translations(lang, sentence, user)

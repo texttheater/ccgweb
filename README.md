@@ -56,7 +56,7 @@ REST API
 
 To install the dependencies for the REST server on Ubuntu 16.04:
 
-    sudo apt install python3-falcon gunicorn3 python3-mysqldb python3-passlib
+    sudo apt install python3-falcon gunicorn3 python3-mysqldb python3-passlib python3-lxml
 
 To start it:
 
