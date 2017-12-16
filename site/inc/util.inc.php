@@ -42,8 +42,8 @@ function api($resource, $action, $params) {
 	}
 }
 
-function sitelink($page, $params) {
-	$result = $page . '.php';
+function url($page, $params) {
+	$result = $page;
 	$paramstrings = [];
 
 	foreach ($params as $k => $v) {
@@ -56,4 +56,23 @@ function sitelink($page, $params) {
 
 	return $result;
 }
+
+function print_link_to_sentence($sentence) {
+	?>
+	<li>
+		<span class="label label-default">
+			<?= htmlspecialchars($sentence->lang) ?>
+		</span>
+		&nbsp;
+		<?php if ($sentence->done) { ?>
+		<span class="label label-success">marked correct</span>
+		<?php } ?>
+		&nbsp;
+		<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
+			<?= htmlspecialchars($sentence->sentence) ?>
+		</a>
+	</li>
+	<?php
+}
+
 ?>

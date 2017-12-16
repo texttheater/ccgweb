@@ -3,29 +3,3 @@
 body {
 	padding-bottom: 50px;
 }
-
-
-/* navigation arrows */
-
-div#nav-arrows {
-	position: fixed;
-	top: 50%;
-	width: 100%;
-}
-
-a.nav-arrow {
-	font-size: xx-large;
-	/*font-weight: bold;
-	background: #bbb;
-	padding: 10px;*/
-}
-
-a#nav-arrow-prev {
-	float: left;
-	margin-left: .5em;
-}
-
-a#nav-arrow-next {
-	float: right;
-	margin-right: .5em;
-}

@@ -25,36 +25,13 @@ require('inc/head.inc.php');
 
 <div class=container>
 
-<h2>My Assignment</h2>
+<h2>Sentences to Annotate</h2>
 
 <ul class=list-unstyled>
 
 <?php
 foreach ($assignment as $sentence) {
-?>
-
-<li>
-	<span class="label label-default">
-		<?= htmlspecialchars($sentence->lang) ?>
-	</span>
-	&nbsp;
-	<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
-		<?= htmlspecialchars($sentence->sentence) ?>
-	</a>
-
-<?php
-if ($sentence->done) {
-?>
-
-<span class="label label-success">marked correct</span>
-
-<?php
-}
-?>
-
-</li>
-	
-<?php
+	print_link_to_sentence($sentence);
 }
 ?>
 

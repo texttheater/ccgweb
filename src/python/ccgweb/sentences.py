@@ -12,27 +12,43 @@ import subprocess
 class Sentence:
 
     def on_get(self, req, res, lang, sentence):
+        # Preliminaries:
+        sentence = ccgweb.util.fix_encoding(sentence)
         assert lang in ['eng', 'deu', 'ita', 'nld']
         user = ccgweb.users.current_user(req)
+        if not user:
+            user = 'auto'
         body = {}
-        assignment = ccgweb.assignments.get_assignment(user if user else 'auto')
+        # Assignment:
+        assignment = ccgweb.assignments.get_assignment(user)
         for i, s in enumerate(assignment):
             if s['sentence'] == sentence:
                 if i > 0:
-                    body['prev'] = assignment[i - 1]['sentence']
+                    body['prev'] = assignment[i - 1]
                 if i + 1 < len(assignment):
-                    body['next'] = assignment[i + 1]['sentence']
+                    body['next'] = assignment[i + 1]
                 break
-        auto_derxml, _ = get_contents(lang, sentence, 'auto', 'der.xml')
-        body['auto_derxml'] = auto_derxml
-        if user:
-            user_derxml, marked_correct = get_contents(lang, sentence, user, 'der.xml')
-            body['user_derxml'] = user_derxml
-            body['marked_correct'] = marked_correct
+        # Annotations
+        if user == 'auto':
+            versions = ['auto']
+        elif user == 'judge':
+            versions = ['auto'] + get_annotators(lang, sentence) + ['judge'] # TODO others
+        else:
+            versions = ['auto', user]
+        body['annotations'] = []
+        for version in versions:
+            derxml, marked_correct = get_contents(lang, sentence, version, 'der.xml')
+            body['annotations'].append({'user_id': version, 'derxml': derxml,
+                                        'constituents': list(ccgweb.util.constituents(derxml)),
+                                        'marked_correct': marked_correct})
+        # Translations
+        body['translations'] = get_translations(lang, sentence, user)
+        # Return
         res.content_type = 'application/json'
         res.body = json.dumps(body)
 
     def on_post(self, req, res, lang, sentence):
+        sentence = ccgweb.util.fix_encoding(sentence)
         assert lang in ['eng', 'deu', 'ita', 'nld']
         if 'api_action' not in req.params:
             res.status = falcon.HTTP_400
@@ -134,7 +150,7 @@ def get_contents(lang, sentence, user, extension):
     Returns a tuple (contents, marked_correct) where contents is the data as
     a string and marked_correct is boolean.
     """
-    sentence_hash = sentence2hash(sentence)
+    sentence, sentence_hash = sentid(sentence)
     rows = ccgweb.db.get('''SELECT derxml
         FROM correct
         WHERE lang = %s
@@ -147,3 +163,30 @@ def get_contents(lang, sentence, user, extension):
         subprocess.check_call(('./ext/produce/produce', der_path))
         with open(der_path, 'r') as f:
             return (f.read(), False)
+
+
+def get_translations(lang, sentence, user):
+    sentence, sentence_hash = sentid(sentence)
+    rows = ccgweb.db.get('''SELECT DISTINCT t.lang, t.sentence, c.time IS NOT NULL AS done
+        FROM sentence_links AS l
+        INNER JOIN sentences AS t ON l.lang2 = t.lang AND l.id2 = t.sentence_ID
+        LEFT OUTER JOIN correct AS c ON l.lang2 = c.lang AND l.id2 = c.sentence_id AND c.user_id = %s
+        WHERE l.lang1 = %s
+        AND l.id1 = %s
+        AND t.assigned = 1''', user, lang, sentence_hash)
+    return [{'lang': lang, 'sentence': sentence.rstrip(), 'done': bool(done)}
+            for lang, sentence, done in rows]
+
+
+def get_annotators(lang, sentence):
+    """Returns the list of users who have annotated this sentence.
+
+    auto and judge are not included."""
+    sentence, sentence_hash = sentid(sentence)
+    rows = ccgweb.db.get('''SELECT user_id
+                            FROM correct
+                            WHERE lang = %s
+                            AND sentence_id = %s
+                            AND user_id <> 'auto'
+                            AND user_id <> 'judge' ''', lang, sentence_hash)
+    return [user for (user,) in rows]

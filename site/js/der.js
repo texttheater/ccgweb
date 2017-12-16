@@ -6,7 +6,7 @@ function transferTabOrder(from, to) {
 
 // initializes the UI for creating supertag BOWs
 function initSuperBOWs() {
-    document.querySelectorAll('div#parses_mine table.lex').forEach(table => {
+    document.querySelectorAll('div.editable table.lex').forEach(table => {
         const td = table.querySelector('td.cat')
         td.onfocus = event => {
             if (busy || isMarkedCorrect()) {
@@ -56,7 +56,7 @@ function initSuperBOWs() {
 
 // initializes the UI for creating span BOWs
 function initSpanBOWs() {
-    const lexes = document.querySelectorAll('div#parses_mine table.lex')
+    const lexes = document.querySelectorAll('div.editable table.lex')
     let spanStart = null
     for (const lex of lexes) {
         const swiper = lex.querySelector('td.span-swiper')
@@ -96,7 +96,7 @@ function initSpanBOWs() {
         if (spanStart == null) {
             return
         }
-        const selectedLexes = document.querySelectorAll('div#parses_mine table.lex.selected')
+        const selectedLexes = document.querySelectorAll('div.editable table.lex.selected')
         if (selectedLexes.length < 2) {
             for (const lex of selectedLexes) {
                 lex.classList.remove('selected')

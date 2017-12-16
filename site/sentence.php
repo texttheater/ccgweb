@@ -42,63 +42,96 @@ $title = 'CCGWeb - ' . htmlspecialchars($sentence);
 require('inc/head.inc.php');
 ?>
 
-<div id=nav-arrows>
-
-<?php if (isset($body->prev)) { ?>
-
-<a class="label label-primary nav-arrow" nav-arrow id=nav-arrow-prev href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->prev]) ?>">
-	<span class="glyphicon glyphicon-arrow-left" title="previous sentence" aria-hidden="true"></span>
-	<span class=sr-only>previous sentence</span>
-</a>
-
-<?php } ?>
-
-<?php if (isset($body->next)) { ?>
-
-<a class="label label-primary nav-arrow" id=nav-arrow-next href="<?= sitelink('sentence', ['lang' => $lang, 'sentence' => $body->next]) ?>">
-	<span class="glyphicon glyphicon-arrow-right" title="next sentence" aria-hidden="true"></span>
-	<span class=sr-only>next sentence</span>
-</a>
-
-<?php } ?>
-
-</div>
-
 <div class=container>
 
 <h2>Sentence</h2>
 
 <p><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
 
+<hr>
+
 <h2>Parse</h2>
 
+<?php
+if ($is_user_logged_in) {
+	$active_tab = $user_name;
+} else {
+	$active_tab = 'auto';
+}
+?>
+
 <ul class="nav nav-tabs">
-	<li class="<?= $is_user_logged_in ? '' : 'active' ?>"><a data-toggle=tab href=#parses_parser>Parser</a></li>
-	<?php if ($is_user_logged_in) { ?>
-		<li class=active><a data-toggle=tab href=#parses_mine>Mine</a></li>
-	<?php } ?>
+	<?php $i = 0; foreach($body->annotations as $annotation) { ?>
+		<?php $mine = $annotation->user_id == $active_tab ?>
+		<li class="<?= $mine ? 'active' : '' ?>">
+			<a data-toggle=tab href=#parse<?= $i ?>>
+				<?= htmlspecialchars($annotation->user_id) ?>
+			</a>
+		</li>
+	<?php $i++; } ?>
 </ul>
+
 <div class=tab-content>
-	<div id=parses_parser class="tab-pane <?= $is_user_logged_in ? '' : 'active' ?>">
-		<?= xslTransform('xsl/der.xsl', $body->auto_derxml) ?>
-	</div>
-	<?php if ($is_user_logged_in) { ?>
-		<div id=parses_mine class="tab-pane active">
-			<?= xslTransform('xsl/der.xsl', $body->user_derxml) ?>
-			<p>&nbsp;</p>
-			<form class=form-inline>
+	<?php $i = 0; foreach($body->annotations as $annotation) { ?>
+		<?php $mine = $annotation->user_id == $active_tab ?>
+		<div id=parse<?= $i ?> class="tab-pane <?= $mine ? 'active editable' : '' ?>">
+			<?php if ($is_user_logged_in && $mine) { ?>
 				<div class=checkbox>
 					<label>
-						<input type=checkbox id=mark-correct <?= $body->marked_correct ? 'checked' : '' ?>>
-						<span class="label <?= $body->marked_correct ? 'label-success' : 'label-default' ?>">
+						<input type=checkbox id=mark-correct <?= $annotation->marked_correct ? 'checked' : '' ?>>
+						<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
 							mark correct
 						</span>
 					</label>
+					&nbsp;
+					<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]) . "\n\n"]) ?>>report issue</a>
 				</div>
-			</form>
+			<?php } ?>
+			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
+			<!--<code><?= htmlspecialchars(json_encode($annotation->constituents)) ?></code>-->
 		</div>
-	<?php } ?>
+	<?php $i++; } ?>
 </div>
+
+<hr>
+
+<h2>Translations</h2>
+
+<ul class=list-unstyled>
+<?php
+foreach($body->translations as $translation) {
+	print_link_to_sentence($translation);
+}
+?>
+</ul>
+
+<hr>
+
+<nav aria-label="Navigation through sentences">
+	<ul class="pagination">
+
+<?php if (isset($body->prev)) { ?>
+
+<li class=page-item>
+	<a href="<?= url('sentence.php', ['lang' => $body->prev->lang, 'sentence' => $body->prev->sentence]) ?>">
+		Previous
+	</a>
+</li>
+
+<?php } ?>
+
+<?php if (isset($body->next)) { ?>
+
+<li class=page-item>
+	<a href="<?= url('sentence.php', ['lang' => $body->next->lang, 'sentence' => $body->next->sentence]) ?>">
+		Next
+	</a>
+</li>
+
+<?php } ?>
+
+	</ul>
+</nav>
 
 </div>
 
