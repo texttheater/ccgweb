@@ -38,7 +38,10 @@ def constituents(derxmlstring):
     tree = etree.fromstring(derxmlstring.encode('UTF-8'))
     for ruletype in ('binaryrule', 'unaryrule', 'lex'):
         for rule in tree.iter(ruletype):
-            cat = cat2string(rule.find('cat')[0])
+            cats = rule.find('cat')
+            if cats is None:
+                continue
+            cat = cat2string(cats[0])
             if ruletype == 'lex':
                 fr = rule.findtext("tag[@type='from']")
                 to = rule.findtext("tag[@type='to']")

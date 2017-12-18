@@ -13,7 +13,7 @@ class DB:
 
     def _connect(self):
         self.conn = MySQLdb.connect(self.host, self.user, self.password,
-                                    self.name, charset='utf8')
+                                    self.name, charset='utf8mb4')
 
     def get(self, sql, *args):
         try:
