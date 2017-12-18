@@ -206,6 +206,9 @@ cat2xml(Cat:Feat) :-
   -> Feat = 'X'
   ;  true), % HACK
   format('<atomic feature="~w">~w</atomic>', [Feat, CAT]).
+cat2xml(conj) :-
+  !,
+  format('<atomic>conj</atomic>', []).
 cat2xml(Cat) :-
   !,
   atom_upper(Cat, CAT),
