@@ -165,6 +165,7 @@
 								<xsl:when test="@type='gfxc'">&gt;<sup><i>n</i></sup></xsl:when>
 								<xsl:when test="@type='ba'">&lt;<sup>0</sup></xsl:when>
 								<xsl:when test="@type='rp'">.</xsl:when>
+								<xsl:when test="@type='lp'">.</xsl:when>
 							</xsl:choose>
 						</xsl:element>
 					</div>

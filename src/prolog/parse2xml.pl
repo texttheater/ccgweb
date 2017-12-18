@@ -184,6 +184,16 @@ const2xml(rp(Cat, D1, D2)) :-
   const2xml(D1),
   const2xml(D2),
   format('</binaryrule>').
+const2xml(lp(Cat, D1, D2)) :-
+  !,
+  format('<binaryrule type="lp" description="Left Remove Punctuation">'),
+  format('<cat>'),
+  cat2xml(Cat),
+  format('</cat>'),
+  format('<sem><var>nil</var></sem>'),
+  const2xml(D1),
+  const2xml(D2),
+  format('</binaryrule>').
 const2xml(Const) :-
   raise_exception(unknown_constituent_type(Const)).
 
