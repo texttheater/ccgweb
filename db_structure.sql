@@ -32,7 +32,7 @@ CREATE TABLE `bows_span` (
   `offset_to` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`sentence_id`)
+  KEY `sentence` (`lang`, `sentence_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,7 +54,28 @@ CREATE TABLE `bows_super` (
   `tag` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`sentence_id`)
+  KEY `sentence` (`lang`, `sentence_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `bows_tok`
+--
+
+DROP TABLE IF EXISTS `bows_tok`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bows_tok` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `time` datetime NOT NULL,
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `offset` int(11) NOT NULL,
+  `tag` enum('O', 'I', 'T', 'S') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user_id`),
+  KEY `sentence` (`lang`, `sentence_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
