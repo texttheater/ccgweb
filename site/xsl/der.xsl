@@ -160,7 +160,7 @@
 								<xsl:when test="@type='bc'">&lt;<sup>1</sup></xsl:when>
 								<xsl:when test="@type='conj'">∨</xsl:when>
 								<xsl:when test="@type='bxc'">&lt;<sup>1</sup><sub>×</sub></xsl:when>
-								<xsl:when test="@type='fxc'">&gt;<sup>1</sup></xsl:when>
+								<xsl:when test="@type='fxc'">&gt;<sup>1</sup><sub>×</sub></xsl:when>
 								<xsl:when test="@type='gbxc'">&lt;<sup><i>n</i></sup><sub>×</sub></xsl:when>
 								<xsl:when test="@type='gfxc'">&gt;<sup><i>n</i></sup></xsl:when>
 								<xsl:when test="@type='ba'">&lt;<sup>0</sup></xsl:when>
