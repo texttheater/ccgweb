@@ -84,7 +84,10 @@ if ($is_user_logged_in) {
 						</span>
 					</label>
 					&nbsp;
-					<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]) . "\n\n"]) ?>>report issue</a>
+<?php
+$url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
+?>
+					<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]) ?>>report issue</a>
 				</div>
 			<?php } ?>
 			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
