@@ -3,3 +3,16 @@
 body {
 	padding-bottom: 50px;
 }
+
+/* controls displayed above the user's derivation */
+
+div#derivation-controls > div {
+	float: left;
+	margin-top: 10px;
+}
+
+div#derivation-controls::after {
+	content: '';
+	display: block;
+	clear: both;
+}
