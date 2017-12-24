@@ -76,18 +76,26 @@ if ($is_user_logged_in) {
 		<?php $mine = $annotation->user_id == $active_tab ?>
 		<div id=parse<?= $i ?> class="tab-pane <?= $mine ? 'active editable' : '' ?>">
 			<?php if ($is_user_logged_in && $mine) { ?>
-				<div class=checkbox>
-					<label>
-						<input type=checkbox id=mark-correct <?= $annotation->marked_correct ? 'checked' : '' ?>>
-						<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
-							mark correct
-						</span>
-					</label>
-					&nbsp;
+				<div id=derivation-controls>
+					<div class=checkbox>
+						<label>
+							<input type=checkbox id=mark-correct <?= $annotation->marked_correct ? 'checked' : '' ?>>
+							<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
+								mark correct
+							</span>
+						</label>
+					</div>
+					<div>
+						&nbsp;
+						&nbsp;
 <?php
 $url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
 ?>
-					<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]) ?>>report issue</a>
+						<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]) ?>>report issue</a>
+						&nbsp;
+						&nbsp;
+						<a id=reset-link href=#>reset</a>
+					</div>
 				</div>
 			<?php } ?>
 			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
