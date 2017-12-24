@@ -87,10 +87,14 @@ if ($is_user_logged_in) {
 					</div>
 					<div>
 						&nbsp;
+						&nbsp;
 <?php
-$url = url('https://text	theater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
+$url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
 ?>
 						<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]) ?>>report issue</a>
+						&nbsp;
+						&nbsp;
+						<a id=reset-link href=#>reset</a>
 					</div>
 				</div>
 			<?php } ?>

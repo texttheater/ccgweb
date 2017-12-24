@@ -142,6 +142,27 @@ function initMarkCorrect() {
     }
 }
 
+function initReset() {
+    const a = document.querySelector('a#reset-link')
+    a.onclick = e => {
+        e.preventDefault()
+        if (busy) {
+            return
+        }
+        if (window.confirm("Reset your derivation to auto derivation?")) {
+            goBusy()
+            api(
+                'sentences/' + lang + '/' + encodeURIComponent(sentence),
+                'reset',
+                {},
+                () => {
+                    window.location.reload()
+                }
+            )
+        }
+    }
+}
+
 function isMarkedCorrect() {
     const input = document.querySelector('input#mark-correct')
     return input.checked
@@ -156,3 +177,4 @@ let busy = false
 initSuperBOWs()
 initSpanBOWs()
 initMarkCorrect()
+initReset()

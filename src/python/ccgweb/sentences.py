@@ -111,6 +111,28 @@ class Sentence:
                     WHERE lang = %s
                     AND sentence_id = %s
                     AND user_id = %s''', lang, sentence_hash, user)
+        elif req.params['api_action'] == 'reset':
+            user = ccgweb.users.current_user(req)
+            if not user:
+                res.status = falcon.HTTP_401
+                return
+            sentence_hash = sentence2hash(sentence)
+            ccgweb.db.execute('''DELETE FROM correct
+                WHERE lang = %s
+                AND sentence_id = %s
+                AND user_id = %s''', lang, sentence_hash, user)
+            ccgweb.db.execute('''DELETE FROM bows_span
+                WHERE lang = %s
+                AND sentence_id = %s
+                AND user_id = %s''', lang, sentence_hash, user)
+            ccgweb.db.execute('''DELETE FROM bows_super
+                WHERE lang = %s
+                AND sentence_id = %s
+                AND user_id = %s''', lang, sentence_hash, user)
+            ccgweb.db.execute('''DELETE FROM bows_tok
+                WHERE lang = %s
+                AND sentence_id = %s
+                AND user_id = %s''', lang, sentence_hash, user)
         else:
             res.status = falcon.HTTP_400
             return
