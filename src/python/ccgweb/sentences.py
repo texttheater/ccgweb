@@ -219,3 +219,11 @@ def get_annotators(lang, sentence):
                             AND user_id <> 'auto'
                             AND user_id <> 'judge' ''', lang, sentence_hash)
     return [user for (user,) in rows]
+
+
+def add_tok_bow(lang, sentence, offset, tag):
+    sentence, sentence_hash = sentid(sentence)
+    ccgweb.db.execute('''INSERT INTO bows_tok
+                         (user_id, time, lang, sentence_id, offset, tag)
+                         VALUES ('auto', NOW(), %s, %s, %s, %s)''',
+                      lang, sentence_hash, offset, tag)
