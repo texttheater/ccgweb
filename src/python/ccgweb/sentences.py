@@ -181,6 +181,13 @@ def get_contents(lang, sentence, user, extension):
     if rows:
         return (rows[0][0], True)
     else:
+        # Make sure raw file exists:
+        raw_path = get_raw_path(lang, sentence_hash)
+        if not os.path.isfile(raw_path):
+            ccgweb.util.makedirs(os.path.split(raw_path)[0])
+            with open(raw_path, 'w', encoding='UTF-8') as f:
+                f.write(sentence)
+        # Process the document:
         der_path = get_path(lang, sentence_hash, user, 'der.xml')
         subprocess.check_call(('./ext/produce/produce', der_path))
         with open(der_path, 'r') as f:
