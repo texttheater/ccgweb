@@ -37,7 +37,7 @@ if (!$response->success) {
 
 $body = json_decode($response->body);
 
-$title = 'CCGWeb - ' . htmlspecialchars($sentence);
+$title = 'CCGWeb - ' . $sentence;
 
 require('inc/head.inc.php');
 ?>
