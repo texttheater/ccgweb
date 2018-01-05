@@ -32,8 +32,8 @@ CREATE TABLE `bows_span` (
   `offset_to` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`lang`, `sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  KEY `sentence` (`lang`,`sentence_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,8 +54,8 @@ CREATE TABLE `bows_super` (
   `tag` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`lang`, `sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  KEY `sentence` (`lang`,`sentence_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=316 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,11 +72,11 @@ CREATE TABLE `bows_tok` (
   `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `offset` int(11) NOT NULL,
-  `tag` enum('O', 'I', 'T', 'S') NOT NULL,
+  `tag` enum('O','I','T','S') COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`lang`, `sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  KEY `sentence` (`lang`,`sentence_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +108,8 @@ CREATE TABLE `sentence_links` (
   `id1` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `lang2` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id2` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  KEY `text1` (`lang1`,`id1`)
+  UNIQUE KEY `unique` (`lang1`,`id1`,`lang2`,`id2`) USING BTREE,
+  KEY `sentence1` (`lang1`,`id1`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -171,4 +172,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-11 18:20:47
+-- Dump completed on 2018-01-05 14:50:34
