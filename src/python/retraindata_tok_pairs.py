@@ -22,7 +22,7 @@ if __name__ == '__main__':
         open('retrain/eng-{}.{}.tok'.format(lang, lang), 'w') as tok_for:
         for id1, id2 in rows:
             tokfile_eng = 'out/eng/{}/{}/auto.tok'.format(id1[:2], id1)
-            tokfile_for = 'out/{}/{}/{}/auto.tok'.format(lang2, id2[:2], id2)
+            tokfile_for = 'out/{}/{}/{}/auto.tok'.format(lang, id2[:2], id2)
             lines_eng = ccgweb.util.slurp(tokfile_eng).splitlines()
             lines_for = ccgweb.util.slurp(tokfile_for).splitlines()
             if len(lines_eng) != 1 or len(lines_for) != 1:
