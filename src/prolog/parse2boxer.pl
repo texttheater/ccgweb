@@ -61,12 +61,10 @@ translate(lx(X\(X/Y), Y, Der0), btr(X\(X/Y), Y, nil, Der)) :-
 translate(lx(NewCat, OldCat, Der0), tc(NewCat, OldCat, nil, Der)) :-
   !,
   substitute_sub_term(translate, Der0, Der).
-translate(lp(Cat, D10, D20), lp(Cat, nil, D1, D2)) :-
+translate(lp(Cat, t(_, Token, Atts), D20), fa(Cat, nil, t(Cat/Cat, nil, Token, Atts), D2)) :-
   !,
-  substitute_sub_term(translate, D10, D1),
   substitute_sub_term(translate, D20, D2).
-translate(rp(Cat, D10, D20), rp(Cat, nil, D1, D2)) :-
+translate(rp(Cat, D10, t(_, Token, Atts)), ba(Cat, nil, D1, t(Cat\Cat, nil, Token, Atts))) :-
   !,
-  substitute_sub_term(translate, D10, D1),
-  substitute_sub_term(translate, D20, D2).
+  substitute_sub_term(translate, D10, D1).
 translate(t(Cat, Token, Atts), t(nil, Cat, Token, Atts)).
