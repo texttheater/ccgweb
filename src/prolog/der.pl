@@ -46,6 +46,12 @@ der2node_(fa(_Cat, Sem, t(TCSem, _, 'ø', _), ODer), node(_X, Sem, tc(TCSem), [O
   der2node_(ODer, ONode),
   der_cat(ODer, Cat2),
   co_cat(Y, Cat2).
+der2node_(tc(_NewCat, _OldCat, Sem, ODer), node(_X, Sem, tc(nil), [ONode])) :- % nil = HACK
+  !,
+  node_co(ONode, Y),
+  der2node_(ODer, ONode),
+  der_cat(ODer, Cat2),
+  co_cat(Y, Cat2).
 der2node_(fa(_Cat, Sem, Der1, Der2), node(Y, Sem, comp(0, f), [Node1, Node2])) :-
   Der1 = t(lam(A, B), C/D, _, _),
   A == B,
