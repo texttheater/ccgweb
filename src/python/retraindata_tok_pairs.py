@@ -12,10 +12,19 @@ if __name__ == '__main__':
     except ValueError:
         print('USAGE: python3 retraindata_tok_pairs.py LANG', file=sys.stderr)
         sys.exit(1)
-    rows = ccgweb.db.get('''SELECT id1, id2
-                            FROM sentence_links
-                            WHERE lang1 = 'eng'
-                            AND lang2 = %s''', lang)
+    rows = ccgweb.db.get('''SELECT l.id1, l.id2
+                            FROM sentence_links AS l
+                            INNER JOIN sentences AS s1
+                            ON l.lang1 = s1.lang
+                            AND l.id1 = s1.sentence_id
+                            INNER JOIN sentences AS s2
+                            ON l.lang2 = s2.lang
+                            AND l.id2 = s2.sentence_id
+                            WHERE l.lang1 = 'eng'
+                            AND l.lang2 = %s
+                            AND s1.assigned = 0
+                            AND s2.assigned = 0
+                            ''', lang)
     with open('retrain/eng-{}.eng.ids'.format(lang), 'w') as ids_eng, \
         open('retrain/eng-{}.{}.ids'.format(lang, lang), 'w') as ids_for, \
         open('retrain/eng-{}.eng.tok'.format(lang), 'w') as tok_eng, \
