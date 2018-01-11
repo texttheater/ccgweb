@@ -93,7 +93,7 @@ CREATE TABLE `correct` (
   `time` datetime NOT NULL,
   `derxml` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`lang`,`sentence_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,8 +108,7 @@ CREATE TABLE `sentence_links` (
   `id1` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `lang2` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id2` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  UNIQUE KEY `unique` (`lang1`,`id1`,`lang2`,`id2`) USING BTREE,
-  KEY `sentence1` (`lang1`,`id1`) USING BTREE
+  UNIQUE KEY `unique` (`lang1`,`id1`,`lang2`,`id2`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,7 +125,7 @@ CREATE TABLE `sentence_pmbids` (
   `pmb_part` char(2) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `pmb_doc_id` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   PRIMARY KEY (`lang`,`sentence_id`,`pmb_part`,`pmb_doc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
