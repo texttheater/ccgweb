@@ -16,7 +16,7 @@ if __name__ == '__main__':
         if part not in ('traindevtest', 'train'):
             raise ValueError()
     except ValueError:
-        print('USAGE: python3 wordaligndata_tok_pairs.py LANG traindevtest|train', file=sys.stderr)
+        print('USAGE: python3 data_wordalign.py LANG traindevtest|train', file=sys.stderr)
         sys.exit(1)
     if part == 'train':
         cond = ' AND s1.assigned = 0 AND s2.assigned = 0'
