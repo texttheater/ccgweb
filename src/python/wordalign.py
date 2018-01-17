@@ -65,14 +65,14 @@ if __name__ == '__main__':
     eng_offpairs = sorted(toklib.read_offset_file(engoff_path)[0], key=lambda x: x[0])
     for_offpairs = sorted(toklib.read_offset_file(foroff_path)[0], key=lambda x: x[0])
     # Find the position of the given sentence pair in the aligned corpus:
-    engids_path = os.path.join('retrain', 'eng-{}.eng.ids'.format(lang))
-    forids_path = os.path.join('retrain', 'eng-{}.{}.ids'.format(lang, lang))
+    engids_path = os.path.join('wordalign', 'eng-{}.eng.ids'.format(lang))
+    forids_path = os.path.join('wordalign', 'eng-{}.{}.ids'.format(lang, lang))
     with open(engids_path) as engids, open(forids_path) as forids:
         for i, (engid, forid) in enumerate(zip(engids, forids), start=1):
             if engid.rstrip() == sid and forid.rstrip() == tid:
                 break
     # Extract the alignment:
-    dict_path = os.path.join('retrain', '{}-eng.dict'.format(lang))
+    dict_path = os.path.join('wordalign', '{}-eng.dict'.format(lang))
     with open(dict_path) as d:
         # Skip everything up to the line we need:
         for j in range(i - 1):
