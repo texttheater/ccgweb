@@ -71,6 +71,9 @@ if __name__ == '__main__':
         for i, (engid, forid) in enumerate(zip(engids, forids), start=1):
             if engid.rstrip() == sid and forid.rstrip() == tid:
                 break
+        else:
+            print('WARNING: no alignment found', file=sys.stderr)
+            sys.exit()
     # Extract the alignment:
     dict_path = os.path.join('wordalign', '{}-eng-train.dict'.format(lang))
     with open(dict_path) as d:
@@ -86,8 +89,8 @@ if __name__ == '__main__':
         # target token IDs, so we ignore that.
         trgid_lists = [[int(i) for i in l.split()] for l
                        in ALIGN_PATTERN.findall(d.readline())][1:]
-        print(trgid_lists, file=sys.stderr)
-        print(for_offpairs, file=sys.stderr)
+        #print(trgid_lists, file=sys.stderr)
+        #print(for_offpairs, file=sys.stderr)
         assert len(trgid_lists) == len(for_offpairs)
         for for_token, trgid_list in zip(for_offpairs, trgid_lists):
             print(for_token[0], for_token[1],
