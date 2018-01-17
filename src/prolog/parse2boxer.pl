@@ -5,6 +5,7 @@
 :- use_module(util, [
     argv/1,
     substitute_sub_term/3,
+    substitute_sub_term/4,
     term_in_file/3,
     write_clause/1]).
 
@@ -13,14 +14,20 @@ main :-
   forall(
       ( term_in_file(Term0, ParseFile, [module(slashes)])
       ),
-      ( substitute_sub_term(translate, Term0, Term),
+      ( substitute_sub_term(translate, Term0, Term1),
+	substitute_sub_term('–', '-', Term1, Term2), % XXX workaround for SWI-Prolog bug
+	substitute_sub_term('—', '-', Term2, Term), % XXX workaround for SWI-Prolog bug
 	write_clause(Term)
       ) ),	
   halt(0).
 main :-
-  format(user_error, 'USAGE: swipl -l parse2xml.pl -g main PARSEFILE > XMLFILE~n', []),
+  format(user_error, 'USAGE: swipl -l parse2xml.pl -g main PARSEFILE > BOXERFILE~n', []),
   halt(1).
 
+translate(Var, _) :-
+  var(Var),
+  !,
+  fail.
 translate(ccg(N, D0), der(N, D)) :-
   !,
   substitute_sub_term(translate, D0, D).
@@ -45,6 +52,22 @@ translate(bxc(Cat, D10, D20), bxc(Cat, nil, D1, D2)) :-
   substitute_sub_term(translate, D10, D1),
   substitute_sub_term(translate, D20, D2).
 translate(fxc(Cat, D10, D20), fxc(Cat, nil, D1, D2)) :-
+  !,
+  substitute_sub_term(translate, D10, D1),
+  substitute_sub_term(translate, D20, D2).
+translate(gbc(Cat, D10, D20), gbc(Cat, nil, D1, D2)) :-
+  !,
+  substitute_sub_term(translate, D10, D1),
+  substitute_sub_term(translate, D20, D2).
+translate(gfc(Cat, D10, D20), gfc(Cat, nil, D1, D2)) :-
+  !,
+  substitute_sub_term(translate, D10, D1),
+  substitute_sub_term(translate, D20, D2).
+translate(gbxc(Cat, D10, D20), gbxc(Cat, nil, D1, D2)) :-
+  !,
+  substitute_sub_term(translate, D10, D1),
+  substitute_sub_term(translate, D20, D2).
+translate(gfxc(Cat, D10, D20), gfxc(Cat, nil, D1, D2)) :-
   !,
   substitute_sub_term(translate, D10, D1),
   substitute_sub_term(translate, D20, D2).
