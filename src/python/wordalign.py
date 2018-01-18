@@ -64,6 +64,9 @@ if __name__ == '__main__':
     foroff_path = os.path.join('out', lang, tid[:2], tid, 'auto.tok.off')
     eng_offpairs = sorted(toklib.read_offset_file(engoff_path)[0], key=lambda x: x[0])
     for_offpairs = sorted(toklib.read_offset_file(foroff_path)[0], key=lambda x: x[0])
+    if len(for_offpairs) > 100:
+        print('WARNING: sentence too long for GIZA++, aborting', file=sys.stderr)
+        sys.exit()
     # Find the position of the given sentence pair in the aligned corpus:
     engids_path = os.path.join('wordalign', 'eng-{}-train.eng.ids'.format(lang))
     forids_path = os.path.join('wordalign', 'eng-{}-train.{}.ids'.format(lang, lang))
@@ -89,8 +92,8 @@ if __name__ == '__main__':
         # target token IDs, so we ignore that.
         trgid_lists = [[int(i) for i in l.split()] for l
                        in ALIGN_PATTERN.findall(d.readline())][1:]
-        #print(trgid_lists, file=sys.stderr)
-        #print(for_offpairs, file=sys.stderr)
+        #print(trgid_lists, len(trgid_lists), file=sys.stderr)
+        #print(for_offpairs, len(for_offpairs), file=sys.stderr)
         assert len(trgid_lists) == len(for_offpairs)
         for for_token, trgid_list in zip(for_offpairs, trgid_lists):
             print(for_token[0], for_token[1],
