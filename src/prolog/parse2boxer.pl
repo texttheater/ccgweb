@@ -14,9 +14,7 @@ main :-
   forall(
       ( term_in_file(Term0, ParseFile, [module(slashes)])
       ),
-      ( substitute_sub_term(translate, Term0, Term1),
-	substitute_sub_term('–', '-', Term1, Term2), % XXX workaround for SWI-Prolog bug
-	substitute_sub_term('—', '-', Term2, Term), % XXX workaround for SWI-Prolog bug
+      ( substitute_sub_term(translate, Term0, Term),
 	write_clause(Term)
       ) ),	
   halt(0).
