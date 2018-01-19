@@ -33,4 +33,4 @@ if __name__ == '__main__':
                             WHERE l.lang1 = 'eng'
                             AND l.lang2 = %s''' + cond, lang)
     for id1, id2 in rows:
-        print(os.path.join('out', lang, id2[:2], id2, 'proj', id1, 'proj.parse.tags'))
+        print(os.path.join('out', lang, id2[:2], id2, 'proj', id1, 'proj-' + part + '.parse.tags'))

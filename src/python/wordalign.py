@@ -54,9 +54,11 @@ def trgid_list2english_offsets(trgid_list, english_sentence):
 
 if __name__ == '__main__':
     try:
-        _, lang, tid, sid = sys.argv
+        _, lang, tid, sid, part = sys.argv
+        if part not in ('train', 'traindevtest'):
+            raise ValueError()
     except ValueError:
-        print('USAGE: python wordalign.py LANG TARGET_ID SOURCE_ID',
+        print('USAGE: python wordalign.py LANG TARGET_ID SOURCE_ID train|traindevtest',
               file=sys.stderr)
         sys.exit(1)
     # Read the offset pairs of the sentences:
@@ -68,8 +70,8 @@ if __name__ == '__main__':
         print('WARNING: sentence too long for GIZA++, aborting', file=sys.stderr)
         sys.exit()
     # Find the position of the given sentence pair in the aligned corpus:
-    engids_path = os.path.join('wordalign', 'eng-{}-train.eng.ids'.format(lang))
-    forids_path = os.path.join('wordalign', 'eng-{}-train.{}.ids'.format(lang, lang))
+    engids_path = os.path.join('wordalign', 'eng-{}-{}.eng.ids'.format(lang, part))
+    forids_path = os.path.join('wordalign', 'eng-{}-{}.{}.ids'.format(lang, part, lang))
     with open(engids_path) as engids, open(forids_path) as forids:
         for i, (engid, forid) in enumerate(zip(engids, forids), start=1):
             if engid.rstrip() == sid and forid.rstrip() == tid:
@@ -78,7 +80,7 @@ if __name__ == '__main__':
             print('WARNING: no alignment found', file=sys.stderr)
             sys.exit()
     # Extract the alignment:
-    dict_path = os.path.join('wordalign', '{}-eng-train.dict'.format(lang))
+    dict_path = os.path.join('wordalign', '{}-eng-{}.dict'.format(lang, part))
     with open(dict_path) as d:
         # Skip everything up to the line we need:
         for j in range(i - 1):
