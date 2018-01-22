@@ -166,6 +166,17 @@ def get_path(lang, sentence_hash, user, extension):
     return os.path.join(out_dir, '.'.join((user, extension)))
 
 
+def get_proj_path(lang, target_sentence_hash, source_sentence_hash, portion,
+    extension):
+    if portion not in ('train', 'traindevtest'):
+        raise ValueError('portion must be one of train, traindevtest')
+    target_sentence_dir = os.path.join('out', lang, target_sentence_hash[:2],
+        target_sentence_hash)
+    projection_dir = os.path.join(target_sentence_dir, 'proj',
+        source_sentence_hash)
+    return os.path.join(projection_dir, 'proj-' + portion + '.' + extension)
+
+
 def get_contents(lang, sentence, user, extension):
     """Get the data for a specific annotation layer for some user.
 
