@@ -94,6 +94,7 @@ div.rule sub {
 
 div.lexlist {
 	display: table;
+	vertical-align: top;
 }
 
 div.lexlist table.lex {

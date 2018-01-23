@@ -8,6 +8,9 @@
 				<a href="about.php">About</a>
 			</li>
 			<li>
+				<a href="manual.php">Manual</a>
+			</li>
+			<li>
 				<a href="download.php">Download</a>
 			</li>
 		</ul>
