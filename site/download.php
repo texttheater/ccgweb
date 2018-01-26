@@ -14,11 +14,12 @@ require('inc/head.inc.php');
 
 <h2>Download</h2>
 
-<p>Here you can download all BOWs (<i>bits of wisdom</i>) created by CCGweb
-annotators so far. The download also contains mappings to the corresponding
+<p>Here you can download all annotations completed (marked correct) by
+annotators so far. They come in a JSON document containing derivations in a
+Boxer-style XML format. It also contains mappings to the corresponding
 <a href=http://pmb.let.rug.nl>Parallel Meaning Bank</a> document IDs.</p>
 
-<a href=api.php?api_resource=bows>Download BOWs</a>
+<a href=api.php?api_resource=download>Download annotations</a>
 
 </div>
 
