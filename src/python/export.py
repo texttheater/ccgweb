@@ -4,11 +4,23 @@
 import ccgweb
 import ccgweb.util
 import collections
+import io
 import os
 import sys
+import tarfile
+import time
 
 
-def export_train(datadir):
+def add_text_file_to_tar(path, text, tar, encoding='UTF-8'):
+    binary = text.encode(encoding)
+    info = tarfile.TarInfo(path)
+    info.size = len(binary)
+    info.mtime = time.time()
+    with io.BytesIO(binary) as f:
+        tar.addfile(info, f)
+
+
+def export_train(datafile):
     rows = ccgweb.db.get('''SELECT l.lang1, l.id1, s1.sentence, l.id2, s2.sentence
                             FROM sentence_links AS l
                             INNER JOIN sentences AS s1
@@ -18,16 +30,14 @@ def export_train(datadir):
                             WHERE l.lang2 = "eng"
                             AND s1.assigned = 0''')
     for lang1, id1, sentence1, id2, sentence2 in rows:
-        dirpath = os.path.join(datadir, 'train', lang1 + '-eng', id1[:2], id1 + '-' + id2)
+        dirpath = os.path.join('data', 'train', lang1 + '-eng', id1[:2], id1 + '-' + id2)
         srcpath = os.path.join(dirpath, 'src.raw')
         trgpath = os.path.join(dirpath, 'trg.raw')
         ccgweb.util.makedirs(dirpath)
-        with open(srcpath, 'w') as f:
-            f.write(sentence2)
-        with open(trgpath, 'w') as f:
-            f.write(sentence1)
+        add_text_file_to_tar(srcpath, sentence2, datafile)
+        add_text_file_to_tar(trgpath, sentence1, datafile)
 
-def export_devtest(datadir):
+def export_devtest(datafile):
     for lang in ('eng', 'deu', 'ita', 'nld'):
         rows = ccgweb.db.get('''SELECT s.sentence_id, s.sentence, c.derxml
                                 FROM sentences AS s
@@ -44,21 +54,21 @@ def export_devtest(datadir):
         # Export:
         for portion, portion_sentences in sentences.items():
             for sentence_id, raw, derxml in portion_sentences:
-                dirpath = os.path.join(datadir, portion, lang, sentence_id[:2])
+                dirpath = os.path.join('data', portion, lang, sentence_id[:2])
                 rawpath = os.path.join(dirpath, sentence_id + '.raw')
                 derxmlpath = os.path.join(dirpath, sentence_id + '.der.xml')
                 ccgweb.util.makedirs(dirpath)
-                with open(rawpath, 'w') as f:
-                    f.write(raw)
-                with open(derxmlpath, 'w') as f:
-                    f.write(derxml)
+                add_text_file_to_tar(rawpath, raw, datafile)
+                add_text_file_to_tar(derxmlpath, derxml, datafile)
 
 
 if __name__ == '__main__':
     try:
-        _, datadir = sys.argv
+        _, datafile = sys.argv
     except ValueError:
-        print('USAGE: python3 export.py DATADIR', file=sys.stderr)
+        print('USAGE: python3 export.py DATAFILE.tar.gz', file=sys.stderr)
         sys.exit(1)
-    #export_train(datadir)
-    export_devtest(datadir)
+    os.unlink(datafile)
+    with tarfile.open(datafile, 'w:gz') as f:
+        export_train(f)
+        export_devtest(f)
