@@ -13,6 +13,11 @@
 			<li>
 				<a href="download.php">Download</a>
 			</li>
+<?php if ($is_user_logged_in && $user_name == 'judge') { ?>
+			<li>
+				<a href="monitor.php">Monitor</a>
+			</li>
+<?php } ?>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li>
