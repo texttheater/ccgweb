@@ -100,14 +100,14 @@ class Sentence:
             if correct:
                 with open(get_path(lang, sentence_hash, user, 'der.xml'), 'rb') as f:
                     derxml = f.read()
-                with open(get_path(lang, sentence_hash, user, 'der.incomplete'), 'rb') as f:
-                    der = f.read()
+                with open(get_path(lang, sentence_hash, user, 'parse.tags'), 'rb') as f:
+                    parse = f.read()
                 ccgweb.db.execute('''INSERT INTO correct
-                    (lang, sentence_id, user_id, time, derxml, der)
+                    (lang, sentence_id, user_id, time, derxml, parse)
                     VALUES (%s, %s, %s, NOW(), %s, %s)
                     ON DUPLICATE KEY UPDATE
-                    time = NOW(), der = %s''', lang, sentence_hash,
-                    user, derxml, der, der)
+                    time = NOW(), parse = %s''', lang, sentence_hash,
+                    user, derxml, parse, parse)
             else:
                 ccgweb.db.execute('''DELETE FROM correct
                     WHERE lang = %s
@@ -202,8 +202,7 @@ def get_contents(lang, sentence, user, extension):
                 f.write(sentence)
         # Process the document:
         derxml_path = get_path(lang, sentence_hash, user, 'der.xml')
-        der_path = get_path(lang, sentence_hash, user, 'der.incomplete')
-        subprocess.check_call(('./ext/produce/produce', derxml_path, der_path))
+        subprocess.check_call(('./ext/produce/produce', derxml_path))
         with open(derxml_path, 'r') as f:
             return (f.read(), False)
 

@@ -92,7 +92,7 @@ CREATE TABLE `correct` (
   `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` datetime NOT NULL,
   `derxml` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `der` text COLLATE utf8mb4_unicode_520_ci,
+  `parse` text COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`lang`,`sentence_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
