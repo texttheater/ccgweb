@@ -199,9 +199,10 @@ def get_contents(lang, sentence, user, extension):
             with open(raw_path, 'w', encoding='UTF-8') as f:
                 f.write(sentence)
         # Process the document:
-        der_path = get_path(lang, sentence_hash, user, 'der.xml')
-        subprocess.check_call(('./ext/produce/produce', der_path))
-        with open(der_path, 'r') as f:
+        derxml_path = get_path(lang, sentence_hash, user, 'der.xml')
+        der_path = get_path(lang, sentence_hash, user, 'der.incomplete')
+        subprocess.check_call(('./ext/produce/produce', derxml_path, der_path))
+        with open(derxml_path, 'r') as f:
             return (f.read(), False)
 
 
