@@ -100,12 +100,14 @@ class Sentence:
             if correct:
                 with open(get_path(lang, sentence_hash, user, 'der.xml'), 'rb') as f:
                     derxml = f.read()
+                with open(get_path(lang, sentence_hash, user, 'der.incomplete'), 'rb') as f:
+                    der = f.read()
                 ccgweb.db.execute('''INSERT INTO correct
-                    (lang, sentence_id, user_id, time, derxml)
-                    VALUES (%s, %s, %s, NOW(), %s)
+                    (lang, sentence_id, user_id, time, derxml, der)
+                    VALUES (%s, %s, %s, NOW(), %s, %s)
                     ON DUPLICATE KEY UPDATE
-                    time = NOW(), derxml = %s''', lang, sentence_hash,
-                    user, derxml, derxml)
+                    time = NOW(), der = %s''', lang, sentence_hash,
+                    user, derxml, der, der)
             else:
                 ccgweb.db.execute('''DELETE FROM correct
                     WHERE lang = %s
