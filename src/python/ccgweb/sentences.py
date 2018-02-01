@@ -139,6 +139,29 @@ class Sentence:
             res.status = falcon.HTTP_400
             return
 
+def fix():
+    user = 'kilian'
+    rows = ccgweb.db.get('''SELECT c.lang, c.sentence_id
+                            FROM correct AS c
+                            INNER JOIN sentences AS s
+                            ON (c.lang, c.sentence_id) = (s.lang, s.sentence_id)
+                            WHERE s.assigned = 1
+                            AND c.user_id = %s''', user)
+    for lang, sentence_hash in rows:
+        derxml_path = get_path(lang, sentence_hash, user, 'der.xml')
+        subprocess.check_call(('./ext/produce/produce', derxml_path))
+        with open(get_path(lang, sentence_hash, user, 'der.xml'), 'rb') as f:
+            derxml = f.read()
+        with open(get_path(lang, sentence_hash, user, 'parse.tags'), 'rb') as f:
+            parse = f.read()
+        ccgweb.db.execute('''INSERT INTO correct
+            (lang, sentence_id, user_id, time, derxml, parse)
+            VALUES (%s, %s, %s, NOW(), %s, %s)
+            ON DUPLICATE KEY UPDATE
+            time = NOW(), parse = %s''', lang, sentence_hash,
+            user, derxml, parse, parse)
+    
+
 
 def sentence2hash(sentence):
     # Deprecated, use sentid instead.
