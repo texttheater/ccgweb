@@ -39,13 +39,13 @@ def export_train(datafile):
 
 def export_devtest(datafile):
     for lang in ('eng', 'deu', 'ita', 'nld'):
-        rows = ccgweb.db.get('''SELECT s.sentence_id, s.sentence, c.derxml
+        rows = ccgweb.db.get('''SELECT s.sentence_id, s.sentence, c.parse
                                 FROM sentences AS s
                                 INNER JOIN correct AS c
                                 ON (s.lang, s.sentence_id) = (c.lang, c.sentence_id)
                                 WHERE s.lang = %s
                                 AND s.assigned = 1
-                                AND c.user_id = "judge"''', lang)
+                                AND c.user_id = "kilian"''', lang) # XXX use judge
         # Split into dev and test:
         rows = sorted(rows)
         sentences = {}
@@ -53,13 +53,13 @@ def export_devtest(datafile):
         sentences['test'] = rows[len(rows) // 2:]
         # Export:
         for portion, portion_sentences in sentences.items():
-            for sentence_id, raw, derxml in portion_sentences:
+            for sentence_id, raw, parse in portion_sentences:
                 dirpath = os.path.join('data', portion, lang, sentence_id[:2])
                 rawpath = os.path.join(dirpath, sentence_id + '.raw')
-                derxmlpath = os.path.join(dirpath, sentence_id + '.der.xml')
+                parsepath = os.path.join(dirpath, sentence_id + '.parse.tags')
                 ccgweb.util.makedirs(dirpath)
                 add_text_file_to_tar(rawpath, raw, datafile)
-                add_text_file_to_tar(derxmlpath, derxml, datafile)
+                add_text_file_to_tar(parsepath, parse, datafile)
 
 
 if __name__ == '__main__':
@@ -68,7 +68,10 @@ if __name__ == '__main__':
     except ValueError:
         print('USAGE: python3 export.py DATAFILE.tar.gz', file=sys.stderr)
         sys.exit(1)
-    os.unlink(datafile)
+    try:
+        os.unlink(datafile)
+    except FileNotFoundError:
+        pass
     with tarfile.open(datafile, 'w:gz') as f:
         export_train(f)
         export_devtest(f)
