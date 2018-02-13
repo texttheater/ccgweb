@@ -7,7 +7,7 @@
 		<xsl:choose>
 			<xsl:when test="$standalone = 'yes'">
 				<xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
-				<html>
+				<html lang="en">
 					<head>
 						<title>Derivations</title>
 						<link rel="stylesheet" type="text/css" href="css/der.css"/>
