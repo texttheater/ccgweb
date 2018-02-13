@@ -205,7 +205,7 @@ their left-hand arguments (from right to left):</p>
 	</div>
 </div>
 
-<h3>Clause Types</h3>
+<h3 id=clause-types>Clause Types</h3>
 
 <p>CCGrebank distinguishes different subtypes of the basic S category with
 features: <code>[ng]</code> for present participle, <code>[pt]</code> for past
@@ -329,7 +329,7 @@ just plain <code>S</code> categories.</p>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" class="rulecat">
+									<td class="rulecat">
 										<div class="rulecat">
 											<div class="cat">(S\NP)\(S\NP)</div>
 										</div>
@@ -367,6 +367,80 @@ replace PP as appropriate if they head modifiers).</p>
 <h3><i>er</i></h3>
 
 <p>The Dutch particle <i>er</i> is analyzed as a <code>PP</code>.</p>
+
+<h3>Imperatives</h3>
+
+<p>Imperative sentences without an overt subject have category
+<code>S[b]\NP</code>, as in CCGrebank. For example:</p>
+
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Chiamami</td>
+			</tr>
+			<tr>
+				<td class="cat">S[b]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">.</td>
+			</tr>
+			<tr>
+				<td class="cat">(S[b]\NP)\(S[b]\NP)</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<p>Imperative sentences with an overt subject have category <code>S[b]</code>.
+For example:</p>
+
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Rufen</td>
+			</tr>
+			<tr>
+				<td class="cat">((S[b]/PR)/NP)/NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">Sie</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">mich</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">an</td>
+			</tr>
+			<tr>
+				<td class="cat">PR</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">.</td>
+			</tr>
+			<tr>
+				<td class="cat">S[b]\S[b]</td>
+			</tr>
+		</table>
+	</div>
+</div>
 
 <h3>Possessive Determiners vs. Adjectives</h3>
 
@@ -454,7 +528,227 @@ aim for to achieve semantic equivalence. For example:</p>
 
 <h3>Punctuation</h3>
 
-<p>Sentence-final punctuation attaches at the top level.</p>
+<p>In a slight departure from CCGrebank, we do not use the special punctuation
+categories (<code>,</code>, <code>.</code>, <code>:</code>, <code>;</code>,
+<code>LRB</code>, <code>RRB</code>, <code>LQU</code>, <code>RQU</code>) or the
+corresponding punctuation rules. Instead, we give punctuation symbols real CCG
+modifier categories that, unlike real modifiers, are specified for
+→ <a href=#clause-types>clause type</a>. We combine them with constituents via application.</p>
+
+<p>Sentence-final punctuation attaches at the top level. For example:</p>
+
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Tom</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">sang</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">.</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\S[dcl]</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<p>Commas separating subordinate clauses from main clauses attach to the
+subordinate clause. For example:</p>
+
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Ich</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">will</td>
+			</tr>
+			<tr>
+				<td class="cat">(S[dcl]\NP)/S[em]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">,</td>
+			</tr>
+			<tr>
+				<td class="cat">S[em]/S[em]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dass</td>
+			</tr>
+			<tr>
+				<td class="cat">S[em]/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">Tom</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">singt</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">.</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\S[dcl]</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<p>With quoted material, the surrounding quotation marks attach in a
+right-branching fashion. If there is a choice between attaching at the
+<code>N</code> vs. <code>NP</code> level, attach at the <code>NP</code> level.
+For example:</p>
+
+<div class=der>
+	<table class="constituent binaryrule">
+		<tr class="daughters">
+			<td class="daughter daughter-left">
+				<table class="constituent binaryrule">
+					<tr class="daughters">
+						<td class="daughter daughter-left">
+							<div class=lexlist>
+								<table class=lex>
+									<tr>
+										<td class="token">They</td>
+									</tr>
+									<tr>
+										<td class="cat">NP</td>
+									</tr>
+								</table>
+								<table class=lex>
+									<tr>
+										<td class="token">watched</td>
+									</tr>
+									<tr>
+										<td class="cat">(S[dcl]\NP)/NP</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+						<td class="daughter daughter-right">
+							<table class="constituent binaryrule">
+								<tr class="daughters">
+									<td class="daughter daughter-left">
+										<table class=lex>
+											<tr>
+												<td class="token">&quot;</td>
+											</tr>
+											<tr>
+												<td class="cat">NP/NP</td>
+											</tr>
+										</table>
+									</td>
+									<td class="daughter daughter-right">
+										<table class="constituent binaryrule">
+											<tr class="daughters">
+												<td class="daughter daughter-left">
+													<table class="constituent unaryrule">
+														<tr class="daughters">
+															<td class="daughter daughter-only">
+																<table class=lex>
+																	<tr>
+																		<td class="token">Fargo</td>
+																	</tr>
+																	<tr>
+																		<td class="cat">N</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+														<tr>
+															<td class="rulecat">
+																<div class="rulecat">
+																	<div class="cat">NP</div>
+																	<div class="rule" title="Type changing">*</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="daughter daughter-right">
+													<table class=lex>
+														<tr>
+															<td class="token">&quot;</td>
+														</tr>
+														<tr>
+															<td class="cat">NP\NP</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td class="rulecat" colspan="2">
+													<div class="rulecat">
+														<div class="cat">NP</div>
+														<div class="rule" title="Backward application">&lt;<sup>0</sup></div>
+													</div>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td class="rulecat" colspan="2">
+										<div class="rulecat">
+											<div class="cat">NP</div>
+											<div class="rule" title="Forward application">&gt;<sup>0</sup></div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td class="daughter daughter-right">
+				<table class=lex>
+					<tr>
+						<td class="token">.</td>
+					</tr>
+					<tr>
+						<td class="cat">S[dcl]\S[dcl]</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <h3><i>too X for Y</i></h3>
 
