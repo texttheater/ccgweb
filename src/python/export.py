@@ -6,6 +6,7 @@ import ccgweb.util
 import collections
 import io
 import os
+import pathlib
 import sys
 import tarfile
 import time
@@ -54,12 +55,16 @@ def export_devtest(datafile):
         # Export:
         for portion, portion_sentences in sentences.items():
             for sentence_id, raw, parse in portion_sentences:
+                offpath_from = os.path.join('out', lang, sentence_id[:2], sentence_id, 'auto.tok.off')
                 dirpath = os.path.join('data', portion, lang, sentence_id[:2])
                 rawpath = os.path.join(dirpath, sentence_id + '.raw')
                 parsepath = os.path.join(dirpath, sentence_id + '.parse.tags')
+                offpath = os.path.join(dirpath, sentence_id + '.tok.off')
                 ccgweb.util.makedirs(dirpath)
                 add_text_file_to_tar(rawpath, raw, datafile)
                 add_text_file_to_tar(parsepath, parse, datafile)
+                with open(offpath_from) as f:
+                    add_text_file_to_tar(offpath, f.read(), datafile)
 
 
 if __name__ == '__main__':
