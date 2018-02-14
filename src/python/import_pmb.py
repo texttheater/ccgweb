@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 
-"""
-Imports the intersection of PMB and Tatoeba into CCGWeb.
+"""Imports the intersection of PMB and Tatoeba into CCGWeb.
 """
 
 
