@@ -205,6 +205,59 @@ their left-hand arguments (from right to left):</p>
 	</div>
 </div>
 
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">&quot;</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">I</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">know</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">&quot;</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">said</td>
+			</tr>
+			<tr>
+				<td class="cat">(S[dcl]\S[dcl])/NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">Mary</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
 <h3 id=clause-types>Clause Types</h3>
 
 <p>CCGrebank distinguishes different subtypes of the basic S category with
@@ -226,130 +279,154 @@ just plain <code>S</code> categories.</p>
 
 <h3>Conditional Clauses</h3>
 
-<p>Conditional clauses are attached at the VP level. For example:</p>
+<p>Conditional clauses are attached at the VP level if possible. For example:</p>
 
 <div class=der>
-	<table class="constituent binaryrule">
-		<tr class="daughters">
-			<td class="daughter daughter-left">
-				<div class=lexlist>
-					<table class=lex>
-						<tr>
-							<td class="token">What</td>
-						</tr>
-						<tr>
-							<td class="cat">S[wq]/(S[q]/NP)</td>
-						</tr>
-					</table>
-					<table class=lex>
-						<tr>
-							<td class="token">would</td>
-						</tr>
-						<tr>
-							<td class="cat">(S[q]/(S[b]\NP))/NP</td>
-						</tr>
-					</table>
-					<table class=lex>
-						<tr>
-							<td class="token">you</td>
-						</tr>
-						<tr>
-							<td class="cat">NP</td>
-						</tr>
-					</table>
-				</div>
-			</td>
-			<td class="daughter daughter-right">
-				<table class="constituent binaryrule">
-					<tr class="daughters">
-						<td class="daughter daughter-left">
-							<table class=lex>
-								<tr>
-									<td class="token">say</td>
-								</tr>
-								<tr>
-									<td class="cat">(S[b]\NP)/NP</td>
-								</tr>
-							</table>
-						</td>
-						<td class="daughter daughter-right">
-							<table class="constituent unaryrule">
-								<tr class="daughters">
-									<td class="daughter daughter-only">
-										<div class=lexlist>
-											<table class=lex>
-												<tr>
-													<td class="token">if</td>
-												</tr>
-												<tr>
-													<td class="cat">((S\NP)\(S\NP))/S[dcl]</td>
-												</tr>
-											</table>
-											<table class=lex>
-												<tr>
-													<td class="token">you</td>
-												</tr>
-												<tr>
-													<td class="cat">NP</td>
-												</tr>
-											</table>
-											<table class=lex>
-												<tr>
-													<td class="token">were</td>
-												</tr>
-												<tr>
-													<td class="cat">(S[dcl]\NP)/PP</td>
-												</tr>
-											</table>
-											<table class=lex>
-												<tr>
-													<td class="token">in</td>
-												</tr>
-												<tr>
-													<td class="cat">PP/NP</td>
-												</tr>
-											</table>
-											<table class=lex>
-												<tr>
-													<td class="token">my</td>
-												</tr>
-												<tr>
-													<td class="cat">NP/(N/PP)</td>
-												</tr>
-											</table>
-											<table class=lex>
-												<tr>
-													<td class="token">place</td>
-												</tr>
-												<tr>
-													<td class="cat">N/PP</td>
-												</tr>
-											</table>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="rulecat">
-										<div class="rulecat">
-											<div class="cat">(S\NP)\(S\NP)</div>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="rulecat">
-							<div class="rulecat">
-								<div class="cat">S[b]\NP</div>
-								<div class="rule" title="Backward application">&lt;<sup>0</sup></div>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</td>
+<div class=lexlist>
+	<table class=lex>
+		<tr>
+			<td class="token">What</td>
+		</tr>
+		<tr>
+			<td class="cat">S[wq]/(S[q]/NP)</td>
 		</tr>
 	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">would</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[q]/(S[b]\NP))/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">you</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">say</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[b]\NP)/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">if</td>
+		</tr>
+		<tr>
+			<td class="cat">((S\NP)\(S\NP))/S[dcl]</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">you</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">were</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[dcl]\NP)/PP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">in</td>
+		</tr>
+		<tr>
+			<td class="cat">PP/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">my</td>
+		</tr>
+		<tr>
+			<td class="cat">NP/(N/PP)</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">place</td>
+		</tr>
+		<tr>
+			<td class="cat">N/PP</td>
+		</tr>
+	</table>
+</div>
+</div>
+
+<p>If the modified clause is a coordination, attach at the <code>S</code> level instead:</p>
+
+<div class=der>
+<div class=lexlist>
+	<table class=lex>
+		<tr>
+			<td class="token">Cats</td>
+		</tr>
+		<tr>
+			<td class="cat">N</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">sing</td>
+		</tr>
+		<tr>
+			<td class="cat">S[dcl]\NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">and</td>
+		</tr>
+		<tr>
+			<td class="cat">conj</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">dogs</td>
+		</tr>
+		<tr>
+			<td class="cat">N</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">when</td>
+		</tr>
+		<tr>
+			<td class="cat">(S\S)/S[dcl]</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">it</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">rains</td>
+		</tr>
+		<tr>
+			<td class="cat">S[dcl]\NP</td>
+		</tr>
+	</table>
+</div>
 </div>
 
 <h3>Contractions of Preposition and Determiner</h3>
@@ -749,6 +826,11 @@ For example:</p>
 		</tr>
 	</table>
 </div>
+
+<h3>Reflexive Pronouns</h3>
+
+<p>Reflexive pronouns have category <code>NP</code> and are treated as regular
+arguments of their verbs.</p>
 
 <h3><i>too X for Y</i></h3>
 
