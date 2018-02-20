@@ -75,4 +75,12 @@ function print_link_to_sentence($sentence) {
 	<?php
 }
 
+function selected($a, $b) {
+	if ($a == $b) {
+		return ' selected';
+	} else {
+		return '';
+	}
+}
+
 ?>

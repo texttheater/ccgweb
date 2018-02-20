@@ -46,7 +46,18 @@ require('inc/head.inc.php');
 
 <h2>Sentence</h2>
 
-<p><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>
+<!--<p id="sentence-nonedit"><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>-->
+
+<form id="sentence-edit" class="form-inline" action="sentence.php" method="GET">
+	<select name="lang">
+		<option value="eng" <?= selected($lang, 'eng') ?>>eng</option>
+		<option value="deu" <?= selected($lang, 'deu') ?>>deu</option>
+		<option value="ita" <?= selected($lang, 'ita') ?>>ita</option>
+		<option value="nld" <?= selected($lang, 'nld') ?>>nld</option>
+	</select>
+	<input type="text" name="sentence" size="60" value="<?= htmlspecialchars($sentence) ?>">
+	<button type="submit">Go</button>
+</form>
 
 <hr>
 
