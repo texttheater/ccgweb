@@ -144,6 +144,9 @@ function initMarkCorrect() {
 
 function initReset() {
     const a = document.querySelector('a#reset-link')
+    if (a === null) {
+        return
+    }
     a.onclick = e => {
         e.preventDefault()
         if (busy) {
