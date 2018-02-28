@@ -21,6 +21,23 @@ def add_text_file_to_tar(path, text, tar, encoding='UTF-8'):
         tar.addfile(info, f)
 
 
+def export_proj1(datafile):
+    rows = ccgweb.db.get('''SELECT l.lang1, l.id1, s1.sentence, l.id2, s2.sentence
+                            FROM sentence_links AS l
+                            INNER JOIN sentences AS s1
+                            ON (l.lang1, l.id1) = (s1.lang, s1.sentence_id)
+                            INNER JOIN sentences AS s2
+                            ON (l.lang2, l.id2) = (s2.lang, s2.sentence_id)
+                            WHERE l.lang2 = "eng"''')
+    for lang1, id1, sentence1, id2, sentence2 in rows:
+        dirpath = os.path.join('data', 'proj1', lang1 + '-eng', id1[:2], id1 + '-' + id2)
+        srcpath = os.path.join(dirpath, 'src.raw')
+        trgpath = os.path.join(dirpath, 'trg.raw')
+        ccgweb.util.makedirs(dirpath)
+        add_text_file_to_tar(srcpath, sentence2, datafile)
+        add_text_file_to_tar(trgpath, sentence1, datafile)
+
+
 def export_train(datafile):
     rows = ccgweb.db.get('''SELECT l.lang1, l.id1, s1.sentence, l.id2, s2.sentence
                             FROM sentence_links AS l
@@ -37,6 +54,7 @@ def export_train(datafile):
         ccgweb.util.makedirs(dirpath)
         add_text_file_to_tar(srcpath, sentence2, datafile)
         add_text_file_to_tar(trgpath, sentence1, datafile)
+
 
 def export_devtest(datafile):
     for lang in ('eng', 'deu', 'ita', 'nld'):
@@ -78,5 +96,6 @@ if __name__ == '__main__':
     except FileNotFoundError:
         pass
     with tarfile.open(datafile, 'w:gz') as f:
+        export_proj1(f)
         export_train(f)
         export_devtest(f)
