@@ -44,6 +44,10 @@ def export_proj1(lang, datadir):
                 continue
             if not is_line(src_sentence):
                 continue
+            if '\xad' in trg_sentence:
+                continue
+            if '\xad' in src_sentence:
+                continue
             src_raw_file.write(src_sentence)
             trg_raw_file.write(trg_sentence)
 
@@ -66,6 +70,10 @@ def export_train(lang, datadir):
             if not is_line(trg_sentence):
                 continue
             if not is_line(src_sentence):
+                continue
+            if '\xad' in trg_sentence:
+                continue
+            if '\xad' in src_sentence:
                 continue
             src_raw_file.write(src_sentence)
             trg_raw_file.write(trg_sentence)
@@ -93,6 +101,8 @@ def export_devtest(lang, datafile):
                 open(parse_path, 'w') as parse_file:
             for sentence_id, raw, parse in portion_sentences:
                 if not is_line(raw):
+                    continue
+                if '\xad' in raw:
                     continue
                 tokpath_from = os.path.join('out', lang, sentence_id[:2], sentence_id, 'auto.tok.off')
                 with open(tokpath_from) as f:
