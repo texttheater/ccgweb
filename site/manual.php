@@ -36,27 +36,24 @@ require('inc/head.inc.php');
 
 <div class=container>
 	<h2>Manual</h2>
-	<!--<div style="height: 20px;"></div>-->
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<div class=row>
-				<div class=col-md-3>
-					<div class=list-group>
+	<hr>
+	<div class=row>
+		<div class=col-md-3>
+			<ul class="nav nav-pills nav-stacked">
 		
-		<?php foreach ($sections as $s => $t) { ?>
+<?php foreach ($sections as $s => $t) { ?>
 		
-						<a class="list-group-item<?= $s == $section ? ' active' : '' ?>" href=<?= url('manual.php', ['section' => $s]) ?>><?= $t ?></a>
+					<li role="presentation"<?= $s == $section ? ' class="active"' : '' ?>><a href=<?= url('manual.php', ['section' => $s]) ?>><?= $t ?></a></li>
 		
-		<?php } ?>
+<?php } ?>
 		
-					</div>
-				</div>
-				<div class=col-md-9>
+					<li role="presentation"><a href="mailto:evang@hhu.de"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> request new topic</a></li>
+			</ul>
+		</div>
+		<div class=col-md-9>
 		
-		<?php require('inc/manual/' . $section . '.inc.php'); ?>
+<?php require('inc/manual/' . $section . '.inc.php'); ?>
 		
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
