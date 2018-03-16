@@ -4,6 +4,12 @@ body {
 	padding-bottom: 50px;
 }
 
+/* spacing fixes */
+
+div.col-md-9 > h3:first-child {
+	margin-top: 0;
+}
+
 /* controls displayed above the user's derivation */
 
 div#derivation-controls > div {
