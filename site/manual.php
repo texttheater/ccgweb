@@ -369,64 +369,64 @@ just plain <code>S</code> categories.</p>
 <p>If the modified clause is a coordination, attach at the <code>S</code> level instead:</p>
 
 <div class=der>
-<div class=lexlist>
-	<table class=lex>
-		<tr>
-			<td class="token">Cats</td>
-		</tr>
-		<tr>
-			<td class="cat">N</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">sing</td>
-		</tr>
-		<tr>
-			<td class="cat">S[dcl]\NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">and</td>
-		</tr>
-		<tr>
-			<td class="cat">conj</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">dogs</td>
-		</tr>
-		<tr>
-			<td class="cat">N</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">when</td>
-		</tr>
-		<tr>
-			<td class="cat">(S\S)/S[dcl]</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">it</td>
-		</tr>
-		<tr>
-			<td class="cat">NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">rains</td>
-		</tr>
-		<tr>
-			<td class="cat">S[dcl]\NP</td>
-		</tr>
-	</table>
-</div>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Cats</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">sing</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">and</td>
+			</tr>
+			<tr>
+				<td class="cat">conj</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dogs</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">when</td>
+			</tr>
+			<tr>
+				<td class="cat">(S\S)/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">it</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">rains</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <h3>Contractions of Preposition and Determiner</h3>
