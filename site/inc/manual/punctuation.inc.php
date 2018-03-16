@@ -5,7 +5,7 @@ categories (<code>,</code>, <code>.</code>, <code>:</code>, <code>;</code>,
 <code>LRB</code>, <code>RRB</code>, <code>LQU</code>, <code>RQU</code>) or the
 corresponding punctuation rules. Instead, we give punctuation symbols real CCG
 modifier categories that, unlike real modifiers, are specified for
-→ <a href=#clause-types>clause type</a>. We combine them with constituents via application.</p>
+→ <a href=<?= url('manual.php', ['section' => 'clause-types']) ?>>clause type</a>. We combine them with constituents via application.</p>
 
 <p>Sentence-final punctuation attaches at the top level. For example:</p>
 
