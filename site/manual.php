@@ -47,7 +47,7 @@ require('inc/head.inc.php');
 		
 <?php } ?>
 		
-					<li role="presentation"><a href="mailto:evang@hhu.de"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> request new topic</a></li>
+<li role="presentation"><a href="mailto:evang@hhu.de?subject=<?= rawurlencode('CCGWeb: manual extension request') ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> request new topic</a></li>
 			</ul>
 		</div>
 		<div class=col-md-9>
