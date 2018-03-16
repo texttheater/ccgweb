@@ -93,10 +93,10 @@
 							<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
 							<xsl:choose>
 								<xsl:when test="@type = 'ftr'">
-									T<sup>&gt;</sup>
+									T&#8239;<sup>&gt;</sup>
 								</xsl:when>
 								<xsl:when test="@type = 'btr'">
-									T<sup>&lt;</sup>
+									T&#8239;<sup>&lt;</sup>
 								</xsl:when>
 								<xsl:otherwise>
 									*
@@ -153,17 +153,17 @@
 							<xsl:attribute name="class">rule</xsl:attribute>
 							<xsl:attribute name="title"><xsl:value-of select="@description"/></xsl:attribute>
 							<xsl:choose>
-								<xsl:when test="@type='fa'">&gt;<sup>0</sup></xsl:when>
-								<xsl:when test="@type='fc'">&gt;<sup>1</sup></xsl:when>
-								<xsl:when test="@type='gfc'">&gt;<sup><i>n</i></sup></xsl:when>
-								<xsl:when test="@type='gbc'">&lt;<sup><i>n</i></sup></xsl:when>
-								<xsl:when test="@type='bc'">&lt;<sup>1</sup></xsl:when>
+								<xsl:when test="@type='fa'">&gt;&#8239;<sup>0</sup></xsl:when>
+								<xsl:when test="@type='fc'">&gt;&#8239;<sup>1</sup></xsl:when>
+								<xsl:when test="@type='gfc'">&gt;&#8239;<sup><i>n</i></sup></xsl:when>
+								<xsl:when test="@type='gbc'">&lt;&#8239;<sup><i>n</i></sup></xsl:when>
+								<xsl:when test="@type='bc'">&lt;&#8239;<sup>1</sup></xsl:when>
 								<xsl:when test="@type='conj'">∨</xsl:when>
-								<xsl:when test="@type='bxc'">&lt;<sup>1</sup><sub>×</sub></xsl:when>
-								<xsl:when test="@type='fxc'">&gt;<sup>1</sup><sub>×</sub></xsl:when>
-								<xsl:when test="@type='gbxc'">&lt;<sup><i>n</i></sup><sub>×</sub></xsl:when>
-								<xsl:when test="@type='gfxc'">&gt;<sup><i>n</i></sup></xsl:when>
-								<xsl:when test="@type='ba'">&lt;<sup>0</sup></xsl:when>
+								<xsl:when test="@type='bxc'">&lt;&#8239;<sup>1</sup><sub>×</sub></xsl:when>
+								<xsl:when test="@type='fxc'">&gt;&#8239;<sup>1</sup><sub>×</sub></xsl:when>
+								<xsl:when test="@type='gbxc'">&lt;&#8239;<sup><i>n</i></sup><sub>×</sub></xsl:when>
+								<xsl:when test="@type='gfxc'">&gt;&#8239;<sup><i>n</i></sup></xsl:when>
+								<xsl:when test="@type='ba'">&lt;&#8239;<sup>0</sup></xsl:when>
 								<xsl:when test="@type='rp'">.</xsl:when>
 								<xsl:when test="@type='lp'">.</xsl:when>
 							</xsl:choose>
