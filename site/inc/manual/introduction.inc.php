@@ -1,5 +1,3 @@
-<h3>Introduction</h3>
-
 <p>CCGweb aims to build a multilingual corpus of CCG annotations for evaluating
 derivation projection algorithms and cross-lingually trained parsers.</p>
 

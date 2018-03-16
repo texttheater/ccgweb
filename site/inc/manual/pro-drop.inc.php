@@ -1,5 +1,3 @@
-<h3>Pro-drop</h3>
-
 <p>Subject pronouns are frequently dropped in Italian. We then give the verb a
 category with no subject argument, as this is what derivation projection should
 aim for to achieve semantic equivalence. For example:</p>

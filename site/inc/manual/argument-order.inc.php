@@ -1,5 +1,3 @@
-<h3>Argument Order</h3>
-
 <p>One verb category in English may correspond to two or more different verb
 categories in German and Dutch, depending on clause type (main vs.
 subordinate), and also depending on other aspects of argument order – for

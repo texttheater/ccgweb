@@ -1,5 +1,3 @@
-<h3 id=clause-types>Clause Types</h3>
-
 <p>CCGrebank distinguishes different subtypes of the basic S category with
 features: <code>[ng]</code> for present participle, <code>[pt]</code> for past
 participle, <code>[dcl]</code> for indicative, <code>[b]</code> for infinitive

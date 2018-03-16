@@ -1,5 +1,3 @@
-<h3>Conditional Clauses</h3>
-
 <p>Conditional clauses are attached at the VP level if possible. For example:</p>
 
 <div class=der>

@@ -1,5 +1,3 @@
-<h3>Imperatives</h3>
-
 <p>Imperative sentences without an overt subject have category
 <code>S[b]\NP</code>, as in CCGrebank. For example:</p>
 

@@ -1,5 +1,3 @@
-<h3>Coordination</h3>
-
 <p>Unlike CCGrebank, we use normal CCG categories for conjunctions. We still
 give a right-branching analysis. For example:</p>
 

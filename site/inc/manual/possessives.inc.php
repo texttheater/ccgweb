@@ -1,5 +1,3 @@
-<h3>Possessives</h3>
-
 <p>Unlike in English, German and Dutch, in Italian, possessive determiners can
 also function as attributive adjectives, following a separate determiner.
 In this case, they have category <code>N/(N/PP)</code> rather than

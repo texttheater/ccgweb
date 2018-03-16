@@ -1,4 +1,4 @@
-<h3>Punctuation</h3>
+
 
 <p>In a slight departure from CCGrebank, we do not use the special punctuation
 categories (<code>,</code>, <code>.</code>, <code>:</code>, <code>;</code>,
