@@ -1,11 +1,12 @@
-
-
 <p>In a slight departure from CCGrebank, we do not use the special punctuation
 categories (<code>,</code>, <code>.</code>, <code>:</code>, <code>;</code>,
 <code>LRB</code>, <code>RRB</code>, <code>LQU</code>, <code>RQU</code>) or the
 corresponding punctuation rules. Instead, we give punctuation symbols real CCG
 modifier categories that, unlike real modifiers, are specified for
-→ <a href=<?= url('manual.php', ['section' => 'clause-types']) ?>>clause type</a>. We combine them with constituents via application.</p>
+→ <a href=<?= url('manual.php', ['section' => 'clause-types']) ?>>clause type</a>.
+We combine them with constituents via application.</p>
+
+<h4>Sentence-final Punctuation</h4>
 
 <p>Sentence-final punctuation attaches at the top level. For example:</p>
 
@@ -38,8 +39,11 @@ modifier categories that, unlike real modifiers, are specified for
 	</div>
 </div>
 
-<p>Commas separating subordinate clauses from main clauses attach to the
-subordinate clause. For example:</p>
+<h4>Punctuation Separating Head and Modifier</h4>
+
+<p>Puncutation, especially commas, often appears between a head and its
+modifier. The rule is then to attach punctuation to the modifier, e.g.,
+the subordinate clause. For example:</p>
 
 <div class=der>
 	<div class=lexlist>
@@ -102,10 +106,21 @@ subordinate clause. For example:</p>
 	</div>
 </div>
 
+<h4>The Oxford Comma</h4>
+
+<p>The Oxford comma attaches to the conjunction before which it appears. For
+example:</p>
+
+TODO
+
+<h4>Commas Surrounding Appositions</h4>
+
+TODO
+
+<h4>Quotes</h4>
+
 <p>With quoted material, the surrounding quotation marks attach in a
-right-branching fashion. If there is a choice between attaching at the
-<code>N</code> vs. <code>NP</code> level, attach at the <code>NP</code> level.
-For example:</p>
+right-branching fashion, after any type-changing rules.  For example:</p>
 
 <div class=der>
 	<table class="constituent binaryrule">
@@ -221,6 +236,22 @@ For example:</p>
 		</tr>
 	</table>
 </div>
+
+<h4>Direct Speech</h4>
+
+<p>A sentence that appears as direct speech is treated like a sentential
+complement. The quotation marks do not change its category. For example:</p>
+
+TODO
+
+<h4>Use-mention Conversion</h4>
+
+<p>Other than direct speech, when quotes surround a linguistic expression that
+is mentioned, the expression is analyzed as if it was used (even if it is in
+another language), then the right quote gets a category that converts the use
+category to the mention category (usually <code>NP</code>). For example:</p>
+
+TODO
 
 <h4>Vocatives</h4>
 

@@ -20,6 +20,7 @@ $sections = [
 	'punctuation' => 'Punctuation',
 	'reflexive-pronouns' => 'Reflexive Pronouns',
 	'specific-lexical-items' => 'Specific Lexical Items',
+	'tokenization' => 'Tokenization',
 ];
 
 if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
