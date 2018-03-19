@@ -110,7 +110,7 @@
 				<td class="token">and</td>
 			</tr>
 			<tr>
-				<td class="cat">conj</td>
+				<td class="cat">(S[dcl]\S[dcl])/S[dcl]</td>
 			</tr>
 		</table>
 		<table class=lex>
@@ -119,6 +119,14 @@
 			</tr>
 			<tr>
 				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dance</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
 			</tr>
 		</table>
 		<table class=lex>

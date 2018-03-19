@@ -10,34 +10,48 @@ We combine them with constituents via application.</p>
 
 <p>Sentence-final punctuation attaches at the top level. For example:</p>
 
-<div class=der>
-	<div class=lexlist>
-		<table class=lex>
-			<tr>
-				<td class="token">Tom</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">sang</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">.</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\S[dcl]</td>
-			</tr>
-		</table>
-	</div>
+ <div class="der">
+<table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Tom" data-from="0" data-to="3">
+<tr><td class="token">Tom</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="sang" data-from="4" data-to="8">
+<tr><td class="token">sang</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="8" data-to="9">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
 <h4>Punctuation Separating Head and Modifier</h4>
 
@@ -45,124 +59,211 @@ We combine them with constituents via application.</p>
 modifier. The rule is then to attach punctuation to the modifier, e.g.,
 the subordinate clause. For example:</p>
 
-<div class=der>
-	<div class=lexlist>
-		<table class=lex>
-			<tr>
-				<td class="token">Ich</td>
-			</tr>
-			<tr>
-				<td class="cat">NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">will</td>
-			</tr>
-			<tr>
-				<td class="cat">(S[dcl]\NP)/S[em]</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">,</td>
-			</tr>
-			<tr>
-				<td class="cat">S[em]/S[em]</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">dass</td>
-			</tr>
-			<tr>
-				<td class="cat">S[em]/S[dcl]</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">Tom</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">singt</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">.</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\S[dcl]</td>
-			</tr>
-		</table>
-	</div>
+ <div class="der">
+<table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Ich" data-from="0" data-to="3">
+<tr><td class="token">Ich</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="will" data-from="4" data-to="8">
+<tr><td class="token">will</td></tr>
+<tr><td class="cat" tabindex="0">(S[dcl]\NP)/S[em]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="," data-from="8" data-to="9">
+<tr><td class="token">,</td></tr>
+<tr><td class="cat" tabindex="0">S[em]/S[em]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="dass" data-from="10" data-to="14">
+<tr><td class="token">dass</td></tr>
+<tr><td class="cat" tabindex="0">S[em]/S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Tom" data-from="15" data-to="18">
+<tr><td class="token">Tom</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="singt" data-from="19" data-to="24">
+<tr><td class="token">singt</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[em]</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[em]</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="24" data-to="25">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
 <h4>The Oxford Comma</h4>
 
-<p>The Oxford comma attaches to the conjunction before which it appears. For
-example:</p>
+<p>The Oxford comma attaches to the conjunction before which it appears (see
+also → <a href=<?= url('manual.php', ['section' => 'coordination'])
+?>>coordination</a>). For example:</p>
 
-<div class=der>
-	<div class=lexlist>
-		<table class=lex>
-			<tr>
-				<td class="token">Tim</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">,</td>
-			</tr>
-			<tr>
-				<td class="cat">(NP\NP)/NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">Tom</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">,</td>
-			</tr>
-			<tr>
-				<td class="cat">((NP\NP)/NP)/((NP\NP)/NP)</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">and</td>
-			</tr>
-			<tr>
-				<td class="cat">(NP\NP)/NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">Tammy</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-	</div>
+ <div class="der">
+<table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Tim" data-from="0" data-to="3">
+<tr><td class="token">Tim</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="," data-from="3" data-to="4">
+<tr><td class="token">,</td></tr>
+<tr><td class="cat" tabindex="0">(NP\NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Tom" data-from="5" data-to="8">
+<tr><td class="token">Tom</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="," data-from="8" data-to="9">
+<tr><td class="token">,</td></tr>
+<tr><td class="cat" tabindex="0">((NP\NP)/NP)/((NP\NP)/NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="and" data-from="10" data-to="13">
+<tr><td class="token">and</td></tr>
+<tr><td class="cat" tabindex="0">(NP\NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(NP\NP)/NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Tammy" data-from="14" data-to="19">
+<tr><td class="token">Tammy</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
 <h4>Commas before Appositions</h4>
 
@@ -170,42 +271,62 @@ example:</p>
 url('manual.php', ['section' => 'coordination']) ?>>coordination</a>. For
 example:</p>
 
-<div class=der>
-	<div class=lexlist>
-		<table class=lex>
-			<tr>
-				<td class="token">Hans</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">,</td>
-			</tr>
-			<tr>
-				<td class="cat">(NP\NP)/NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">a</td>
-			</tr>
-			<tr>
-				<td class="cat">NP/N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">businessman</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-	</div>
+ <div class="der">
+<table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Hans" data-from="0" data-to="4">
+<tr><td class="token">Hans</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="," data-from="4" data-to="5">
+<tr><td class="token">,</td></tr>
+<tr><td class="cat" tabindex="0">(NP\NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="a" data-from="6" data-to="7">
+<tr><td class="token">a</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="businessman" data-from="8" data-to="19">
+<tr><td class="token">businessman</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
 <h4>Commas Surrounding Appositions</h4>
 
@@ -316,120 +437,90 @@ to the whole noun phrase, including the apposition and its argument:</p>
 <p>Quotation marks surrounding a constituent attach in a right-branching
 fashion. For example:</p>
 
-<div class=der>
-	<table class="constituent binaryrule">
-		<tr class="daughters">
-			<td class="daughter daughter-left">
-				<table class="constituent binaryrule">
-					<tr class="daughters">
-						<td class="daughter daughter-left">
-							<div class=lexlist>
-								<table class=lex>
-									<tr>
-										<td class="token">They</td>
-									</tr>
-									<tr>
-										<td class="cat">NP</td>
-									</tr>
-								</table>
-								<table class=lex>
-									<tr>
-										<td class="token">watched</td>
-									</tr>
-									<tr>
-										<td class="cat">(S[dcl]\NP)/NP</td>
-									</tr>
-								</table>
-							</div>
-						</td>
-						<td class="daughter daughter-right">
-							<table class="constituent binaryrule">
-								<tr class="daughters">
-									<td class="daughter daughter-left">
-										<table class=lex>
-											<tr>
-												<td class="token">&quot;</td>
-											</tr>
-											<tr>
-												<td class="cat">NP/NP</td>
-											</tr>
-										</table>
-									</td>
-									<td class="daughter daughter-right">
-										<table class="constituent binaryrule">
-											<tr class="daughters">
-												<td class="daughter daughter-left">
-													<table class="constituent unaryrule">
-														<tr class="daughters">
-															<td class="daughter daughter-only">
-																<table class=lex>
-																	<tr>
-																		<td class="token">Fargo</td>
-																	</tr>
-																	<tr>
-																		<td class="cat">N</td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-														<tr>
-															<td class="rulecat">
-																<div class="rulecat">
-																	<div class="cat">NP</div>
-																	<div class="rule" title="Type changing">*</div>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-												<td class="daughter daughter-right">
-													<table class=lex>
-														<tr>
-															<td class="token">&quot;</td>
-														</tr>
-														<tr>
-															<td class="cat">NP\NP</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-											<tr>
-												<td class="rulecat" colspan="2">
-													<div class="rulecat">
-														<div class="cat">NP</div>
-														<div class="rule" title="Backward application">&lt;<sup>0</sup></div>
-													</div>
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td class="rulecat" colspan="2">
-										<div class="rulecat">
-											<div class="cat">NP</div>
-											<div class="rule" title="Forward application">&gt;<sup>0</sup></div>
-										</div>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td class="daughter daughter-right">
-				<table class=lex>
-					<tr>
-						<td class="token">.</td>
-					</tr>
-					<tr>
-						<td class="cat">S[dcl]\S[dcl]</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+ <div class="der">
+<table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="They" data-from="0" data-to="4">
+<tr><td class="token">They</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="watched" data-from="5" data-to="12">
+<tr><td class="token">watched</td></tr>
+<tr><td class="cat" tabindex="0">(S[dcl]\NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token='"' data-from="13" data-to="14">
+<tr><td class="token">"</td></tr>
+<tr><td class="cat" tabindex="0">NP/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Fargo" data-from="14" data-to="19">
+<tr><td class="token">Fargo</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token='"' data-from="19" data-to="20">
+<tr><td class="token">"</td></tr>
+<tr><td class="cat" tabindex="0">NP\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="20" data-to="21">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
 <h4>Direct Speech</h4>
 
@@ -632,31 +723,59 @@ example:</p>
 the comma attaches to the utterance, but takes the vocative as an argument
 first:</p>
 
-<div class=der>
-	<div class=lexlist>
-		<table class=lex>
-			<tr>
-				<td class="token">Vaarwel</td>
-			</tr>
-			<tr>
-				<td class="cat">S[intj]</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">,</td>
-			</tr>
-			<tr>
-				<td class="cat">(S[intj]\S[intj])/NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">Sayoko</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-	</div>
+ <div class="der">
+<table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Vaarwel" data-from="0" data-to="7">
+<tr><td class="token">Vaarwel</td></tr>
+<tr><td class="cat" tabindex="0">S[intj]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="," data-from="7" data-to="8">
+<tr><td class="token">,</td></tr>
+<tr><td class="cat" tabindex="0">(S[intj]\S[intj])/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent unaryrule">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Sayoko" data-from="9" data-to="15">
+<tr><td class="token">Sayoko</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[intj]\S[intj]</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[intj]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="15" data-to="16">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[intj]\S[intj]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[intj]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>

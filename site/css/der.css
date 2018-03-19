@@ -15,7 +15,7 @@ td.daughter {
 
 /* no wrapping */
 
-table.constituent {
+table.constituent, td.cat {
 	white-space: nowrap;
 }
 
