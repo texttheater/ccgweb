@@ -54,7 +54,7 @@ give a right-branching analysis. For example:</p>
 								<tr>
 									<td class="rulecat" colspan=2>
 										<div class="rulecat">
-											<div class="cat">S[dcl]</div>
+											<div class="cat">(S[dcl]\NP)\(S[dcl]\NP)</div>
 											<div class="rule" title="Forward Application">&gt;<sup>0</sup></div>
 										</div>
 									</td>
@@ -65,7 +65,7 @@ give a right-branching analysis. For example:</p>
 					<tr>
 						<td class="rulecat" colspan=2>
 							<div class="rulecat">
-								<div class="cat">S[dcl]</div>
+								<div class="cat">S[dcl]\NP</div>
 								<div class="rule" title="Backward Application">&lt;<sup>0</sup></div>
 							</div>
 						</td>

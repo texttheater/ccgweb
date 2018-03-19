@@ -23,6 +23,8 @@ $sections = [
 	'tokenization' => 'Tokenization',
 ];
 
+$updated_sections = ['coordination', 'punctuation', 'tokenization'];
+
 if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));
 	die();
@@ -44,7 +46,17 @@ require('inc/head.inc.php');
 		
 <?php foreach ($sections as $s => $t) { ?>
 		
-					<li role="presentation"<?= $s == $section ? ' class="active"' : '' ?>><a href=<?= url('manual.php', ['section' => $s]) ?>><?= $t ?></a></li>
+					<li role="presentation"<?= $s == $section ? ' class="active"' : '' ?>>
+						<a href=<?= url('manual.php', ['section' => $s]) ?>><?= $t ?>
+
+<?php if (in_array($s, $updated_sections)) { ?>
+
+							<span class="label label-danger">updated</span>
+
+<?php } ?>
+
+						</a>
+					</li>
 		
 <?php } ?>
 		

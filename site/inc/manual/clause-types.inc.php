@@ -13,4 +13,6 @@ applied to our target languages, and we stick with the existing feature set for
 now.</p>
 
 <p>VP and S modifiers are underspecified for the clause type they modify, using
-just plain <code>S</code> categories.</p>
+just plain <code>S</code> categories. However, → <a href=<?= url('manual.php',
+['section' => 'punctuation']) ?>>punctuation</a> categories that modify such
+constituents do carry the feature.</p>
