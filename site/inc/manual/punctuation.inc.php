@@ -628,9 +628,9 @@ example:</p>
 
 <h4>Vocatives</h4>
 
-<p>In case of vocatives following a comma following some utterance, we give a
-special category to the comma to combine the utterance with the vocative, as in
-the following example:</p>
+<p>When a vocative precedes or follows an utterance, separated by a comma,
+the comma attaches to the utterance, but takes the vocative as an argument
+first:</p>
 
 <div class=der>
 	<div class=lexlist>
