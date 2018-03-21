@@ -33,7 +33,7 @@ def export_proj1(lang, datadir):
                             ON (l.lang1, l.id1) = (s1.lang, s1.sentence_id)
                             INNER JOIN sentences AS s2
                             ON (l.lang2, l.id2) = (s2.lang, s2.sentence_id)
-                            WHERE lang1 = %s
+                            WHERE l.lang1 = %s
                             AND l.lang2 = "eng"''', lang)
     src_raw_path = os.path.join(datadir, 'proj1.' + lang + '-eng.src.raw')
     trg_raw_path = os.path.join(datadir, 'proj1.' + lang + '-eng.trg.raw')
@@ -59,7 +59,7 @@ def export_train(lang, datadir):
                             ON (l.lang1, l.id1) = (s1.lang, s1.sentence_id)
                             INNER JOIN sentences AS s2
                             ON (l.lang2, l.id2) = (s2.lang, s2.sentence_id)
-                            WHERE lang1 = %s
+                            WHERE l.lang1 = %s
                             AND l.lang2 = "eng"
                             AND s1.assigned = 0''', lang)
     src_raw_path = os.path.join(datadir, 'train.' + lang + '-eng.src.raw')
@@ -79,14 +79,23 @@ def export_train(lang, datadir):
             trg_raw_file.write(trg_sentence)
 
 
-def export_devtest(lang, datafile):
-    rows = ccgweb.db.get('''SELECT s.sentence_id, s.sentence, c.parse
-                            FROM sentences AS s
+def export_devtest(lang, datadir):
+    rows = ccgweb.db.get('''SELECT s1.sentence_id, s1.sentence, c.parse, s2.sentence_id, s2.sentence
+                            FROM sentence_links AS l
+                            INNER JOIN sentences AS s1
+                            ON (l.lang1, l.id1) = (s1.lang, s1.sentence_id)
+                            INNER JOIN sentences AS s2
+                            ON (l.lang2, l.id2) = (s2.lang, s2.sentence_id)
                             INNER JOIN correct AS c
-                            ON (s.lang, s.sentence_id) = (c.lang, c.sentence_id)
-                            WHERE s.lang = %s
-                            AND s.assigned = 1
+                            ON (s1.lang, s1.sentence_id) = (c.lang, c.sentence_id)
+                            WHERE l.lang1 = %s
+                            AND l.lang2 = "eng"
+                            AND s1.assigned = 1
+                            AND s2.assigned = 1
                             AND c.user_id = "kilian"''', lang) # XXX use judge
+    # Check that each target sentence only appears once:
+    ids = [r[0] for r in rows]
+    assert len(ids) == len(set(ids))
     # Split into dev and test:
     rows = sorted(rows)
     sentences = {}
@@ -94,27 +103,26 @@ def export_devtest(lang, datafile):
     sentences['test'] = rows[len(rows) // 2:]
     # Export:
     for portion, portion_sentences in sentences.items():
-        raw_path = os.path.join(datadir, portion + '.' + lang + '.raw')
-        tok_path = os.path.join(datadir, portion + '.' + lang + '.tok.off')
-        parse_path = os.path.join(datadir, portion + '.' + lang + '.parse.tags')
-        with open(raw_path, 'w') as raw_file, open(tok_path, 'w') as tok_file, \
-                open(parse_path, 'w') as parse_file:
-            for sentence_id, raw, parse in portion_sentences:
-                if not is_line(raw):
+        trg_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.raw')
+        src_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.raw')
+        trg_parse_path = os.path.join(datadir, portion + '-gold.' + lang + '-eng.trg.parse.tags')
+        with open(trg_raw_path, 'w') as trg_raw_file, \
+            open(src_raw_path, 'w') as src_raw_file, \
+            open(trg_parse_path, 'w') as trg_parse_file:
+            for trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence in portion_sentences:
+                if not is_line(trg_sentence):
                     continue
-                if '\xad' in raw:
+                if not is_line(src_sentence):
                     continue
-                tokpath_from = os.path.join('out', lang, sentence_id[:2], sentence_id, 'auto.tok.off')
-                with open(tokpath_from) as f:
-                    tok = f.read()
-                assert is_single_sentence(tok)
-                tok = tok + '\n'
-                assert is_block(tok)
-                preamble, parse = parse.split('\n\n', 1)
-                assert is_block(parse)
-                raw_file.write(raw)
-                tok_file.write(tok)
-                parse_file.write(parse)
+                if '\xad' in trg_sentence:
+                    continue
+                if '\xad' in src_sentence:
+                    continue
+                preamble, trg_parse = trg_parse.split('\n\n', 1)
+                assert is_block(trg_parse)
+                trg_raw_file.write(trg_sentence)
+                src_raw_file.write(src_sentence)
+                trg_parse_file.write(trg_parse)
 
 
 if __name__ == '__main__':
