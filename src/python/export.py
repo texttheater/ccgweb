@@ -105,7 +105,7 @@ def export_devtest(lang, datadir):
     for portion, portion_sentences in sentences.items():
         trg_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.raw')
         src_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.raw')
-        trg_parse_path = os.path.join(datadir, portion + '-gold.' + lang + '-eng.trg.parse.tags')
+        trg_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.gold.parse.tags')
         with open(trg_raw_path, 'w') as trg_raw_file, \
             open(src_raw_path, 'w') as src_raw_file, \
             open(trg_parse_path, 'w') as trg_parse_file:
