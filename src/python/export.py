@@ -80,19 +80,22 @@ def export_train(lang, datadir):
 
 
 def export_devtest(lang, datadir):
-    rows = ccgweb.db.get('''SELECT s1.sentence_id, s1.sentence, c.parse, s2.sentence_id, s2.sentence
+    rows = ccgweb.db.get('''SELECT s1.sentence_id, s1.sentence, c1.parse, s2.sentence_id, s2.sentence, c2.parse
                             FROM sentence_links AS l
                             INNER JOIN sentences AS s1
                             ON (l.lang1, l.id1) = (s1.lang, s1.sentence_id)
                             INNER JOIN sentences AS s2
                             ON (l.lang2, l.id2) = (s2.lang, s2.sentence_id)
-                            INNER JOIN correct AS c
-                            ON (s1.lang, s1.sentence_id) = (c.lang, c.sentence_id)
+                            INNER JOIN correct AS c1
+                            ON (s1.lang, s1.sentence_id) = (c1.lang, c1.sentence_id)
+                            INNER JOIN correct AS c2
+                            ON (s2.lang, s2.sentence_id) = (c2.lang, c2.sentence_id)
                             WHERE l.lang1 = %s
                             AND l.lang2 = "eng"
                             AND s1.assigned = 1
                             AND s2.assigned = 1
-                            AND c.user_id = "kilian"''', lang) # XXX use judge
+                            AND c1.user_id = "kilian"
+                            AND c2.user_id = "kilian"''', lang) # XXX use judge
     # Check that each target sentence only appears once:
     ids = [r[0] for r in rows]
     assert len(ids) == len(set(ids))
@@ -106,10 +109,12 @@ def export_devtest(lang, datadir):
         trg_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.raw')
         src_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.raw')
         trg_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.gold.parse.tags')
+        src_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.gold.parse.tags')
         with open(trg_raw_path, 'w') as trg_raw_file, \
             open(src_raw_path, 'w') as src_raw_file, \
-            open(trg_parse_path, 'w') as trg_parse_file:
-            for trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence in portion_sentences:
+            open(trg_parse_path, 'w') as trg_parse_file, \
+            open(src_parse_path, 'w') as src_parse_file:
+            for trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence, src_parse in portion_sentences:
                 if not is_line(trg_sentence):
                     continue
                 if not is_line(src_sentence):
@@ -123,6 +128,7 @@ def export_devtest(lang, datadir):
                 trg_raw_file.write(trg_sentence)
                 src_raw_file.write(src_sentence)
                 trg_parse_file.write(trg_parse)
+                src_parse_file.write(src_parse)
 
 
 if __name__ == '__main__':
