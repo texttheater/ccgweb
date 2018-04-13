@@ -48,6 +48,13 @@ def add_user(name, password):
                          VALUES (%s, %s)''', name, password_hash)
 
 
+def change_password(user_name, password):
+    password_hash = ctx.encrypt(password)
+    ccgweb.db.execute('''UPDATE users
+                         SET password_hash = %s
+                         WHERE id = %s''', password_hash, user_name)
+
+
 def login(name, password):
     rows = ccgweb.db.get('''SELECT password_hash FROM users
                             WHERE id = %s''', name)
