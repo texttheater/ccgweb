@@ -72,47 +72,73 @@ if ($is_user_logged_in) {
 ?>
 
 <ul class="nav nav-tabs">
-	<?php $i = 0; foreach($body->annotations as $annotation) { ?>
-		<?php $mine = $annotation->user_id == $active_tab ?>
+
+<?php
+$annotations_count = count($body->annotations);
+for ($i = 0; $i < $annotations_count; $i++) {
+	$annotation = $body->annotations[$i];
+	$mine = $annotation->user_id == $active_tab;
+?>
+
 		<li class="<?= $mine ? 'active' : '' ?>">
 			<a data-toggle=tab href=#parse<?= $i ?>>
 				<?= htmlspecialchars($annotation->user_id) ?>
 			</a>
 		</li>
-	<?php $i++; } ?>
+
+<?php
+}
+?>
+
 </ul>
 
 <div class=tab-content>
-	<?php $i = 0; foreach($body->annotations as $annotation) { ?>
-		<?php $mine = $annotation->user_id == $active_tab ?>
-		<div id=parse<?= $i ?> class="tab-pane <?= $mine ? 'active editable' : '' ?>">
-			<?php if ($is_user_logged_in && $mine) { ?>
-				<div id=derivation-controls>
-					<div class=checkbox>
-						<label>
-							<input type=checkbox id=mark-correct <?= $annotation->marked_correct ? 'checked' : '' ?>>
-							<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
-								mark correct
-							</span>
-						</label>
-					</div>
-					<div>
-						&nbsp;
-						&nbsp;
+
 <?php
-$url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
+for ($i = 0; $i < $annotations_count; $i++) {
+	$annotation = $body->annotations[$i];
+	$mine = $annotation->user_id == $active_tab;
 ?>
-						<a href=<?= url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]) ?>>report issue</a>
-						&nbsp;
-						&nbsp;
-						<a id=reset-link href=#>reset</a>
-					</div>
-				</div>
-			<?php } ?>
-			<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
-			<!--<code><?= htmlspecialchars(json_encode($annotation->constituents)) ?></code>-->
+
+<div id="parse<?= $i ?>" class="tab-pane<?= $mine ? ' active editable' : '' ?>">
+
+<?php
+	if ($is_user_logged_in && $mine) {
+		$url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
+		$issue_url = url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]);
+?>
+
+	<div id="derivation-controls">
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" id="mark-correct"<?= $annotation->marked_correct ? ' checked' : '' ?>>
+				<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
+					mark correct
+				</span>
+			</label>
 		</div>
-	<?php $i++; } ?>
+		<div>
+			&nbsp;
+			&nbsp;
+			<a href="<?= $issue_url ?>">report issue</a>
+			&nbsp;
+			&nbsp;
+			<a id="reset-link" href=#>reset</a>
+		</div>
+	</div>
+
+<?php
+	}
+?>
+
+	<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
+	<!--<code><?= htmlspecialchars(json_encode($annotation->constituents)) ?></code>-->
+</div>
+
+<?php
+}
+?>
+
 </div>
 
 <hr>
