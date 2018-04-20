@@ -49,6 +49,11 @@
 			<xsl:attribute name="data-to">
 				<xsl:value-of select="tag[@type='to']"/>
 			</xsl:attribute>
+			<xsl:if test="cat">
+				<xsl:attribute name="data-cat">
+					<xsl:apply-templates select="cat"/>
+				</xsl:attribute>
+			</xsl:if>
 			<tr>
 				<td class="token">
 					<xsl:value-of select="token"/>
@@ -75,7 +80,11 @@
 		</xsl:element>
 	</xsl:template>
 	<xsl:template match="unaryrule">
-		<table class="constituent unaryrule">
+		<xsl:element name="table" class="constituent unaryrule">
+			<xsl:attribute name="class">constituent unaryrule</xsl:attribute>
+			<xsl:attribute name="data-cat">
+				<xsl:apply-templates select="cat"/>
+			</xsl:attribute>
 			<tr class="daughters">
 				<td class="daughter daughter-only">
 					<xsl:apply-templates select="(binaryrule|unaryrule|lex)[1]"/>
@@ -106,10 +115,14 @@
 					</div>
 				</td>
 			</tr>
-		</table>
+		</xsl:element>
 	</xsl:template>
 	<xsl:template match="binaryrule[name((binaryrule|unaryrule|lex)[1]) = 'lex' and lex[1]/token/text() = 'ø']">
-		<table class="constituent unaryrule">
+		<xsl:element name="table">
+			<xsl:attribute name="class">constituent unaryrule</xsl:attribute>
+			<xsl:attribute name="data-cat">
+				<xsl:apply-templates select="cat"/>
+			</xsl:attribute>
 			<tr class="daughters">
 				<td class="daughter daughter-only">
 					<xsl:apply-templates select="(binaryrule|unaryrule|lex)[2]"/>
@@ -130,10 +143,14 @@
 					</div>
 				</td>
 			</tr>
-		</table>
+		</xsl:element>
 	</xsl:template>
 	<xsl:template match="binaryrule">
-		<table class="constituent binaryrule">
+		<xsl:element name="table">
+			<xsl:attribute name="class">constituent binaryrule</xsl:attribute>
+			<xsl:attribute name="data-cat">
+				<xsl:apply-templates select="cat"/>
+			</xsl:attribute>
 			<tr class="daughters">
 				<td class="daughter daughter-left">
 					<xsl:apply-templates select="(binaryrule|unaryrule|lex)[1]"/>
@@ -171,6 +188,6 @@
 					</div>
 				</td>
 			</tr>
-		</table>
+		</xsl:element>
 	</xsl:template>
 </xsl:stylesheet>
