@@ -100,7 +100,7 @@ for ($i = 0; $i < $annotations_count; $i++) {
 	$mine = $annotation->user_id == $active_tab;
 ?>
 
-<div id="parse<?= $i ?>" class="tab-pane<?= $mine ? ' active editable' : '' ?>">
+<div id="parse<?= $i ?>" class="parse tab-pane<?= $mine ? ' active editable' : '' ?>" data-user_id="<?= htmlspecialchars($annotation->user_id) ?>">
 
 <?php
 	if ($is_user_logged_in && $mine) {
