@@ -24,7 +24,6 @@ class Session:
         if req.params['api_action'] == 'login':
             session_id = ccgweb.users.login(req.params['user_id'],
                                             req.params['password'])
-            print(req.params['password'])
             if session_id:
                 # TODO move this info to Set-Cookie header?
                 body = { 'session_id': session_id }
