@@ -34,26 +34,6 @@ def fix_encoding(string):
         return string
 
 
-def constituents(derxmlstring):
-    constituents = set()
-    tree = etree.fromstring(derxmlstring.encode('UTF-8'))
-    for ruletype in ('binaryrule', 'unaryrule', 'lex'):
-        for rule in tree.iter(ruletype):
-            cats = rule.find('cat')
-            if cats is None:
-                continue
-            cat = cat2string(cats[0])
-            if ruletype == 'lex':
-                fr = rule.findtext("tag[@type='from']")
-                to = rule.findtext("tag[@type='to']")
-            else:
-                lexes = list(rule.iter('lex'))
-                fr = lexes[0].findtext("tag[@type='from']")
-                to = lexes[-1].findtext("tag[@type='to']")
-            constituents.add((fr, to, cat))
-    return constituents
-
-
 def cat2string(cat, embedded=False):
     if cat.tag == 'atomic':
         return cat.text + feat_string(cat)

@@ -132,7 +132,6 @@ for ($i = 0; $i < $annotations_count; $i++) {
 ?>
 
 	<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
-	<!--<code><?= htmlspecialchars(json_encode($annotation->constituents)) ?></code>-->
 </div>
 
 <?php

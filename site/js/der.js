@@ -122,6 +122,7 @@ function initSpanBOWs() {
     })
 }
 
+// initializes the UI for marking the derivation correct
 function initMarkCorrect() {
     const input = document.querySelector('input#mark-correct')
     if (input == null) {
@@ -142,6 +143,7 @@ function initMarkCorrect() {
     }
 }
 
+// initializes the UI for resetting the derivation
 function initReset() {
     const a = document.querySelector('a#reset-link')
     if (a === null) {
@@ -176,8 +178,89 @@ function goBusy() {
     document.querySelector('input#mark-correct').disabled = true
 }
 
+// returns the constituents of a parse as a map from [from, to] pairs to
+// nodes
+function constituentMap(parse) {
+    const result = new Map()
+    for (const constituent of parse.querySelectorAll('table.constituent')) {
+        const spanString = getSpan(constituent).join(',')
+        result.set(spanString, constituent)
+    }
+    return result
+}
+
+// returns the span of a constituent as [from, to]
+function getSpan(constituent) {
+    if (constituent.classList.contains('lex')) {
+        const from = parseInt(constituent.dataset.from)
+        const to = parseInt(constituent.dataset.to)
+        return [from, to]
+    } else {
+        const lexes = constituent.querySelectorAll('table.lex')
+        const from = parseInt(lexes[0].dataset.from)
+        const to = parseInt(lexes[lexes.length - 1].dataset.to)
+        return [from, to]
+    }
+
+}
+
+function diffMarkConstituent(constituent) {
+    if (constituent.classList.contains('lex')) {
+        constituent.classList.add('diff')
+    } else {
+        const rulecatTr = constituent.rows[1]
+        const rulecatTd = rulecatTr.cells[0]
+        rulecatTd.classList.add('diff')
+    }
+}
+
+function diffMarkCat(constituent) {
+    if (constituent.classList.contains('lex')) {
+        const catTr = constituent.rows[1]
+        const catTd = catTr.cells[0]
+        catTd.classList.add('diff')
+    } else {
+        const rulecatTr = constituent.rows[1]
+        const rulecatTd = rulecatTr.cells[0]
+        const catDiv = rulecatTr.querySelector('div.cat')
+        catDiv.classList.add('diff')
+    }
+}
+
+// marks all judge constituents red that don't agree with some other user
+function initDiff() {
+    for (const jParse of document.querySelectorAll('div.parse')) {
+        if (jParse.dataset.user_id != 'judge') {
+            continue
+        }
+        const jMap = constituentMap(jParse)
+        for (const uParse of document.querySelectorAll('div.parse')) {
+            if (uParse.dataset.user_id == 'auto'
+                || uParse.dataset.user_id == 'judge'
+                || uParse.dataset.user_id == 'proj'
+                || uParse.dataset.user_id == 'xl') {
+                continue
+            }
+            const uMap = constituentMap(uParse)
+            for ([jSpan, jConstituent] of jMap) {
+                const jCat = jConstituent.dataset.cat
+                if (!uMap.has(jSpan)) {
+                    diffMarkConstituent(jConstituent)
+                    continue
+                }
+                const uConstituent = uMap.get(jSpan)
+                const uCat = uConstituent.dataset.cat
+                if (uCat != jCat) {
+                    diffMarkCat(jConstituent)
+                }
+            }
+        }
+    }
+}
+
 let busy = false
 initSuperBOWs()
 initSpanBOWs()
 initMarkCorrect()
 initReset()
+initDiff()

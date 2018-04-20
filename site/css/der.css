@@ -142,7 +142,17 @@ td.cat, div.cat {
 /* CREATING SPAN BOWS *********************************************************/
 
 table.lex.selected td.span-swiper {
-	background: orange;
+	background: rgb(240, 173, 78); /* bootstrap warning orange */
+}
+
+/* DIFFING *******************************************************************/
+
+.diff {
+	text-decoration: line-through;
+}
+
+td.rulecat.diff {
+	border-top: 2px dotted #999;
 }
 
 /* FOR DEBUGGING *************************************************************/
