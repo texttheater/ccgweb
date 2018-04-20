@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Jura:600|Noto+Sans');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
 
-
-/* align the lexical constituents */
+/* ALIGN THE LEXICAL CONSTITUENTS *********************************************/
 
 table.constituent {
 	border-collapse: collapse;
@@ -12,15 +11,13 @@ td.daughter {
 	padding: 0;
 }
 
-
-/* no wrapping */
+/* NO WRAPPING ***************************************************************/
 
 table.constituent, td.cat {
 	white-space: nowrap;
 }
 
-
-/* padding in visual blocks */
+/* PADDING IN VISUAL BLOCKS *************************************************/
 
 td.token, td.cat, td.rulecat, td.span-swiper {
 	padding-left: 5px;
@@ -35,8 +32,7 @@ td.cat, td.rulecat {
 	padding-bottom: 1px;
 }
 
-
-/* padding between visual blocks */
+/* PADDING BETWEEN VISUAL BLOCKS *********************************************/
 
 /* every table.constituent that is the descendant of some table.constituent =
 every table.constituent except the outermost one */
@@ -48,23 +44,20 @@ td.daughter-right {
 	padding-left: 8px;
 }
 
-
-/* padding around visual blocks */
+/* PADDING AROUND VISUAL BLOCKS **********************************************/
 
 div.der {
 	padding: 8px;
 }
 
-
-/* detach span constraint selectables */
+/* DETACH SPAN CONSTRAINT SELECTABLES ****************************************/
 
 td.span-swiper {
 	margin-top: 8px;
 	display: block;
 }
 
-
-/* rule symbols */
+/* RULE SYMBOLS **************************************************************/
 
 div.rulecat {
 	display: table;
@@ -82,15 +75,13 @@ div.rulecat div.rule {
 	font-size: 90%;
 }
 
-
-/* superscript and subscript */
+/* SUPERSCRIPT AND SUBSCRIPT *************************************************/
 
 div.rule sub {
 	margin-left: -0.5em;
 }
 
-
-/* lexlists */
+/* LEXLISTS ******************************************************************/
 
 div.lexlist {
 	display: table;
@@ -102,8 +93,7 @@ div.lexlist table.lex {
 	display: table-cell;
 }
 
-
-/* colors and borders */
+/* COLORS AND BORDERS ********************************************************/
 
 div.der {
 	/* background: #f0f0f0;*/
@@ -121,15 +111,13 @@ td.span-swiper {
 	background: rgb(119, 119, 119);
 }
 
-
-/* category styling */
+/* CATEGORY STYLING **********************************************************/
 
 td.cat, div.cat {
 	font-size: 90%;
 }
 
-
-/* print styles */
+/* PRINT STYLES **************************************************************/
 
 @media print {
 	/* black lines instead of gray areas */
@@ -151,15 +139,13 @@ td.cat, div.cat {
 	}
 }
 
-
-/* creating span BOWs */
+/* CREATING SPAN BOWS *********************************************************/
 
 table.lex.selected td.span-swiper {
 	background: orange;
 }
 
-
-/* for debugging */
+/* FOR DEBUGGING *************************************************************/
 
 table.constituent {
 	/*border: 1px solid magenta;*/
