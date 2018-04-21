@@ -75,6 +75,10 @@ if ($is_user_logged_in) {
 
 <?php
 $annotations_count = count($body->annotations);
+$human_annotations_count = 0;
+foreach ($body->annotations as $annotation) {
+	$human_annotations_count += is_human_user_id($annotation->user_id);
+}
 for ($i = 0; $i < $annotations_count; $i++) {
 	$annotation = $body->annotations[$i];
 	$mine = $annotation->user_id == $active_tab;
@@ -126,6 +130,18 @@ for ($i = 0; $i < $annotations_count; $i++) {
 			<a id="reset-link" href=#>reset</a>
 		</div>
 	</div>
+
+<?php
+		if ($user_name == 'judge' && $human_annotations_count < 2) {
+?>
+
+	<div class="alert alert-warning" role="alert">
+		This sentence has not yet been annotated by 2 annotators.
+	</div>
+
+<?php
+		}
+?>
 
 <?php
 	}

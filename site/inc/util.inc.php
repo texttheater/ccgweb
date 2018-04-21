@@ -83,4 +83,23 @@ function selected($a, $b) {
 	}
 }
 
+function is_human_user_id($user_id) {
+	if ($user_id == 'auto') {
+		return false;
+	}
+
+	if ($user_id == 'proj') {
+		return false;
+	}
+
+	if ($user_id == 'xl') {
+		return false;
+	}
+
+	if ($user_id == 'judge') {
+		return false;
+	}
+
+	return true;
+}
 ?>
