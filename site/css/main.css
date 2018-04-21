@@ -15,6 +15,7 @@ div.col-md-9 > h3:first-child {
 div#derivation-controls > div {
 	float: left;
 	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 div#derivation-controls::after {
