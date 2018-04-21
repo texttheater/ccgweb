@@ -100,6 +100,10 @@ function is_human_user_id($user_id) {
 		return false;
 	}
 
+	if ($user_id == 'testuser') {
+		return false;
+	}
+
 	return true;
 }
 ?>
