@@ -94,3 +94,16 @@ def current_user(req):
         return None
     return rows[0][0]
 
+
+def clone_bows(src_user, dst_user):
+    """Clones src_user's BOWs as dst_user's BOWs."""
+    ccgweb.db.execute('''INSERT INTO bows_span
+                         (user_id, time, lang, sentence_id, offset_from, offset_to)
+                         SELECT %s, time, lang, sentence_id, offset_from, offset_to
+                         FROM bows_span
+                         WHERE user_id = %s''', dst_user, src_user)
+    ccgweb.db.execute('''INSERT INTO bows_super
+                         (user_id, time, lang, sentence_id, offset_from, offset_to, tag)
+                         SELECT %s, time, lang, sentence_id, offset_from, offset_to, tag
+                         FROM bows_super
+                         WHERE user_id = %s''', dst_user, src_user)
