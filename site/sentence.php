@@ -177,7 +177,7 @@ if ($is_user_logged_in && $user_name == 'judge') {
 	<div class="col-md-6">
 		<h2>Comments <small id="comment-indicator">saved</small></h2>
 		<form>
-		<textarea id="comment" class="form-control" rows="2"><?= htmlspecialchars($body->comment) ?></textarea>
+		<textarea id="comment" class="form-control" rows="4"><?= htmlspecialchars($body->comment) ?></textarea>
 		</form>
 	</div>
 
