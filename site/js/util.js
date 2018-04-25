@@ -18,7 +18,6 @@ function api(resource, action, params, onload) {
 
         Object.keys(params).forEach(key => {
             console.log('appending param' + key)
-            formData.append(key, params[key])
         })
         
         formData.append('api_resource', resource)
