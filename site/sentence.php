@@ -169,12 +169,22 @@ foreach($body->translations as $translation) {
 
 			</ul>
 	</div>	
+
+<?php
+if ($is_user_logged_in && $user_name == 'judge') {
+?>
+
 	<div class="col-md-6">
 		<h2>Comments <small id="comment-indicator">saved</small></h2>
 		<form>
 		<textarea id="comment" class="form-control" rows="2"><?= htmlspecialchars($body->comment) ?></textarea>
 		</form>
 	</div>
+
+<?php
+}
+?>
+
 </div>
 <hr>
 <nav aria-label="Navigation through sentences">
