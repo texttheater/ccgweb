@@ -50,7 +50,7 @@ function initComment() {
         timeout = window.setTimeout( () => {
             timeoutSet = false
             submitComment()
-        }, 2000)
+        }, 1000)
         timeoutSet = true
     }
 
