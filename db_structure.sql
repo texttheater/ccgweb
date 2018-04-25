@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
 -- Host: localhost    Database: ccgweb
 -- ------------------------------------------------------
--- Server version	5.7.21-0ubuntu0.17.10.1
+-- Server version	5.7.22-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,8 +32,8 @@ CREATE TABLE `bows_span` (
   `offset_to` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`lang`,`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=279 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  KEY `sentence` (`lang`,`sentence_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1212 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,8 +54,8 @@ CREATE TABLE `bows_super` (
   `tag` varchar(1024) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
-  KEY `sentence` (`lang`,`sentence_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1658 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  KEY `sentence` (`lang`,`sentence_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6939 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,6 +80,23 @@ CREATE TABLE `bows_tok` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment` (
+  `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `sentence_id` varchar(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `time` datetime NOT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  PRIMARY KEY (`lang`,`sentence_id`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `correct`
 --
 
@@ -89,12 +106,12 @@ DROP TABLE IF EXISTS `correct`;
 CREATE TABLE `correct` (
   `lang` varchar(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sentence_id` varchar(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `user_id` varchar(32) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `time` datetime NOT NULL,
-  `derxml` text COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `parse` text COLLATE utf8mb4_unicode_520_ci,
+  `derxml` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `parse` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci,
   PRIMARY KEY (`lang`,`sentence_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,8 +126,8 @@ CREATE TABLE `sentence_links` (
   `id1` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `lang2` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `id2` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  UNIQUE KEY `unique` (`lang1`,`id1`,`lang2`,`id2`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  UNIQUE KEY `lang1` (`lang1`,`id1`,`lang2`,`id2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,8 +142,10 @@ CREATE TABLE `sentence_pmbids` (
   `sentence_id` char(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `pmb_part` char(2) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `pmb_doc_id` char(4) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  PRIMARY KEY (`lang`,`sentence_id`,`pmb_part`,`pmb_doc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  PRIMARY KEY (`lang`,`sentence_id`,`pmb_part`,`pmb_doc_id`),
+  KEY `lang` (`lang`),
+  KEY `doc` (`pmb_part`,`pmb_doc_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,4 +191,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-01 10:58:04
+-- Dump completed on 2018-04-25  9:35:36
