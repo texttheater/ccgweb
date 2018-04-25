@@ -42,6 +42,8 @@ class Sentence:
                                         'marked_correct': marked_correct})
         # Translations
         body['translations'] = get_translations(lang, sentence, user)
+        # Comment
+        body['comment'] = get_comment(lang, sentence, user)
         # Return
         res.content_type = 'application/json'
         res.body = json.dumps(body)
@@ -134,6 +136,20 @@ class Sentence:
                 WHERE lang = %s
                 AND sentence_id = %s
                 AND user_id = %s''', lang, sentence_hash, user)
+        elif req.params['api_action'] == 'set_comment':
+            user = ccgweb.users.current_user(req)
+            if not user:
+                res.status = falcon.HTTP_401
+                return
+            sentence_hash = sentence2hash(sentence)
+            try:
+                text = req.params['text']
+            except KeyError:
+                text = ''
+            ccgweb.db.execute('''INSERT INTO comment
+                (lang, sentence_id, user_id, time, text)
+                VALUES (%s, %s, %s, NOW(), %s)
+                ON DUPLICATE KEY UPDATE time = NOW(), text = %s''', lang, sentence_hash, user, text, text)
         else:
             res.status = falcon.HTTP_400
             return
@@ -231,6 +247,19 @@ def get_annotators(lang, sentence):
                             AND user_id <> 'auto'
                             AND user_id <> 'judge' ''', lang, sentence_hash)
     return [user for (user,) in rows]
+
+
+def get_comment(lang, sentence, user):
+    sentence, sentence_hash = sentid(sentence)
+    rows = ccgweb.db.get('''SELECT text
+                            FROM comment
+                            WHERE lang = %s
+                            AND sentence_id = %s
+                            AND user_id = %s''', lang, sentence_hash, user)
+    if rows:
+        return rows[0][0]
+    else:
+        return ''
 
 
 def add_tok_bow(lang, sentence, offset, tag):

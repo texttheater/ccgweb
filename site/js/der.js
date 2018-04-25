@@ -44,7 +44,6 @@ function initSuperBOWs() {
                             tag: input.value
                         },
                         req => {
-                            console.log(req.responseText)
                             window.location.reload()
                         }
                     )

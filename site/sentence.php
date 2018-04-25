@@ -155,21 +155,28 @@ for ($i = 0; $i < $annotations_count; $i++) {
 ?>
 
 </div>
-
 <hr>
+<div class="row">
+	<div class="col-md-6">
+		<h2>Translations</h2>
+			<ul class=list-unstyled>
 
-<h2>Translations</h2>
-
-<ul class=list-unstyled>
 <?php
 foreach($body->translations as $translation) {
 	print_link_to_sentence($translation);
 }
 ?>
-</ul>
 
+			</ul>
+	</div>	
+	<div class="col-md-6">
+		<h2>Comments <small id="comment-indicator">saved</small></h2>
+		<form>
+		<textarea id="comment" class="form-control" rows="2"><?= htmlspecialchars($body->comment) ?></textarea>
+		</form>
+	</div>
+</div>
 <hr>
-
 <nav aria-label="Navigation through sentences">
 	<ul class="pagination">
 
@@ -209,6 +216,7 @@ echo "const lang = " . json_encode($lang) . "\n";
 ?>
 </script>
 
+<script src=js/comment.js></script>
 <script src=js/der.js></script>
 
 <?php
