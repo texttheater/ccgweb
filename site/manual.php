@@ -16,15 +16,17 @@ $sections = [
 	'coordination' => 'Coordination',
 	'demonyms' => 'Demonyms',
 	'imperatives' => 'Imperatives',
+	'interjections' => 'Interjections',
 	'possessives' => 'Possessives',
 	'pro-drop' => 'Pro-drop',
 	'pronouns' => 'Pronouns',
 	'punctuation' => 'Punctuation',
+	'questions' => 'Questions',
 	'specific-lexical-items' => 'Specific Lexical Items',
 	'tokenization' => 'Tokenization',
 ];
 
-$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives'];
+$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives', 'interjections', 'questions', 'clause-types', 'punctuation'];
 
 if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));

@@ -1,5 +1,6 @@
-<p>CCGweb aims to build a multilingual corpus of CCG annotations for evaluating
-derivation projection algorithms and cross-lingually trained parsers.</p>
+<p>This is an effort to build a multilingual corpus of CCG annotations for
+evaluating derivation projection algorithms and cross-lingually trained
+parsers.</p>
 
 <p>We opt here for a flavor of CCG closely following <a
 href=https://dl.acm.org/citation.cfm?id=1858703>CCGrebank</a>. The reason for

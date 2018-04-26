@@ -9,6 +9,8 @@ viaggiare</i>.</p>
 <p>This also includes the Dutch and German generic pronouns <i>men</i> and
 <i>man</i>.</p>
 
+<h4>Expletive Pronouns</h4>
+
 <p>Expletive pronouns are marked with the <code>expl</code> feature (thus have
 category <code>N[expl]</code>) <b>if and only if</b> they stand in for an
 extraposed clausal argument. “Weather pronouns” do not get this feature. Both
@@ -120,6 +122,98 @@ For example:</p>
 </div></td></tr>
 </table> </div>
 
+<h4>Indefinite Pronouns</h4>
 
+<p>Indefinite pronouns such as <i>something</i> and <i>somebody</i> normally
+have category <code>NP</code> as well, but when they are further specified by a
+prepositional phrase, they take that as an argument:</p>
 
+ <div class="der">
+<table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="something" data-from="0" data-to="9" data-cat="NP/PP">
+<tr><td class="token">something</td></tr>
+<tr><td class="cat" tabindex="0">NP/PP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="like" data-from="10" data-to="14" data-cat="PP/NP">
+<tr><td class="token">like</td></tr>
+<tr><td class="cat" tabindex="0">PP/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="this" data-from="15" data-to="19" data-cat="NP">
+<tr><td class="token">this</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
+<p>Conversely, if what further specifies an indefinite pronoun is an adjectival
+phrase, a verb phrase or a relative clause, it has category <code>N</code> and
+the specifying phrase turns into <code>N\N</code> via type changing:</p>
+
+ <div class="der">
+<table class="constituent unaryrule" data-cat="NP">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent binaryrule" data-cat="N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="something" data-from="0" data-to="9" data-cat="N">
+<tr><td class="token">something</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent unaryrule" data-cat="N\N">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent binaryrule" data-cat="(S[to]\NP)/NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="to" data-from="10" data-to="12" data-cat="(S[to]\NP)/(S[b]\NP)">
+<tr><td class="token">to</td></tr>
+<tr><td class="cat" tabindex="0">(S[to]\NP)/(S[b]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="behold" data-from="13" data-to="19" data-cat="(S[b]\NP)/NP">
+<tr><td class="token">behold</td></tr>
+<tr><td class="cat" tabindex="0">(S[b]\NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S[to]\NP)/NP</div>
+<div class="rule" title="Forward Composition">&gt; <sup>1</sup>
+</div>
+</div></td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">N\N</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table> </div>
