@@ -8,6 +8,7 @@ require('inc/session.inc.php');
 
 $sections = [
 	'introduction' => 'Introduction',
+	'arguments-and-modifiers' => 'Arguments and Modifiers',
 	'argument-order' => 'Argument Order',
 	'clause-types' => 'Clause Types',
 	'conditional-clauses' => 'Conditional Clauses',
@@ -17,13 +18,13 @@ $sections = [
 	'imperatives' => 'Imperatives',
 	'possessives' => 'Possessives',
 	'pro-drop' => 'Pro-drop',
+	'pronouns' => 'Pronouns',
 	'punctuation' => 'Punctuation',
-	'reflexive-pronouns' => 'Reflexive Pronouns',
 	'specific-lexical-items' => 'Specific Lexical Items',
 	'tokenization' => 'Tokenization',
 ];
 
-$updated_sections = ['coordination', 'punctuation', 'tokenization'];
+$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives'];
 
 if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));
