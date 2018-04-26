@@ -30,11 +30,23 @@ class Sentence:
                 break
         # Annotations
         if user == 'auto':
-            versions = ['auto']
+            versions = set(('auto',))
         elif user == 'judge':
-            versions = ['auto'] + get_annotators(lang, sentence) + ['judge'] # TODO others
+            versions = get_annotators(lang, sentence)
+            versions.add('auto')
+            versions.add('judge')
         else:
-            versions = ['auto', user]
+            annotators = get_annotators(lang, sentence)
+            if 'judge' in annotators:
+                versions = annotators
+                versions.discard('testuser')
+                versions.discard('proj')
+                versions.discard('xl')
+                versions.add('auto')
+                versions.add(user)
+            else:
+                versions = set(('auto', user))
+        versions = sorted(versions, key=annotator_sort_key)
         body['annotations'] = []
         for version in versions:
             derxml, marked_correct = get_contents(lang, sentence, version, 'der.xml')
@@ -236,17 +248,22 @@ def get_translations(lang, sentence, user):
 
 
 def get_annotators(lang, sentence):
-    """Returns the list of users who have annotated this sentence.
-
-    auto and judge are not included."""
+    """Returns the list of users who have annotated this sentence."""
     sentence, sentence_hash = sentid(sentence)
     rows = ccgweb.db.get('''SELECT user_id
                             FROM correct
                             WHERE lang = %s
-                            AND sentence_id = %s
-                            AND user_id <> 'auto'
-                            AND user_id <> 'judge' ''', lang, sentence_hash)
-    return [user for (user,) in rows]
+                            AND sentence_id = %s''', lang, sentence_hash)
+    return set(user for (user,) in rows)
+
+
+def annotator_sort_key(annotator):
+    if annotator == 'auto':
+        return (0, annotator)
+    elif annotator == 'judge':
+        return (2, annotator)
+    else:
+        return (1, annotator)
 
 
 def get_comment(lang, sentence, user):
