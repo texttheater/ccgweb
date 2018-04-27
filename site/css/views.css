@@ -1,0 +1,11 @@
+div.view > textarea {
+	font-family: monospace;
+}
+
+div.view {
+	display: none;
+}
+
+div.view-active {
+	display: block;
+}

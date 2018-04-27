@@ -102,37 +102,37 @@ for ($i = 0; $i < $annotations_count; $i++) {
 for ($i = 0; $i < $annotations_count; $i++) {
 	$annotation = $body->annotations[$i];
 	$mine = $annotation->user_id == $active_tab;
+	$derivation_html = xslTransform('xsl/der.xsl', $annotation->derxml);
 ?>
 
 <div id="parse<?= $i ?>" class="parse tab-pane<?= $mine ? ' active editable' : '' ?>" data-user_id="<?= htmlspecialchars($annotation->user_id) ?>">
+	<div class="derivation-controls btn-toolbar">
 
 <?php
 	if ($is_user_logged_in && $mine) {
 		$url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
-		$issue_url = url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)" . "\n\n"]);
+		$issue_url = url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)\n\n"]);
 ?>
 
-	<div id="derivation-controls">
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" id="mark-correct"<?= $annotation->marked_correct ? ' checked' : '' ?>>
-				<span class="label <?= $annotation->marked_correct ? 'label-success' : 'label-default' ?>">
-					mark correct
-				</span>
-			</label>
+		<div class="btn-group">
+			<button class="btn <?= $annotation->marked_correct ? 'btn-success' : 'btn-default' ?> btn-sm" id="mark-correct">mark correct</button>
+			<a class="btn btn-default btn-sm" href="<?= $issue_url ?>">report issue</a>
+			<a class="btn btn-default btn-sm" id="reset-link" href=#>reset</a>
 		</div>
-		<div>
-			&nbsp;
-			&nbsp;
-			<a href="<?= $issue_url ?>">report issue</a>
-			&nbsp;
-			&nbsp;
-			<a id="reset-link" href=#>reset</a>
+
+<?php
+	}
+?>
+
+		<div class="btn-group">
+			<button class="btn btn-primary btn-sm view-button" data-view-type="visual">visual</button>
+			<button class="btn btn-default btn-sm view-button" data-view-type="html">HTML</button>
+			<button class="btn btn-default btn-sm view-button" data-view-type="latex">LaTeX</button>
 		</div>
 	</div>
 
 <?php
-		if ($user_name == 'judge' && $human_annotations_count < 2) {
+	if ($is_user_logged_in && $user_name == 'judge' && $human_annotations_count < 2) {
 ?>
 
 	<div class="alert alert-warning" role="alert">
@@ -140,14 +140,19 @@ for ($i = 0; $i < $annotations_count; $i++) {
 	</div>
 
 <?php
-		}
-?>
-
-<?php
 	}
 ?>
 
-	<?= xslTransform('xsl/der.xsl', $annotation->derxml) ?>
+	<div class="view view-active" data-view-type="visual">
+		<?= $derivation_html ?>
+	</div>
+	<div class="view" data-view-type="html">
+		<textarea class="form-control" readonly rows="10"><?= htmlspecialchars($derivation_html) ?></textarea>
+		<p>Use with <a href="css/der.css">der.css</a>.</p>
+	</div>
+	<div class="view" data-view-type="latex">
+		<p>LaTeX rendering coming soon.</p>
+	</div>
 </div>
 
 <?php
@@ -228,6 +233,7 @@ echo "const lang = " . json_encode($lang) . "\n";
 
 <script src=js/comment.js></script>
 <script src=js/der.js></script>
+<script src=js/views.js></script>
 
 <?php
 require('inc/foot.inc.php');

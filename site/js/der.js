@@ -6,7 +6,8 @@ function transferTabOrder(from, to) {
 
 // initializes the UI for creating supertag BOWs
 function initSuperBOWs() {
-    document.querySelectorAll('div.editable table.lex').forEach(table => {
+    const tables = document.querySelectorAll('div.editable table.lex')
+    for (const table of tables) {
         const td = table.querySelector('td.cat')
         td.onfocus = event => {
             if (busy || isMarkedCorrect()) {
@@ -50,7 +51,7 @@ function initSuperBOWs() {
                 }
             }
         }
-    })
+    }
 }
 
 // initializes the UI for creating span BOWs
@@ -124,17 +125,19 @@ function initSpanBOWs() {
 
 // initializes the UI for marking the derivation correct
 function initMarkCorrect() {
-    const input = document.querySelector('input#mark-correct')
-    if (input == null) {
+    const button = document.querySelector('button#mark-correct')
+    if (button == null) {
         return
     }
-    input.onchange = event => {
+    button.onclick = event => {
         goBusy()
+        button.classList.toggle('btn-default')
+        button.classList.toggle('btn-success')
         api(
             'sentences/' + lang + '/' + encodeURIComponent(sentence),
             'mark_correct',
             {
-                correct: input.checked
+                correct: button.classList.contains('btn-success')
             },
             () => {
                 window.location.reload()
@@ -169,13 +172,13 @@ function initReset() {
 }
 
 function isMarkedCorrect() {
-    const input = document.querySelector('input#mark-correct')
-    return input.checked
+    const button = document.querySelector('button#mark-correct')
+    return button.classList.contains('btn-success')
 }
 
 function goBusy() {
     busy = true
-    document.querySelector('input#mark-correct').disabled = true
+    document.querySelector('button#mark-correct').disabled = true
 }
 
 // returns the constituents of a parse as a map from [from, to] pairs to

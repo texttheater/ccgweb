@@ -1,5 +1,10 @@
 function initComment() {
     const textarea = document.querySelector('textarea#comment')
+
+    if (textarea == null) {
+        return
+    }
+
     const indicator = document.querySelector('small#comment-indicator')
     let timeout
     let timeoutSet = false

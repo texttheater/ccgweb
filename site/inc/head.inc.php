@@ -12,6 +12,7 @@
 		<!-- Our styles -->
 		<link rel=stylesheet href=css/main.css>
 		<link rel=stylesheet href=css/der.css>
+		<link rel=stylesheet href=css/views.css>
 	</head>
 	<body>
 		<?php require('inc/navbar.inc.php'); ?>

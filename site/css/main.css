@@ -16,16 +16,28 @@ div.col-md-6 > h2:first-child {
 
 /* controls displayed above the user's derivation */
 
-div#derivation-controls > div {
+div.derivation-controls > div {
 	float: left;
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
 
-div#derivation-controls::after {
+div.derivation-controls > div.view-selector {
+	/*float: right;*/
+}
+
+div.derivation-controls::after {
 	content: '';
 	display: block;
 	clear: both;
+}
+
+button#mark-correct.btn-default:before {
+	content: "☐ ";
+}
+
+button#mark-correct.btn-success:before {
+	content: "☑ ";
 }
 
 /* comments */
