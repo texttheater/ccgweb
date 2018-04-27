@@ -1,9 +1,29 @@
-<h4>Compound Verbs</h4>
+<h4>Core Argument or Not?</h4>
 
-<p>In compound verbs that have a lexical nominal argument, e.g. <i>take care
-of</i>, the question arises whether the argument is an argument of the verb
-(<i>take</i>) or the noun (<i>care</i>).  We favor verb arguments in these
-cases:</p>
+<p>Core arguments of verbs and nouns are analyzed as part of the argument
+structure. Notably, the location argument of verbs of position and the
+direction argument of verbs of movement are arguments. Sometimes it is hard to
+tell whether a locational/directional PP is a core argument or not.  Here we
+provide specific answers based on looking at examples from CCGrebank.</p>
+
+<p>The following verbs and their translations have location/direction core
+arguments: <i>stand</i>, <i>go</i>.</p>
+
+<p>The following verbs and their translations cannot have location/direction
+arguments: <i>hide</i>, <i>have fun</i>, <i>notice</i>.</p>
+
+<p>The following nouns and their translations cannot have location/direction
+arguments: <i>place</i>.</p>
+
+<p>A prepositional phrase headed by <i>about</i> or its translation, indicating
+the topic of something (like information, or a book), is analyzed as a core
+argument.</p>
+
+<h4>Argument of Verb or Noun?</h4>
+
+<p>Sometimes an argument could be the argument of a verb, or of another
+argument of the verb. As a general rule, when in doubt, we favor verb arguments
+in these cases. Here is an example with a compound verb:</p>
 
  <div class="der">
 <table class="constituent binaryrule" data-cat="S[b]\NP">
@@ -46,6 +66,79 @@ cases:</p>
 <tr><td class="token">him</td></tr>
 <tr><td class="cat" tabindex="0">NP</td></tr>
 <tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[b]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+<p>And here is an example with a non-compound verb:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[b]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="(S[b]\NP)/PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="take" data-from="0" data-to="4" data-cat="((S[b]\NP)/PP)/NP">
+<tr><td class="token">take</td></tr>
+<tr><td class="cat" tabindex="0">((S[b]\NP)/PP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="a" data-from="5" data-to="6" data-cat="NP/N">
+<tr><td class="token">a</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="boat" data-from="7" data-to="11" data-cat="N">
+<tr><td class="token">boat</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S[b]\NP)/PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="to" data-from="12" data-to="14" data-cat="PP/NP">
+<tr><td class="token">to</td></tr>
+<tr><td class="cat" tabindex="0">PP/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent unaryrule" data-cat="NP">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Africa" data-from="15" data-to="21" data-cat="N">
+<tr><td class="token">Africa</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
 </table></td>
 </tr>
 <tr><td colspan="2" class="rulecat"><div class="rulecat">
@@ -412,5 +505,80 @@ copula.</p>
 <div class="cat">S[dcl]</div>
 <div class="rule" title="Backward Application">&lt; <sup>0</sup>
 </div>
+</div></td></tr>
+</table> </div>
+
+<h4>Noun Postmodifiers and Premodifiers</h4>
+
+<p>Postmodifiers combine with a noun before the premodifiers:</p>
+
+ <div class="der">
+<table class="constituent unaryrule" data-cat="NP">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent binaryrule" data-cat="N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="best" data-from="0" data-to="4" data-cat="N/N">
+<tr><td class="token">best</td></tr>
+<tr><td class="cat" tabindex="0">N/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="person" data-from="5" data-to="11" data-cat="N">
+<tr><td class="token">person</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="N\N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="in" data-from="12" data-to="14" data-cat="(N\N)/NP">
+<tr><td class="token">in</td></tr>
+<tr><td class="cat" tabindex="0">(N\N)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="the" data-from="15" data-to="18" data-cat="NP/N">
+<tr><td class="token">the</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="world" data-from="19" data-to="24" data-cat="N">
+<tr><td class="token">world</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N\N</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
 </div></td></tr>
 </table> </div>

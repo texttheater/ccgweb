@@ -10,5 +10,11 @@ format will enable a direct comparison.</p>
 
 <p>Of course, the annotation format for CCGrebank has only been specified for
 English. It is not always obvious how to apply it to other languages. This
-continually growing manual gives guidelines, alphabetically sorted by the
-linguistic phenomenon in question.</p>
+manual gives guidelines, alphabetically sorted by the
+linguistic phenomenon in question. It was compiled by the first author based on:</p>
+
+<ol>
+	<li>corresponding examples from CCGrebank, where available</li>
+	<li>decisions taken during discussions among the author/annotators prior to the main round of annotation</li>
+	<li>decisions made by the majority of annotators during the main round of annotation</li>
+</ol>

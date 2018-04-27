@@ -26,7 +26,7 @@ $sections = [
 	'tokenization' => 'Tokenization',
 ];
 
-$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives', 'interjections', 'questions', 'clause-types', 'punctuation'];
+$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives', 'interjections', 'questions', 'clause-types', 'punctuation', 'specific-lexical-items'];
 
 if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));
