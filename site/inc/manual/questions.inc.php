@@ -115,29 +115,35 @@ even when followed by a question mark. For example:</p>
 </table> </div>
 
  <div class="der">
-<table class="constituent binaryrule" data-cat="NP">
+<table class="constituent binaryrule" data-cat="S[b]\NP">
 <tr class="daughters">
-<td class="daughter daughter-left"><table class="constituent unaryrule" data-cat="NP">
-<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Marco" data-from="0" data-to="5" data-cat="N">
-<tr><td class="token">Marco</td></tr>
-<tr><td class="cat" tabindex="0">N</td></tr>
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[b]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Excuse" data-from="0" data-to="6" data-cat="(S[b]\NP)/NP">
+<tr><td class="token">Excuse</td></tr>
+<tr><td class="cat" tabindex="0">(S[b]\NP)/NP</td></tr>
 <tr><td class="span-swiper"> </td></tr>
-</table></td></tr>
-<tr><td class="rulecat"><div class="rulecat">
-<div class="cat">NP</div>
-<div class="rule" title="Type Changing">
-									*
-								</div>
-</div></td></tr>
 </table></td>
-<td class="daughter daughter-right"><table class="constituent lex" data-token="?" data-from="5" data-to="6" data-cat="NP\NP">
-<tr><td class="token">?</td></tr>
-<tr><td class="cat" tabindex="0">NP\NP</td></tr>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="me" data-from="7" data-to="9" data-cat="NP">
+<tr><td class="token">me</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
 <tr><td class="span-swiper"> </td></tr>
 </table></td>
 </tr>
 <tr><td colspan="2" class="rulecat"><div class="rulecat">
-<div class="cat">NP</div>
+<div class="cat">S[b]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="?" data-from="9" data-to="10" data-cat="(S[b]\NP)\(S[b]\NP)">
+<tr><td class="token">?</td></tr>
+<tr><td class="cat" tabindex="0">(S[b]\NP)\(S[b]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[b]\NP</div>
 <div class="rule" title="Backward Application">&lt; <sup>0</sup>
 </div>
 </div></td></tr>

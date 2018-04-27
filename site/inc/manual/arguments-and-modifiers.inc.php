@@ -7,7 +7,9 @@ tell whether a locational/directional PP is a core argument or not.  Here we
 provide specific answers based on looking at examples from CCGrebank.</p>
 
 <p>The following verbs and their translations have location/direction core
-arguments: <i>stand</i>, <i>go</i>.</p>
+arguments: <i>stand</i>, <i>go</i>. Exception: when the location/direction
+is expressed by an adverb such as <i>there</i>, then that is analyzed as a
+modifier.</p>
 
 <p>The following verbs and their translations cannot have location/direction
 arguments: <i>hide</i>, <i>have fun</i>, <i>notice</i>.</p>
@@ -154,6 +156,145 @@ in these cases. Here is an example with a compound verb:</p>
 </div>
 </div></td></tr>
 </table> </div>
+
+<h4>VP or S Modifier?</h4>
+
+<p>If the subject intervenes between a clausal modifier and the rest of the
+clause, then the modifier is analyzed as a sentence modifier. Otherwise, it is
+analyzed as a VP modifier. For example:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Das" data-from="0" data-to="3" data-cat="NP">
+<tr><td class="token">Das</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[dcl]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="glaube" data-from="4" data-to="10" data-cat="(S[dcl]\NP)/NP">
+<tr><td class="token">glaube</td></tr>
+<tr><td class="cat" tabindex="0">(S[dcl]\NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="ich" data-from="11" data-to="14" data-cat="NP">
+<tr><td class="token">ich</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="nicht" data-from="15" data-to="20" data-cat="S\S">
+<tr><td class="token">nicht</td></tr>
+<tr><td class="cat" tabindex="0">S\S</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="20" data-to="21" data-cat="S[dcl]\S[dcl]">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[b]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="(S[b]\NP)/NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="(S[b]\NP)/NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Gib" data-from="0" data-to="3" data-cat="((S[b]\NP)/NP)/NP">
+<tr><td class="token">Gib</td></tr>
+<tr><td class="cat" tabindex="0">((S[b]\NP)/NP)/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="mir" data-from="4" data-to="7" data-cat="NP">
+<tr><td class="token">mir</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S[b]\NP)/NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="bitte" data-from="8" data-to="13" data-cat="(S\NP)\(S\NP)">
+<tr><td class="token">bitte</td></tr>
+<tr><td class="cat" tabindex="0">(S\NP)\(S\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S[b]\NP)/NP</div>
+<div class="rule" title="Backward Crossed Composition">&lt; <sup>1</sup><sub>×</sub>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="einen" data-from="14" data-to="19" data-cat="NP/N">
+<tr><td class="token">einen</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="Apfel" data-from="20" data-to="25" data-cat="N">
+<tr><td class="token">Apfel</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[b]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+<h4>Modification of Main Verb or Modal/Auxiliary?</h4>
+
+<p>When the modal or auxiliary verb of a clause does not intervene between a VP
+modifier and the main verb, then the VP modifier modifies the main verb rather
+than the modal or auxiliary. Exception: negation adverbs modify the modal or
+auxiliary.</p>
 
 <h4>NPs Acting as Modifiers</h4>
 
@@ -582,3 +723,469 @@ copula.</p>
 								</div>
 </div></td></tr>
 </table> </div>
+
+<h4>Verbal Arguments</h4>
+
+<p>Verbal arguments of verbs and prepositions are analyzed as VPs unless they
+have a determiner, in which case they are treated as nominalized (thus, as
+nouns). For example:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Zij" data-from="0" data-to="3" data-cat="NP">
+<tr><td class="token">Zij</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[dcl]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="is" data-from="4" data-to="6" data-cat="(S[dcl]\NP)/(S[pt]\NP)">
+<tr><td class="token">is</td></tr>
+<tr><td class="cat" tabindex="0">(S[dcl]\NP)/(S[pt]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[pt]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="gestopt" data-from="7" data-to="14" data-cat="(S[pt]\NP)/PP">
+<tr><td class="token">gestopt</td></tr>
+<tr><td class="cat" tabindex="0">(S[pt]\NP)/PP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="met" data-from="15" data-to="18" data-cat="PP/(S[b]\NP)">
+<tr><td class="token">met</td></tr>
+<tr><td class="cat" tabindex="0">PP/(S[b]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="hardlopen" data-from="19" data-to="28" data-cat="S[b]\NP">
+<tr><td class="token">hardlopen</td></tr>
+<tr><td class="cat" tabindex="0">S[b]\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[pt]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="28" data-to="29" data-cat="S[dcl]\S[dcl]">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Zij" data-from="0" data-to="3" data-cat="NP">
+<tr><td class="token">Zij</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[dcl]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="is" data-from="4" data-to="6" data-cat="(S[dcl]\NP)/PP">
+<tr><td class="token">is</td></tr>
+<tr><td class="cat" tabindex="0">(S[dcl]\NP)/PP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="aan" data-from="7" data-to="10" data-cat="PP/NP">
+<tr><td class="token">aan</td></tr>
+<tr><td class="cat" tabindex="0">PP/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="het" data-from="11" data-to="14" data-cat="NP/N">
+<tr><td class="token">het</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="hardlopen" data-from="15" data-to="24" data-cat="N">
+<tr><td class="token">hardlopen</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="24" data-to="25" data-cat="S[dcl]\S[dcl]">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+<p>The Italian <i>di</i> is treated as a complementizer rather than a
+preposition (so gets category <code>(S[to]\NP)/(S[b]\NP)</code>) when it heads
+a verbal argument.</p>
+
+<h4>Conditional Clauses</h4>
+
+<p>Conditional clauses are attached at the VP level if possible. For example:</p>
+
+<div class=der>
+<div class=lexlist>
+	<table class=lex>
+		<tr>
+			<td class="token">What</td>
+		</tr>
+		<tr>
+			<td class="cat">S[wq]/(S[q]/NP)</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">would</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[q]/(S[b]\NP))/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">you</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">say</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[b]\NP)/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">if</td>
+		</tr>
+		<tr>
+			<td class="cat">((S\NP)\(S\NP))/S[dcl]</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">you</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">were</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[dcl]\NP)/PP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">in</td>
+		</tr>
+		<tr>
+			<td class="cat">PP/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">my</td>
+		</tr>
+		<tr>
+			<td class="cat">NP/(N/PP)</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">place</td>
+		</tr>
+		<tr>
+			<td class="cat">N/PP</td>
+		</tr>
+	</table>
+</div>
+</div>
+
+<p>If the modified clause is a coordination, attach at the <code>S</code> level instead:</p>
+
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Cats</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">sing</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">and</td>
+			</tr>
+			<tr>
+				<td class="cat">(S[dcl]\S[dcl])/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dogs</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dance</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">when</td>
+			</tr>
+			<tr>
+				<td class="cat">(S\S)/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">it</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">rains</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<h4>Adverbial Arguments</h4>
+
+<p>Adverbs that appear as arguments (e.g., of a preposition) get category
+<code>S[adj]\NP</code>.  For example:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Ich" data-from="0" data-to="3" data-cat="NP">
+<tr><td class="token">Ich</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[dcl]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="will" data-from="4" data-to="8" data-cat="(S[dcl]\NP)/(S[b]\NP)">
+<tr><td class="token">will</td></tr>
+<tr><td class="cat" tabindex="0">(S[dcl]\NP)/(S[b]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[b]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="(S\NP)/(S\NP)">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="für" data-from="9" data-to="12" data-cat="((S\NP)/(S\NP))/(S[adj]\NP)">
+<tr><td class="token">für</td></tr>
+<tr><td class="cat" tabindex="0">((S\NP)/(S\NP))/(S[adj]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="immer" data-from="13" data-to="18" data-cat="S[adj]\NP">
+<tr><td class="token">immer</td></tr>
+<tr><td class="cat" tabindex="0">S[adj]\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S\NP)/(S\NP)</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="leben" data-from="19" data-to="24" data-cat="S[b]\NP">
+<tr><td class="token">leben</td></tr>
+<tr><td class="cat" tabindex="0">S[b]\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[b]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="." data-from="24" data-to="25" data-cat="S[dcl]\S[dcl]">
+<tr><td class="token">.</td></tr>
+<tr><td class="cat" tabindex="0">S[dcl]\S[dcl]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+<h4>Adverbs Modifying Adjectives</h4>
+
+<p>Adverbs modifying adjectives are just that: modifiers of adjectives. When
+the adjective is attributive, the adverb thus has category
+<code>(N/N)/(N/N)</code> (possible with different slash directions).</p>
+
+<h4>Participles Acting as Prenominal Modifiers</h4>
+
+<p>Participles pre-modifying a noun are analyzed as attribute adjectives:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="the" data-from="0" data-to="3" data-cat="NP/N">
+<tr><td class="token">the</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="N/N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="most" data-from="4" data-to="8" data-cat="(N/N)/(N/N)">
+<tr><td class="token">most</td></tr>
+<tr><td class="cat" tabindex="0">(N/N)/(N/N)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="used" data-from="9" data-to="13" data-cat="N/N">
+<tr><td class="token">used</td></tr>
+<tr><td class="cat" tabindex="0">N/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N/N</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="herbicide" data-from="14" data-to="23" data-cat="N">
+<tr><td class="token">herbicide</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+

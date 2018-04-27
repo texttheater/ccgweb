@@ -11,14 +11,12 @@ $sections = [
 	'arguments-and-modifiers' => 'Arguments and Modifiers',
 	'argument-order' => 'Argument Order',
 	'clause-types' => 'Clause Types',
-	'conditional-clauses' => 'Conditional Clauses',
-	'contractions' => 'Contractions',
 	'coordination' => 'Coordination',
 	'demonyms' => 'Demonyms',
+	'determiners' => 'Determiners',
 	'imperatives' => 'Imperatives',
 	'interjections' => 'Interjections',
 	'possessives' => 'Possessives',
-	'pro-drop' => 'Pro-drop',
 	'pronouns' => 'Pronouns',
 	'punctuation' => 'Punctuation',
 	'questions' => 'Questions',
@@ -26,7 +24,7 @@ $sections = [
 	'tokenization' => 'Tokenization',
 ];
 
-$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives', 'interjections', 'questions', 'clause-types', 'punctuation', 'specific-lexical-items'];
+$updated_sections = ['pronouns', 'imperatives', 'arguments-and-modifiers', 'possessives', 'interjections', 'questions', 'clause-types', 'punctuation', 'specific-lexical-items', 'determiners'];
 
 if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));
