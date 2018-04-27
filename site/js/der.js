@@ -62,6 +62,7 @@ function initSpanBOWs() {
         if (swiper == null) {
             continue
         }
+        swiper.classList.add('span-swiper-active')
         swiper.onmousedown = event => {
             if (busy || isMarkedCorrect()) {
                 return

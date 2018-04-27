@@ -50,9 +50,13 @@ div.der {
 	padding: 8px;
 }
 
-/* DETACH SPAN CONSTRAINT SELECTABLES ****************************************/
+/* SPAN SWIPERS: DON'T DISPLAY UNTIL ACTIVATED, THEN VISUALLY DETACH *********/
 
 td.span-swiper {
+	display: none;
+}
+
+td.span-swiper-active {
 	margin-top: 8px;
 	display: block;
 }
