@@ -7,9 +7,9 @@ tell whether a locational/directional PP is a core argument or not.  Here we
 provide specific answers based on looking at examples from CCGrebank.</p>
 
 <p>The following verbs and their translations have location/direction core
-arguments: <i>stand</i>, <i>go</i>. Exception: when the location/direction
-is expressed by an adverb such as <i>there</i>, then that is analyzed as a
-modifier.</p>
+arguments: <i>stand</i>, <i>go</i>, <i>take</i>. Exception: when the
+location/direction is expressed by an adverb such as <i>there</i>, then that is
+analyzed as a modifier.</p>
 
 <p>The following verbs and their translations cannot have location/direction
 arguments: <i>hide</i>, <i>have fun</i>, <i>notice</i>.</p>
