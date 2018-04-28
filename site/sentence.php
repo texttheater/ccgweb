@@ -46,18 +46,45 @@ require('inc/head.inc.php');
 
 <h2>Sentence</h2>
 
-<!--<p id="sentence-nonedit"><span class="label label-default"><?= $lang ?></span> <?= htmlspecialchars($sentence); ?></p>-->
+<div class="row">
+	<div class="col-md-9">
+		<form id="sentence-edit" class="form-inline" action="sentence.php" method="GET">
+			<select name="lang">
+				<option value="eng" <?= selected($lang, 'eng') ?>>eng</option>
+				<option value="deu" <?= selected($lang, 'deu') ?>>deu</option>
+				<option value="ita" <?= selected($lang, 'ita') ?>>ita</option>
+				<option value="nld" <?= selected($lang, 'nld') ?>>nld</option>
+			</select>
+			<input type="text" name="sentence" size="60" value="<?= htmlspecialchars($sentence) ?>">
+			<button type="submit">Go</button>
+		</form>
+	</div>
+	<div class="col-md-3 text-right">
+		<div class="btn-group">
 
-<form id="sentence-edit" class="form-inline" action="sentence.php" method="GET">
-	<select name="lang">
-		<option value="eng" <?= selected($lang, 'eng') ?>>eng</option>
-		<option value="deu" <?= selected($lang, 'deu') ?>>deu</option>
-		<option value="ita" <?= selected($lang, 'ita') ?>>ita</option>
-		<option value="nld" <?= selected($lang, 'nld') ?>>nld</option>
-	</select>
-	<input type="text" name="sentence" size="60" value="<?= htmlspecialchars($sentence) ?>">
-	<button type="submit">Go</button>
-</form>
+<?php
+if (isset($body->prev)) {
+?>
+
+			<a class="btn btn-default" href="<?= url('sentence.php', ['lang' => $body->prev->lang, 'sentence' => $body->prev->sentence]) ?>">Previous</a>
+
+<?php
+}
+?>
+
+<?php
+if (isset($body->next)) {
+?>
+
+			<a class="btn btn-default" href="<?= url('sentence.php', ['lang' => $body->next->lang, 'sentence' => $body->next->sentence]) ?>">Next</a>
+
+<?php
+}
+?>
+
+		</div>
+	</div>
+</div>
 
 <hr>
 
@@ -191,32 +218,6 @@ if ($is_user_logged_in && $user_name == 'judge') {
 ?>
 
 </div>
-<hr>
-<nav aria-label="Navigation through sentences">
-	<ul class="pagination">
-
-<?php if (isset($body->prev)) { ?>
-
-<li class=page-item>
-	<a href="<?= url('sentence.php', ['lang' => $body->prev->lang, 'sentence' => $body->prev->sentence]) ?>">
-		Previous
-	</a>
-</li>
-
-<?php } ?>
-
-<?php if (isset($body->next)) { ?>
-
-<li class=page-item>
-	<a href="<?= url('sentence.php', ['lang' => $body->next->lang, 'sentence' => $body->next->sentence]) ?>">
-		Next
-	</a>
-</li>
-
-<?php } ?>
-
-	</ul>
-</nav>
 
 </div>
 
