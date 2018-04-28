@@ -1187,3 +1187,8 @@ the adjective is attributive, the adverb thus has category
 </div></td></tr>
 </table> </div>
 
+<h4>Italian Noun-noun-compounds</h4>
+
+<p>In Italian, the dependent in a noun-noun compound is often realized as a
+prepositional phrase. We treat this phrase as a modifer of the head noun, not
+as an argument.</p>
