@@ -289,6 +289,164 @@ analyzed as a VP modifier. For example:</p>
 </div></td></tr>
 </table> </div>
 
+<p>This also holds for conditional clauses. For example:</p>
+
+<div class=der>
+<div class=lexlist>
+	<table class=lex>
+		<tr>
+			<td class="token">What</td>
+		</tr>
+		<tr>
+			<td class="cat">S[wq]/(S[q]/NP)</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">would</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[q]/(S[b]\NP))/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">you</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">say</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[b]\NP)/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">if</td>
+		</tr>
+		<tr>
+			<td class="cat">((S\NP)\(S\NP))/S[dcl]</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">you</td>
+		</tr>
+		<tr>
+			<td class="cat">NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">were</td>
+		</tr>
+		<tr>
+			<td class="cat">(S[dcl]\NP)/PP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">in</td>
+		</tr>
+		<tr>
+			<td class="cat">PP/NP</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">my</td>
+		</tr>
+		<tr>
+			<td class="cat">NP/(N/PP)</td>
+		</tr>
+	</table>
+	<table class=lex>
+		<tr>
+			<td class="token">place</td>
+		</tr>
+		<tr>
+			<td class="cat">N/PP</td>
+		</tr>
+	</table>
+</div>
+</div>
+
+<p>If the modified clause is a coordination, attach at the <code>S</code> level instead:</p>
+
+<div class=der>
+	<div class=lexlist>
+		<table class=lex>
+			<tr>
+				<td class="token">Cats</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">sing</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">and</td>
+			</tr>
+			<tr>
+				<td class="cat">(S[dcl]\S[dcl])/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dogs</td>
+			</tr>
+			<tr>
+				<td class="cat">N</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">dance</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">when</td>
+			</tr>
+			<tr>
+				<td class="cat">(S\S)/S[dcl]</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">it</td>
+			</tr>
+			<tr>
+				<td class="cat">NP</td>
+			</tr>
+		</table>
+		<table class=lex>
+			<tr>
+				<td class="token">rains</td>
+			</tr>
+			<tr>
+				<td class="cat">S[dcl]\NP</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
 <h4>Modification of Main Verb or Modal/Auxiliary?</h4>
 
 <p>When the modal or auxiliary verb of a clause does not intervene between a VP
@@ -887,166 +1045,6 @@ nouns). For example:</p>
 <p>The Italian <i>di</i> is treated as a complementizer rather than a
 preposition (so gets category <code>(S[to]\NP)/(S[b]\NP)</code>) when it heads
 a verbal argument.</p>
-
-<h4>Conditional Clauses</h4>
-
-<p>Conditional clauses are attached at the VP level if possible. For example:</p>
-
-<div class=der>
-<div class=lexlist>
-	<table class=lex>
-		<tr>
-			<td class="token">What</td>
-		</tr>
-		<tr>
-			<td class="cat">S[wq]/(S[q]/NP)</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">would</td>
-		</tr>
-		<tr>
-			<td class="cat">(S[q]/(S[b]\NP))/NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">you</td>
-		</tr>
-		<tr>
-			<td class="cat">NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">say</td>
-		</tr>
-		<tr>
-			<td class="cat">(S[b]\NP)/NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">if</td>
-		</tr>
-		<tr>
-			<td class="cat">((S\NP)\(S\NP))/S[dcl]</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">you</td>
-		</tr>
-		<tr>
-			<td class="cat">NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">were</td>
-		</tr>
-		<tr>
-			<td class="cat">(S[dcl]\NP)/PP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">in</td>
-		</tr>
-		<tr>
-			<td class="cat">PP/NP</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">my</td>
-		</tr>
-		<tr>
-			<td class="cat">NP/(N/PP)</td>
-		</tr>
-	</table>
-	<table class=lex>
-		<tr>
-			<td class="token">place</td>
-		</tr>
-		<tr>
-			<td class="cat">N/PP</td>
-		</tr>
-	</table>
-</div>
-</div>
-
-<p>If the modified clause is a coordination, attach at the <code>S</code> level instead:</p>
-
-<div class=der>
-	<div class=lexlist>
-		<table class=lex>
-			<tr>
-				<td class="token">Cats</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">sing</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">and</td>
-			</tr>
-			<tr>
-				<td class="cat">(S[dcl]\S[dcl])/S[dcl]</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">dogs</td>
-			</tr>
-			<tr>
-				<td class="cat">N</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">dance</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">when</td>
-			</tr>
-			<tr>
-				<td class="cat">(S\S)/S[dcl]</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">it</td>
-			</tr>
-			<tr>
-				<td class="cat">NP</td>
-			</tr>
-		</table>
-		<table class=lex>
-			<tr>
-				<td class="token">rains</td>
-			</tr>
-			<tr>
-				<td class="cat">S[dcl]\NP</td>
-			</tr>
-		</table>
-	</div>
-</div>
 
 <h4>Adverbial Arguments</h4>
 
