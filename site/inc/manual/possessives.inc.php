@@ -1,5 +1,5 @@
-<p>As in CCGrebank, genitive arguments are analyzed as noun arguments.
-Consequently, a noun with a genitive attribute introduced by a preposition has
+<p>As in CCGrebank, genitive attributes are analyzed as noun arguments of
+category <code>PP</code>. Consequently, a noun with a genitive attribute has
 category <code>N/PP</code>:</p>
 
  <div class="der">
@@ -59,8 +59,40 @@ category <code>N/PP</code>:</p>
 </div></td></tr>
 </table> </div>
 
-<p>And in the same vein, a noun with a genitive attribute introduced by a
-determiner has category <code>N/NP</code>:</p>
+ <div class="der">
+<table class="constituent binaryrule" data-cat="NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="die" data-from="0" data-to="3" data-cat="NP/N">
+<tr><td class="token">die</td></tr>
+<tr><td class="cat" tabindex="0">NP/N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Zerstörung" data-from="4" data-to="14" data-cat="N/PP">
+<tr><td class="token">Zerstörung</td></tr>
+<tr><td class="cat" tabindex="0">N/PP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="Karthagos" data-from="15" data-to="24" data-cat="PP">
+<tr><td class="token">Karthagos</td></tr>
+<tr><td class="cat" tabindex="0">PP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">N</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
 
  <div class="der">
 <table class="constituent binaryrule" data-cat="NP">
@@ -72,15 +104,29 @@ determiner has category <code>N/NP</code>:</p>
 </table></td>
 <td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="N">
 <tr class="daughters">
-<td class="daughter daughter-left"><table class="constituent lex" data-token="Zerstörung" data-from="4" data-to="14" data-cat="N/NP">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Zerstörung" data-from="4" data-to="14" data-cat="N/PP">
 <tr><td class="token">Zerstörung</td></tr>
-<tr><td class="cat" tabindex="0">N/NP</td></tr>
+<tr><td class="cat" tabindex="0">N/PP</td></tr>
 <tr><td class="span-swiper"> </td></tr>
 </table></td>
-<td class="daughter daughter-right"><table class="constituent lex" data-token="Karthagos" data-from="15" data-to="24" data-cat="NP">
-<tr><td class="token">Karthagos</td></tr>
-<tr><td class="cat" tabindex="0">NP</td></tr>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="der" data-from="15" data-to="18" data-cat="PP/N">
+<tr><td class="token">der</td></tr>
+<tr><td class="cat" tabindex="0">PP/N</td></tr>
 <tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="Stadt" data-from="19" data-to="24" data-cat="N">
+<tr><td class="token">Stadt</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
 </table></td>
 </tr>
 <tr><td colspan="2" class="rulecat"><div class="rulecat">
