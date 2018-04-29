@@ -57,7 +57,7 @@ function url($page, $params) {
 	return $result;
 }
 
-function print_link_to_sentence($sentence) {
+function print_link_to_sentence($sentence, $show_needs_annotation_labels = false) {
 	?>
 	<li>
 		<span class="label label-default">
@@ -66,6 +66,9 @@ function print_link_to_sentence($sentence) {
 		&nbsp;
 		<?php if ($sentence->done) { ?>
 		<span class="label label-success">marked correct</span>
+		<?php } ?>
+		<?php if ($show_needs_annotation_labels && $sentence->needs_annotation) { ?>
+		<span class="label label-warning">needs annotation</span>
 		<?php } ?>
 		&nbsp;
 		<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>

@@ -29,21 +29,26 @@ class Sentence:
                     body['next'] = assignment[i + 1]
                 break
         # Annotations
+        annotators = get_annotators(lang, sentence)
+        human_annotators = set(annotators)
+        human_annotators.discard('auto')
+        human_annotators.discard('testuser')
+        human_annotators.discard('proj')
+        human_annotators.discard('xl')
+        human_annotators.discard('judge')
+        body['needs_annotation'] = len(human_annotators) < 2
         if user == 'auto':
             versions = set(('auto',))
         elif user == 'judge':
-            versions = get_annotators(lang, sentence)
+            versions = set(annotators)
             versions.add('auto')
             versions.add('judge')
         else:
-            annotators = get_annotators(lang, sentence)
             if 'judge' in annotators:
-                versions = annotators
-                versions.discard('testuser')
-                versions.discard('proj')
-                versions.discard('xl')
+                versions = set(human_annotators)
                 versions.add('auto')
                 versions.add(user)
+                versions.add('judge')
             else:
                 versions = set(('auto', user))
         versions = sorted(versions, key=annotator_sort_key)
