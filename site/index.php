@@ -31,7 +31,7 @@ require('inc/head.inc.php');
 
 <?php
 foreach ($assignment as $sentence) {
-	print_link_to_sentence($sentence, true);
+	print_link_to_sentence($sentence, $is_user_logged_in);
 }
 ?>
 
