@@ -56,12 +56,12 @@ even when followed by a question mark. For example:</p>
 <tr class="daughters">
 <td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[wq]">
 <tr class="daughters">
-<td class="daughter daughter-left"><table class="constituent lex" data-token="Who" data-from="0" data-to="3" data-cat="S[wq]/S[q]">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Who" data-from="0" data-to="3" data-cat="S[wq]/(S[q]/NP)">
 <tr><td class="token">Who</td></tr>
-<tr><td class="cat" tabindex="0">S[wq]/S[q]</td></tr>
+<tr><td class="cat" tabindex="0">S[wq]/(S[q]/NP)</td></tr>
 <tr><td class="span-swiper"> </td></tr>
 </table></td>
-<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[q]">
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[q]/NP">
 <tr class="daughters">
 <td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[q]/(S[b]\NP)">
 <tr class="daughters">
@@ -82,15 +82,15 @@ even when followed by a question mark. For example:</p>
 </div>
 </div></td></tr>
 </table></td>
-<td class="daughter daughter-right"><table class="constituent lex" data-token="see" data-from="12" data-to="15" data-cat="S[b]\NP">
+<td class="daughter daughter-right"><table class="constituent lex" data-token="see" data-from="12" data-to="15" data-cat="(S[b]\NP)/NP">
 <tr><td class="token">see</td></tr>
-<tr><td class="cat" tabindex="0">S[b]\NP</td></tr>
+<tr><td class="cat" tabindex="0">(S[b]\NP)/NP</td></tr>
 <tr><td class="span-swiper"> </td></tr>
 </table></td>
 </tr>
 <tr><td colspan="2" class="rulecat"><div class="rulecat">
-<div class="cat">S[q]</div>
-<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+<div class="cat">S[q]/NP</div>
+<div class="rule" title="Forward Composition">&gt; <sup>1</sup>
 </div>
 </div></td></tr>
 </table></td>
