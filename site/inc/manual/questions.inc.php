@@ -188,8 +188,8 @@ not use the question mark to change the category:</p>
 </div></td></tr>
 </table> </div>
 
-<p><i>wh</i>-phrases representing an extracted subject or predicate noun have
-category <code>S[wq]/(S[dcl]\NP)</code>:</p>
+<p><i>wh</i>-phrases representing an extracted subject (or predicate noun in a
+non-existential copula sentence) have category <code>S[wq]/(S[dcl]\NP)</code>:</p>
 
  <div class="der">
 <table class="constituent binaryrule" data-cat="S[wq]">
@@ -303,8 +303,9 @@ category <code>S[wq]/(S[dcl]\NP)</code>:</p>
 </div></td></tr>
 </table> </div>
 
-<p><i>wh</i>-phrases representing another extracted argument have category <code>S[wq]/(S[q]/X)</code> where <code>X</code>
-is the category of the extracted argument:</p>
+<p><i>wh</i>-phrases representing another extracted argument have category
+<code>S[wq]/(S[q]/X)</code> where <code>X</code> is the category of the
+extracted argument:</p>
 
  <div class="der">
 <table class="constituent binaryrule" data-cat="S[wq]">
@@ -431,6 +432,87 @@ is the category of the extracted argument:</p>
 </div>
 </div></td></tr>
 </table> </div>
+
+<p>This includes sentences where the extracted phrase represents the non-dummy
+“subject” of an existential sentence:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[wq]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[wq]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="S[wq]/(S[q]/NP)">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="(S[wq]/(S[q]/NP))/N">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="How" data-from="0" data-to="3" data-cat="((S[wq]/(S[q]/NP))/N)/(S[adj]\NP)">
+<tr><td class="token">How</td></tr>
+<tr><td class="cat" tabindex="0">((S[wq]/(S[q]/NP))/N)/(S[adj]\NP)</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="many" data-from="4" data-to="8" data-cat="S[adj]\NP">
+<tr><td class="token">many</td></tr>
+<tr><td class="cat" tabindex="0">S[adj]\NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S[wq]/(S[q]/NP))/N</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="people" data-from="9" data-to="15" data-cat="N">
+<tr><td class="token">people</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[wq]/(S[q]/NP)</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[q]/NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="were" data-from="16" data-to="20" data-cat="(S[q]/NP)/NP[thr]">
+<tr><td class="token">were</td></tr>
+<tr><td class="cat" tabindex="0">(S[q]/NP)/NP[thr]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="there" data-from="21" data-to="26" data-cat="NP[thr]">
+<tr><td class="token">there</td></tr>
+<tr><td class="cat" tabindex="0">NP[thr]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[q]/NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[wq]</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="?" data-from="26" data-to="27" data-cat="S[wq]\S[wq]">
+<tr><td class="token">?</td></tr>
+<tr><td class="cat" tabindex="0">S[wq]\S[wq]</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[wq]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
 
 <p><i>wh</i>-phrases representing an extracted modifier have category <code>S[wq]/S[q]</code>:</p>
 

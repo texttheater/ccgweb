@@ -21,6 +21,14 @@ arguments: <i>place</i>.</p>
 the topic of something (like information, or a book), is analyzed as a core
 argument.</p>
 
+<p>The verb <i>translate</i> and its translations can have core arguments for
+the language into which something is translated.</p>
+
+<p>Location PPs attaching to nouns, as in <i>a book on the table</i>, are not
+treated as core arguments but as modifiers.</p>
+
+<p>In <i>look like</i>, <i>like</i> heads a prepositional core argument.</p>
+
 <h4>Argument of Verb or Noun?</h4>
 
 <p>Sometimes an argument could be the argument of a verb, or of another
@@ -153,6 +161,83 @@ in these cases. Here is an example with a compound verb:</p>
 <tr><td colspan="2" class="rulecat"><div class="rulecat">
 <div class="cat">S[b]\NP</div>
 <div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table> </div>
+
+<h4>Verbal Constructions with Particles and Prepositions</h4>
+
+<p>Similarly, when a verbal construction contains both a particle and a
+preposition, we prefer to treat them as separate arguments of the verb rather
+than attaching one to the other:</p>
+
+ <div class="der">
+<table class="constituent binaryrule" data-cat="S[dcl]">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="Io" data-from="0" data-to="2" data-cat="NP">
+<tr><td class="token">Io</td></tr>
+<tr><td class="cat" tabindex="0">NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="S[dcl]\NP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent binaryrule" data-cat="(S[dcl]\NP)/PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="camminavo" data-from="3" data-to="12" data-cat="((S[dcl]\NP)/PP)/PR">
+<tr><td class="token">camminavo</td></tr>
+<tr><td class="cat" tabindex="0">((S[dcl]\NP)/PP)/PR</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent lex" data-token="dietro" data-from="13" data-to="19" data-cat="PR">
+<tr><td class="token">dietro</td></tr>
+<tr><td class="cat" tabindex="0">PR</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">(S[dcl]\NP)/PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent binaryrule" data-cat="PP">
+<tr class="daughters">
+<td class="daughter daughter-left"><table class="constituent lex" data-token="a" data-from="20" data-to="21" data-cat="PP/NP">
+<tr><td class="token">a</td></tr>
+<tr><td class="cat" tabindex="0">PP/NP</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td>
+<td class="daughter daughter-right"><table class="constituent unaryrule" data-cat="NP">
+<tr class="daughters"><td class="daughter daughter-only"><table class="constituent lex" data-token="Mario" data-from="22" data-to="27" data-cat="N">
+<tr><td class="token">Mario</td></tr>
+<tr><td class="cat" tabindex="0">N</td></tr>
+<tr><td class="span-swiper"> </td></tr>
+</table></td></tr>
+<tr><td class="rulecat"><div class="rulecat">
+<div class="cat">NP</div>
+<div class="rule" title="Type Changing">
+									*
+								</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">PP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]\NP</div>
+<div class="rule" title="Forward Application">&gt; <sup>0</sup>
+</div>
+</div></td></tr>
+</table></td>
+</tr>
+<tr><td colspan="2" class="rulecat"><div class="rulecat">
+<div class="cat">S[dcl]</div>
+<div class="rule" title="Backward Application">&lt; <sup>0</sup>
 </div>
 </div></td></tr>
 </table> </div>
@@ -454,6 +539,14 @@ modifier and the main verb, then the VP modifier modifies the main verb rather
 than the modal or auxiliary. Exception: negation adverbs modify the modal or
 auxiliary.</p>
 
+<h4>Modification of Adjective or Copula?</h4>
+
+<p>Adverbials appearing in a copula phrase with an adjective can modify the
+adjective or the copula. Degree adverbials such as <i>very</i> modify the
+adjective. Quantificational adverbials such as <i>always</i>, negation adverbs
+such as <i>not</i>, temporal adverbials such as <i>today</i>, etc., modify the
+copula.</p>
+
 <h4>NPs Acting as Modifiers</h4>
 
 <p>Temporal NPs can act as VP (or sentence) modifiers. Following CCGrebank, if
@@ -717,13 +810,6 @@ only the determiner gets a non-standard category:</p>
 
 <p>In constructions with auxiliary and modal verbs, the subject is an argument
 of the auxiliary/modal. Other arguments are arguments of the embedded verb.</p>
-
-<h4>Copulas, Adverbs and Predicative Adjectives</h4>
-
-<p>Adverbials appearing in a copula phrase with an adjective can modify the
-adjective or the copula. Degree adverbials such as <i>very</i> modify the
-adjective. Quantificational adverbials such as <i>always</i> modify the
-copula.</p>
 
 <h4>Dativus commodi</h4>
 
@@ -1042,9 +1128,9 @@ nouns). For example:</p>
 </div></td></tr>
 </table> </div>
 
-<p>The Italian <i>di</i> is treated as a complementizer rather than a
-preposition (so gets category <code>(S[to]\NP)/(S[b]\NP)</code>) when it heads
-a verbal argument.</p>
+<p>The Italian <i>di</i> and <i>da</i> are treated as a complementizers rather
+than prepositions (so get category <code>(S[to]\NP)/(S[b]\NP)</code>) when they
+head verbal arguments.</p>
 
 <h4>Adverbial Arguments</h4>
 
