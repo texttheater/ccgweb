@@ -1,9 +1,11 @@
 <p>In analytic comparatives formed with adverbs like <i>more</i>, <i>più</i>,
 etc., that adverb always modifies the adjective (not a large phrase).</p>
 
-<p><i>than</i>-phrases are modifiers of adjectives. They attach <b>after</b>
-<i>more</i>. If the argument of <i>than</i> is a time adverbial such as <i>today</i> or
-<i>a year ago</i>, its category is <code>S[adj]\NP</code>.</p>
+<p><i>than</i>-phrases have category <code>(S[adj]\NP)\(S[adj]\NP)</code> if
+adjacent to the adjective, otherwise <code>(S\NP)\(S\NP)</code>. They attach
+<b>after</b> <i>more</i>. If the argument of <i>than</i> is a time adverbial
+such as <i>today</i> or <i>a year ago</i>, its category is
+<code>S[adj]\NP</code>.</p>
 
 <h4><i>as ADJ as Y</i></h4>
 
