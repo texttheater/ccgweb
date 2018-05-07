@@ -24,9 +24,15 @@ class Sentence:
         for i, s in enumerate(assignment):
             if s['sentence'] == sentence:
                 if i > 0:
-                    body['prev'] = assignment[i - 1]
+                    for preceding_sentence in assignment[i - 1::-1]:
+                        if not preceding_sentence['done']:
+                            body['prev'] = preceding_sentence
+                            break
                 if i + 1 < len(assignment):
-                    body['next'] = assignment[i + 1]
+                    for following_sentence in assignment[i + 1:]:
+                        if not following_sentence['done']:
+                            body['next'] = following_sentence
+                            break
                 break
         # Annotations
         annotators = get_annotators(lang, sentence)
