@@ -53,7 +53,7 @@ just plain <code>S</code> categories. For example:</p>
 </table> </div>
 
 <p>However, categories in → <a href=<?= url('manual.php', ['section' =>
-'punctuation']) ?>>punctuation</a> and <a href=<?= url('manual.php', ['section'
+'punctuation']) ?>>punctuation</a> and → <a href=<?= url('manual.php', ['section'
 => 'coordination']) ?>>coordination</a> that modify such constituents do carry
 the feature.</p>
 
