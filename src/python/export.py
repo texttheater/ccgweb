@@ -138,6 +138,7 @@ if __name__ == '__main__':
         print('USAGE: python3 export.py DATADIR', file=sys.stderr)
         sys.exit(1)
     for lang in ('deu', 'ita', 'nld'):
+        ccgweb.util.makedirs(datadir)
         export_proj1(lang, datadir)
         export_train(lang, datadir)
         export_devtest(lang, datadir)
