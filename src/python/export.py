@@ -94,8 +94,8 @@ def export_devtest(lang, datadir):
                             AND l.lang2 = "eng"
                             AND s1.assigned = 1
                             AND s2.assigned = 1
-                            AND c1.user_id = "kilian"
-                            AND c2.user_id = "kilian"''', lang) # XXX use judge
+                            AND c1.user_id = "judge"
+                            AND c2.user_id = "judge"''', lang)
     # Check that each target sentence only appears once:
     ids = [r[0] for r in rows]
     assert len(ids) == len(set(ids))
