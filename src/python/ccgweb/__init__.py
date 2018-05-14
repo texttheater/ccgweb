@@ -11,7 +11,7 @@ class DB:
         self.name = name
         self.conn = None
 
-    def _connect(self):
+    def connect(self):
         self.conn = MySQLdb.connect(self.host, self.user, self.password,
                                     self.name, charset='utf8mb4')
 
@@ -21,7 +21,7 @@ class DB:
                 cursor.execute(sql, args)
                 return cursor.fetchall()
         except (AttributeError, MySQLdb.OperationalError):
-            self._connect()
+            self.connect()
             with self.conn as cursor:
                 cursor.execute(sql, args)
                 return cursor.fetchall()
@@ -31,7 +31,7 @@ class DB:
             with self.conn as cursor:
                 cursor.execute(sql, args)
         except (AttributeError, MySQLdb.OperationalError):
-            self._connect()
+            self.connect()
             with self.conn as cursor:
                 cursor.execute(sql, args)
 
