@@ -100,7 +100,7 @@ def export_devtest(lang, datadir):
     ids = [r[0] for r in rows]
     assert len(ids) == len(set(ids))
     # Split into dev and test:
-    rows = sorted(rows)
+    rows = sorted(rows, key=lambda x: x[3]) # sort by English sentence ID
     sentences = {}
     sentences['dev'] = rows[:len(rows) // 2]
     sentences['test'] = rows[len(rows) // 2:]
