@@ -8,6 +8,7 @@ import io
 import os
 import sys
 import time
+import tokenization
 
 
 def is_line(string):
@@ -37,8 +38,14 @@ def export_proj1(lang, datadir):
                             AND l.lang2 = "eng"''', lang)
     src_raw_path = os.path.join(datadir, 'proj1.' + lang + '-eng.src.raw')
     trg_raw_path = os.path.join(datadir, 'proj1.' + lang + '-eng.trg.raw')
+    src_tok_path = os.path.join(datadir, 'proj1.' + lang + '-eng.src.tok')
+    trg_tok_path = os.path.join(datadir, 'proj1.' + lang + '-eng.trg.tok')
+    src_tokenizer = tokenization.Tokenizer('eng')
+    trg_tokenizer = tokenization.Tokenizer(lang)
     with open(src_raw_path, 'w') as src_raw_file, \
-            open(trg_raw_path, 'w') as trg_raw_file:
+            open(trg_raw_path, 'w') as trg_raw_file, \
+            open(src_tok_path, 'w') as src_tok_file, \
+            open(trg_tok_path, 'w') as trg_tok_file:
         for trg_sentence, src_sentence in rows:
             if not is_line(trg_sentence):
                 continue
@@ -48,8 +55,16 @@ def export_proj1(lang, datadir):
                 continue
             if '\xad' in src_sentence:
                 continue
+            trg_tokenized = trg_tokenizer.tokenize(trg_sentence)
+            if not trg_tokenized:
+                continue
+            src_tokenized = src_tokenizer.tokenize(src_sentence)
+            if not src_tokenized:
+                continue
             src_raw_file.write(src_sentence)
             trg_raw_file.write(trg_sentence)
+            src_tok_file.write(src_tokenized + '\n')
+            trg_tok_file.write(trg_tokenized + '\n')
 
 
 def export_train(lang, datadir):
@@ -64,8 +79,14 @@ def export_train(lang, datadir):
                             AND s1.assigned = 0''', lang)
     src_raw_path = os.path.join(datadir, 'train.' + lang + '-eng.src.raw')
     trg_raw_path = os.path.join(datadir, 'train.' + lang + '-eng.trg.raw')
+    src_tok_path = os.path.join(datadir, 'train.' + lang + '-eng.src.tok')
+    trg_tok_path = os.path.join(datadir, 'train.' + lang + '-eng.trg.tok')
+    src_tokenizer = tokenization.Tokenizer('eng')
+    trg_tokenizer = tokenization.Tokenizer(lang)
     with open(src_raw_path, 'w') as src_raw_file, \
-            open(trg_raw_path, 'w') as trg_raw_file:
+            open(trg_raw_path, 'w') as trg_raw_file, \
+            open(src_tok_path, 'w') as src_tok_file, \
+            open(trg_tok_path, 'w') as trg_tok_file:
         for trg_sentence, src_sentence in rows:
             if not is_line(trg_sentence):
                 continue
@@ -75,8 +96,16 @@ def export_train(lang, datadir):
                 continue
             if '\xad' in src_sentence:
                 continue
+            trg_tokenized = trg_tokenizer.tokenize(trg_sentence)
+            if not trg_tokenized:
+                continue
+            src_tokenized = src_tokenizer.tokenize(src_sentence)
+            if not src_tokenized:
+                continue
             src_raw_file.write(src_sentence)
             trg_raw_file.write(trg_sentence)
+            src_tok_file.write(src_tokenized + '\n')
+            trg_tok_file.write(trg_tokenized + '\n')
 
 
 def export_devtest(lang, datadir):
@@ -104,14 +133,20 @@ def export_devtest(lang, datadir):
     sentences = {}
     sentences['dev'] = rows[:len(rows) // 2]
     sentences['test'] = rows[len(rows) // 2:]
+    src_tokenizer = tokenization.Tokenizer('eng')
+    trg_tokenizer = tokenization.Tokenizer(lang)
     # Export:
     for portion, portion_sentences in sentences.items():
         trg_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.raw')
         src_raw_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.raw')
+        trg_tok_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.tok')
+        src_tok_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.tok')
         trg_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.gold.parse.tags')
         src_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.gold.parse.tags')
         with open(trg_raw_path, 'w') as trg_raw_file, \
             open(src_raw_path, 'w') as src_raw_file, \
+            open(trg_tok_path, 'w') as trg_tok_file, \
+            open(src_tok_path, 'w') as src_tok_file, \
             open(trg_parse_path, 'w') as trg_parse_file, \
             open(src_parse_path, 'w') as src_parse_file:
             for trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence, src_parse in portion_sentences:
@@ -123,10 +158,18 @@ def export_devtest(lang, datadir):
                     continue
                 if '\xad' in src_sentence:
                     continue
+                trg_tokenized = trg_tokenizer.tokenize(trg_sentence)
+                if not trg_tokenized:
+                    continue
+                src_tokenized = src_tokenizer.tokenize(src_sentence)
+                if not src_tokenized:
+                    continue
                 preamble, trg_parse = trg_parse.split('\n\n', 1)
                 assert is_block(trg_parse)
                 trg_raw_file.write(trg_sentence)
                 src_raw_file.write(src_sentence)
+                trg_tok_file.write(trg_tokenized + '\n')
+                src_tok_file.write(src_tokenized + '\n')
                 trg_parse_file.write(trg_parse)
                 src_parse_file.write(src_parse)
 
