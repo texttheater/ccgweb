@@ -3,37 +3,19 @@ error_reporting(-1);
 ini_set("display_errors", 1);
 require('vendor/autoload.php');
 require('inc/util.inc.php');
+require('inc/data.inc.php');
 require('inc/config.inc.php');
 require('inc/session.inc.php');
 
-$sections = [
-	'introduction' => 'Introduction',
-	'arguments-and-modifiers' => 'Arguments and Modifiers',
-	'argument-order' => 'Argument Order',
-	'clause-types' => 'Clause Types',
-	'comparatives' => 'Comparatives',
-	'coordination' => 'Coordination',
-	'demonyms' => 'Demonyms',
-	'determiners' => 'Determiners',
-	'imperatives' => 'Imperatives',
-	'interjections' => 'Interjections',
-	'possessives' => 'Possessives',
-	'pronouns' => 'Pronouns',
-	'punctuation' => 'Punctuation',
-	'questions' => 'Questions',
-	'specific-lexical-items' => 'Specific Lexical Items',
-	'tokenization' => 'Tokenization',
-];
-
 $updated_sections = ['specific-lexical-items', 'arguments-and-modifiers', 'clause-types', 'coordination', 'questions', 'comparatives', 'argument-order'];
 
-if (!isset($_GET['section']) || !isset($sections[$_GET['section']])) {
+if (!isset($_GET['section']) || !isset($manual_sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));
 	die();
 }
 
 $section = $_GET['section'];
-$section_title = $sections[$section];
+$section_title = $manual_sections[$section];
 
 $title = 'CCGWeb - Manual - ' . strip_tags($section_title);
 require('inc/head.inc.php');
@@ -46,7 +28,7 @@ require('inc/head.inc.php');
 		<div class=col-md-3>
 			<ul class="nav nav-pills nav-stacked">
 		
-<?php foreach ($sections as $s => $t) { ?>
+<?php foreach ($manual_sections as $s => $t) { ?>
 		
 					<li role="presentation"<?= $s == $section ? ' class="active"' : '' ?>>
 						<a href=<?= url('manual.php', ['section' => $s]) ?>><?= $t ?>
