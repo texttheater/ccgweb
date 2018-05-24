@@ -6,6 +6,7 @@ import ccgweb.util
 import collections
 import io
 import os
+import subprocess
 import sys
 import time
 import tokenization
@@ -25,6 +26,16 @@ def is_single_sentence(tok):
     tokids = [fields[2] for fields in fieldss]
     sentids = [tokid[:2] for tokid in tokids]
     return len(set(sentids)) == 1
+
+
+def auto(lang, sentence_id, number):
+    path = os.path.join('out', lang, sentence_id[:2], sentence_id, 'judge.auto')
+    subprocess.check_call(('ext/produce/produce', path))
+    contents = ccgweb.util.slurp(path)
+    assert len(contents.splitlines()) == 2
+    assert contents.startswith('ID=1\n')
+    contents = 'ID={}'.format(number) + '\n' + contents[5:]
+    return contents
 
 
 def export_proj1(lang, datadir):
@@ -143,13 +154,18 @@ def export_devtest(lang, datadir):
         src_tok_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.tok')
         trg_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.gold.parse.tags')
         src_parse_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.gold.parse.tags')
+        trg_auto_path = os.path.join(datadir, portion + '.' + lang + '-eng.trg.gold.auto')
+        src_auto_path = os.path.join(datadir, portion + '.' + lang + '-eng.src.gold.auto')
         with open(trg_raw_path, 'w') as trg_raw_file, \
             open(src_raw_path, 'w') as src_raw_file, \
             open(trg_tok_path, 'w') as trg_tok_file, \
             open(src_tok_path, 'w') as src_tok_file, \
             open(trg_parse_path, 'w') as trg_parse_file, \
-            open(src_parse_path, 'w') as src_parse_file:
-            for trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence, src_parse in portion_sentences:
+            open(src_parse_path, 'w') as src_parse_file, \
+            open(trg_auto_path, 'w') as trg_auto_file, \
+            open(src_auto_path, 'w') as src_auto_file:
+            for i, (trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence, src_parse) in enumerate(portion_sentences, start=1):
+                # Check if the sentence pairs meets our requirements
                 if not is_line(trg_sentence):
                     continue
                 if not is_line(src_sentence):
@@ -158,20 +174,28 @@ def export_devtest(lang, datadir):
                     continue
                 if '\xad' in src_sentence:
                     continue
+                # Prepare .tok representation
                 trg_tokenized = trg_tokenizer.tokenize(trg_sentence)
                 if not trg_tokenized:
                     continue
                 src_tokenized = src_tokenizer.tokenize(src_sentence)
                 if not src_tokenized:
                     continue
+                # Preparse .parse.tags representation
                 preamble, trg_parse = trg_parse.split('\n\n', 1)
                 assert is_block(trg_parse)
+                # Prepare .auto representation
+                trg_auto = auto(lang, trg_sentence_id, i)
+                src_auto = auto('eng', src_sentence_id, i)
+                # Output
                 trg_raw_file.write(trg_sentence)
                 src_raw_file.write(src_sentence)
                 trg_tok_file.write(trg_tokenized + '\n')
                 src_tok_file.write(src_tokenized + '\n')
                 trg_parse_file.write(trg_parse)
                 src_parse_file.write(src_parse)
+                trg_auto_file.write(trg_auto)
+                src_auto_file.write(src_auto)
 
 
 if __name__ == '__main__':
