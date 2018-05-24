@@ -138,7 +138,7 @@ td.cat, div.cat {
 		color: black;
 	}
 
-	td.token, td.rulecat {
+	td.rulecat {
 		border-top: 2px solid black;
 	}
 }
