@@ -180,7 +180,7 @@ if __name__ == '__main__':
     except ValueError:
         print('USAGE: python3 export.py DATADIR', file=sys.stderr)
         sys.exit(1)
-    for lang in ('deu', 'ita', 'nld'):
+    for lang in ('deu', 'ita', 'nld', 'por', 'spa', 'swe'):
         ccgweb.util.makedirs(datadir)
         export_proj1(lang, datadir)
         export_train(lang, datadir)

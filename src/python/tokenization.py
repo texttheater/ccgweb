@@ -12,7 +12,7 @@ import ucto
 class Tokenizer:
 
     def __init__(self, lang):
-        path = 'config/ucto/tokconfig-' + lang
+        path = 'ext/uctodata/config/tokconfig-' + lang
         self.ucto = ucto.Tokenizer(path)
 
     def tokenize(self, text):
