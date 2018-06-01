@@ -26,4 +26,6 @@ if (isset($_SESSION['ccgweb_api_session_id'])) {
 	$is_user_logged_in = false;
 }
 
+$is_user_privileged = $is_user_logged_in && in_array($user_name, ['johan', 'kilian', 'lasha', 'judge']);
+
 ?>

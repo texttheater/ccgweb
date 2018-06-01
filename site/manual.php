@@ -7,6 +7,11 @@ require('inc/data.inc.php');
 require('inc/config.inc.php');
 require('inc/session.inc.php');
 
+if (!$is_user_privileged) {
+	header('Location: user.php');
+	die();
+}
+
 $updated_sections = ['specific-lexical-items', 'arguments-and-modifiers', 'clause-types', 'coordination', 'questions', 'comparatives', 'argument-order'];
 
 if (!isset($_GET['section']) || !isset($manual_sections[$_GET['section']])) {

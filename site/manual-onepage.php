@@ -7,6 +7,11 @@ require('inc/data.inc.php');
 require('inc/config.inc.php');
 require('inc/session.inc.php');
 
+if (!$is_user_privileged) {
+	header('Location: user.php');
+	die();
+}
+
 $title = 'Annotation Manual';
 require('inc/head.inc.php');
 ?>
