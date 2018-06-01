@@ -23,11 +23,23 @@ if ($is_user_privileged) {
 			<li>
 				<a href="download.php">Download</a>
 			</li>
-<?php if ($is_user_logged_in && $user_name == 'judge') { ?>
+
+<?php if ($is_user_logged_in && $user_name == 'judge')
+{
+?>
+
 			<li>
 				<a href="monitor.php">Monitor</a>
 			</li>
-<?php } ?>
+
+<?php
+}
+?>
+
+			<li>
+				<a target="_blank" href="https://www.uni-duesseldorf.de/home/footer/datenschutz.html">Privacy Policy</a>
+			</li>
+
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li>
