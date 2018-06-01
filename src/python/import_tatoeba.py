@@ -26,7 +26,7 @@ if __name__ == '__main__':
                     print('{} sentences read'.format(i))
                 line = line.decode('UTF-8')
                 tid, lang, sentence = line.split(maxsplit=2)
-                if lang not in ('eng', 'deu', 'nld', 'ita', 'por', 'spa', 'swe'):
+                if lang not in ccgweb.supported_languages + ('eng',):
                     continue
                 sentence, sentence_id = ccgweb.sentences.sentid(sentence)
                 tid_sentinfo_dict[tid] = (lang, sentence_id, sentence)

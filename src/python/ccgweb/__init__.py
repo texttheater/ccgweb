@@ -42,3 +42,6 @@ with open('config.json') as f:
 
 db = DB(config['db_host'], config['db_user'],
         config['db_pass'], config['db_name'])
+
+
+supported_languages = ('deu', 'fra', 'ita', 'nld', 'por', 'rus', 'spa', 'swe', 'tur')
