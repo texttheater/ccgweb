@@ -45,6 +45,8 @@ class Sentence:
         body['needs_annotation'] = len(human_annotators) < 2
         if user == 'auto':
             versions = set(('auto',))
+        elif user == 'testuser':
+            versions = set(('auto', user))
         elif user == 'judge':
             versions = set(annotators)
             versions.add('auto')
