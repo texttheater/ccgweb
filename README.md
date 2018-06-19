@@ -40,7 +40,7 @@ Specifically, the following directories and files are expected to exist:
   Italian and Dutch.
 * `ext/elephant`, the
   [Elephant](https://github.com/ParallelMeaningBank/elephant) tokenizer
-* `models/tok.iob/{eng,deu,ita.nld}.model`, Elephant models for English,
+* `models/tok.iob/{eng,deu,ita,nld}.model`, Elephant models for English,
   German, Italian and Dutch.
 * `ext/produce`, the [Produce](https://github.com/texttheater/produce) build
   system.
