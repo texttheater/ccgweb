@@ -107,3 +107,11 @@ def clone_bows(src_user, dst_user):
                          SELECT %s, time, lang, sentence_id, offset_from, offset_to, tag
                          FROM bows_super
                          WHERE user_id = %s''', dst_user, src_user)
+
+
+def clone_correct(src_user, dst_user):
+    ccgweb.db.execute('''INSERT INTO correct
+                         (lang, sentence_id, user_id, time, derxml, parse)
+                         SELECT lang, sentence_id, %s, time, derxml, parse
+                         FROM correct
+                         WHERE user_id = %s''', dst_user, src_user)
