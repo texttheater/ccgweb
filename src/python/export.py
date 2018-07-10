@@ -234,7 +234,7 @@ def export_devtest(lang, datadir):
             open(src_tok_path, 'w') as src_tok_file, \
             open(trg_parse_path, 'w') as trg_parse_file, \
             open(src_parse_path, 'w') as src_parse_file:
-            for trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence, src_parse in portion_sentences:
+            for i, (trg_sentence_id, trg_sentence, trg_parse, src_sentence_id, src_sentence, src_parse) in enumerate(portion_sentences, start=1):
                 if not is_line(trg_sentence):
                     continue
                 if not is_line(src_sentence):
@@ -251,6 +251,12 @@ def export_devtest(lang, datadir):
                     continue
                 preamble, trg_parse = trg_parse.split('\n\n', 1)
                 assert is_block(trg_parse)
+                assert trg_parse.startswith('ccg(1,\n')
+                trg_parse = 'ccg(' + str(i) + trg_parse[5:]
+                preamble, src_parse = src_parse.split('\n\n', 1)
+                assert is_block(src_parse)
+                assert src_parse.startswith('ccg(1,\n')
+                src_parse = 'ccg(' + str(i) + src_parse[5:]
                 trg_raw_file.write(trg_sentence)
                 src_raw_file.write(src_sentence)
                 trg_tok_file.write(trg_tokenized + '\n')
