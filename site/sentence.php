@@ -55,7 +55,7 @@ require('inc/head.inc.php');
 				<option value="ita" <?= selected($lang, 'ita') ?>>ita</option>
 				<option value="nld" <?= selected($lang, 'nld') ?>>nld</option>
 			</select>
-			<input type="text" name="sentence" size="60" value="<?= htmlspecialchars($sentence) ?>">
+			<input type="text" dir="auto" name="sentence" size="60" value="<?= htmlspecialchars($sentence) ?>">
 			<button type="submit">Go</button>
 		</form>
 	</div>

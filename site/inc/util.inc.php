@@ -71,9 +71,11 @@ function print_link_to_sentence($sentence, $show_needs_annotation_labels = false
 		<span class="label label-warning">needs annotation</span>
 		<?php } ?>
 		&nbsp;
-		<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
-			<?= htmlspecialchars($sentence->sentence) ?>
-		</a>
+		<span dir="auto">
+			<a href=sentence.php?lang=<?= rawurlencode($sentence->lang) ?>&sentence=<?= rawurlencode($sentence->sentence) ?>>
+				<?= htmlspecialchars($sentence->sentence) ?>
+			</a>
+		</span>
 	</li>
 	<?php
 }
