@@ -9,7 +9,7 @@
 			</li>
 
 <?php
-if ($is_user_privileged) {
+if ($is_user_logged_in) {
 ?>
 
 			<li>
