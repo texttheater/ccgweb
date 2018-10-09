@@ -12,7 +12,7 @@ if (!$is_user_logged_in) {
 	die();
 }
 
-$updated_sections = ['specific-lexical-items', 'arguments-and-modifiers', 'clause-types', 'coordination', 'questions', 'comparatives', 'argument-order'];
+$updated_sections = [];
 
 if (!isset($_GET['section']) || !isset($manual_sections[$_GET['section']])) {
 	header('Location: ' . url('manual.php', ['section' => 'introduction']));
