@@ -14,10 +14,6 @@ if (!isset($_GET['sentence']) || !$_GET['sentence']) {
 	die('ERROR: sentence parameter must be given.');
 }
 
-if (!in_array($_GET['lang'], ['eng', 'deu', 'ita', 'nld'])) {
-	die('ERROR: lang parameter must be one of eng, deu, ita, nld.');
-}
-
 if (strlen($_GET['sentence']) > 1024) {
 	die('ERROR: sentence too long. Only 1024 bytes allowed.');
 }
@@ -50,10 +46,29 @@ require('inc/head.inc.php');
 	<div class="col-md-9">
 		<form id="sentence-edit" class="form-inline" action="sentence.php" method="GET">
 			<select name="lang">
+				<option value="ara" <?= selected($lang, 'ara') ?>>ara</option>
+				<option value="bul" <?= selected($lang, 'bul') ?>>bul</option>
+				<option value="dan" <?= selected($lang, 'dan') ?>>dan</option>
 				<option value="eng" <?= selected($lang, 'eng') ?>>eng</option>
+				<option value="est" <?= selected($lang, 'est') ?>>est</option>
 				<option value="deu" <?= selected($lang, 'deu') ?>>deu</option>
+				<option value="fra" <?= selected($lang, 'fra') ?>>fra</option>
+				<option value="hin" <?= selected($lang, 'hin') ?>>hin</option>
+				<option value="ind" <?= selected($lang, 'ind') ?>>ind</option>
 				<option value="ita" <?= selected($lang, 'ita') ?>>ita</option>
+				<option value="kan" <?= selected($lang, 'kan') ?>>kan</option>
+				<option value="ltz" <?= selected($lang, 'ltz') ?>>ltz</option>
+				<option value="mar" <?= selected($lang, 'mar') ?>>mar</option>
 				<option value="nld" <?= selected($lang, 'nld') ?>>nld</option>
+				<option value="pol" <?= selected($lang, 'pol') ?>>pol</option>
+				<option value="por" <?= selected($lang, 'por') ?>>por</option>
+				<option value="ron" <?= selected($lang, 'ron') ?>>ron</option>
+				<option value="rus" <?= selected($lang, 'rus') ?>>rus</option>
+				<option value="spa" <?= selected($lang, 'spa') ?>>spa</option>
+				<option value="srp" <?= selected($lang, 'srp') ?>>srp</option>
+				<option value="tur" <?= selected($lang, 'tur') ?>>tur</option>
+				<option value="urd" <?= selected($lang, 'urd') ?>>urd</option>
+				<option value="vie" <?= selected($lang, 'vie') ?>>vie</option>
 			</select>
 			<input type="text" dir="auto" name="sentence" size="60" value="<?= htmlspecialchars($sentence) ?>">
 			<button type="submit">Go</button>
