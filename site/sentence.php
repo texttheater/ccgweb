@@ -218,7 +218,7 @@ foreach($body->translations as $translation) {
 	</div>	
 
 <?php
-if ($is_user_logged_in && $user_name == 'judge') {
+if ($is_user_logged_in && in_array($user_name, ['judge', 'analyst'])) {
 ?>
 
 	<div class="col-md-6">
