@@ -105,14 +105,6 @@ if (isset($body->next)) {
 
 <h2>Parse</h2>
 
-<?php
-if ($is_user_logged_in) {
-	$active_tab = $user_name;
-} else {
-	$active_tab = 'auto';
-}
-?>
-
 <ul class="nav nav-tabs">
 
 <?php
@@ -123,10 +115,9 @@ foreach ($body->annotations as $annotation) {
 }
 for ($i = 0; $i < $annotations_count; $i++) {
 	$annotation = $body->annotations[$i];
-	$mine = $annotation->user_id == $active_tab;
 ?>
 
-		<li class="<?= $mine ? 'active' : '' ?>">
+		<li class="<?= $annotation->user_id == $body->active_version ? 'active' : '' ?>">
 			<a data-toggle=tab href=#parse<?= $i ?>>
 				<?= htmlspecialchars($annotation->user_id) ?>
 			</a>
@@ -143,15 +134,16 @@ for ($i = 0; $i < $annotations_count; $i++) {
 <?php
 for ($i = 0; $i < $annotations_count; $i++) {
 	$annotation = $body->annotations[$i];
-	$mine = $annotation->user_id == $active_tab;
+	$active = $annotation->user_id == $body->active_version;
+	$editable = $is_user_logged_in && $annotation->user_id == $user_name;
 	$derivation_html = xslTransform('xsl/der.xsl', $annotation->derxml);
 ?>
 
-<div id="parse<?= $i ?>" class="parse tab-pane<?= $mine ? ' active editable' : '' ?>" data-user_id="<?= htmlspecialchars($annotation->user_id) ?>">
+<div id="parse<?= $i ?>" class="parse tab-pane<?= $active ? ' active' : '' ?><?= $editable ? ' editable' : '' ?>" data-user_id="<?= htmlspecialchars($annotation->user_id) ?>">
 	<div class="derivation-controls btn-toolbar">
 
 <?php
-	if ($is_user_logged_in && $mine) {
+	if ($editable) {
 		$url = url('https://texttheater.net/ccgweb/sentence.php', ['lang' => $lang, 'sentence' => $sentence]);
 		$issue_url = url('https://github.com/texttheater/ccgweb/issues/new', ['title' => "[$lang] $sentence", 'body' => "[$url]($url)\n\n"]);
 ?>

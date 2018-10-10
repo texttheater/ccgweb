@@ -44,12 +44,24 @@ class Sentence:
         body['needs_annotation'] = len(human_annotators) < 2
         if user == 'auto':
             versions = set(('auto',))
+            body['active_version'] = 'auto'
         elif user == 'testuser':
             versions = set(('auto', user))
+            body['active_version'] = 'testuser'
         elif user == 'judge':
             versions = set(annotators)
             versions.add('auto')
             versions.add('judge')
+            body['active_version'] = 'judge'
+        elif user == 'analyst':
+            versions = set(annotators)
+            versions.add('auto')
+            if lang == 'nld':
+                body['active_version'] = 'xl.2.feats'
+            else:
+                body['active_version'] = 'xl.1.feats'
+            if body['active_version'] not in versions:
+                body['active_version'] = 'auto'
         else:
             if 'judge' in annotators:
                 versions = set(human_annotators)
@@ -58,6 +70,7 @@ class Sentence:
                 versions.add('judge')
             else:
                 versions = set(('auto', user))
+            body['active_version'] = user
         versions = sorted(versions, key=annotator_sort_key)
         body['annotations'] = []
         for version in versions:
