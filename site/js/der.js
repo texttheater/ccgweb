@@ -232,6 +232,9 @@ function diffMarkCat(constituent) {
 
 // marks all judge constituents red that don't agree with some other user
 function initDiff() {
+    if (!isUserLoggedIn || userName != judge) {
+        return
+    }
     for (const jParse of document.querySelectorAll('div.parse')) {
         if (jParse.dataset.user_id != 'judge') {
             continue
