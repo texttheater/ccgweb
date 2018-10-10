@@ -232,32 +232,47 @@ function diffMarkCat(constituent) {
 
 // marks all judge constituents red that don't agree with some other user
 function initDiff() {
-    if (!isUserLoggedIn || userName != judge) {
+    if (!isUserLoggedIn) {
         return
     }
-    for (const jParse of document.querySelectorAll('div.parse')) {
-        if (jParse.dataset.user_id != 'judge') {
-            continue
-        }
-        const jMap = constituentMap(jParse)
-        for (const uParse of document.querySelectorAll('div.parse')) {
-            if (uParse.dataset.user_id == 'auto'
-                || uParse.dataset.user_id == 'judge'
-                || uParse.dataset.user_id == 'proj'
-                || uParse.dataset.user_id == 'xl') {
-                continue
+    let as = []
+    let bs = []
+    if (userName == 'judge') { // compare judge version to human annotator versions
+        for (const parse of document.querySelectorAll('div.parse')) {
+            const version = parse.dataset.user_id
+            if (version == 'judge') {
+                bs.push(parse)
+            } else if (version != 'auto' &&
+                       version != 'judge' &&
+                       !version.startsWith('proj.') &&
+                       !version.startsWith('xl.')) {
+                as.push(parse)
             }
-            const uMap = constituentMap(uParse)
-            for ([jSpan, jConstituent] of jMap) {
-                const jCat = jConstituent.dataset.cat
-                if (!uMap.has(jSpan)) {
-                    diffMarkConstituent(jConstituent)
+        }
+    } else if (userName == 'analyst') { // compare active version to judge version
+        for (const parse of document.querySelectorAll('div.parse')) {
+            const version = parse.dataset.user_id
+            if (version == activeVersion) {
+                bs.push(parse)
+            } else if (version == 'judge') {
+                as.push(parse)
+            }
+        }
+    }
+    for (const bParse of bs) {
+        const bMap = constituentMap(bParse)
+        for (const aParse of as) {
+            const aMap = constituentMap(aParse)
+            for ([bSpan, bConstituent] of bMap) {
+                const bCat = bConstituent.dataset.cat
+                if (!aMap.has(bSpan)) {
+                    diffMarkConstituent(bConstituent)
                     continue
                 }
-                const uConstituent = uMap.get(jSpan)
-                const uCat = uConstituent.dataset.cat
-                if (uCat != jCat) {
-                    diffMarkCat(jConstituent)
+                const aConstituent = aMap.get(bSpan)
+                const aCat = aConstituent.dataset.cat
+                if (aCat != bCat) {
+                    diffMarkCat(bConstituent)
                 }
             }
         }

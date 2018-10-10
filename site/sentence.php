@@ -236,6 +236,7 @@ require('inc/js.inc.php');
 <?php
 echo "const sentence = " . json_encode($sentence) . "\n";
 echo "const lang = " . json_encode($lang) . "\n";
+echo "const activeVersion = " . json_encode($body->active_version) . "\n";
 ?>
 </script>
 
