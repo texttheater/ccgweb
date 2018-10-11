@@ -60,9 +60,7 @@ function url($page, $params) {
 function print_link_to_sentence($sentence, $show_needs_annotation_labels = false) {
 	?>
 	<li>
-		<span class="label label-default">
-			<?= htmlspecialchars($sentence->lang) ?>
-		</span>
+		<span class="label label-default"><?= htmlspecialchars($sentence->lang) ?></span>
 		&nbsp;
 		<?php if ($sentence->done) { ?>
 		<span class="label label-success">marked correct</span>
