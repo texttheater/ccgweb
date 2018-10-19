@@ -44,4 +44,5 @@ db = DB(config['db_host'], config['db_user'],
         config['db_pass'], config['db_name'])
 
 
-supported_languages = ('deu', 'fra', 'ita', 'nld', 'por', 'rus', 'spa', 'swe', 'tur')
+#supported_languages = ('deu', 'fra', 'ita', 'nld', 'por', 'rus', 'spa', 'swe', 'tur')
+supported_languages = ('ara', 'ces', 'dan', 'deu', 'eng', 'eus', 'ita', 'nld', 'por', 'slv', 'swe')
