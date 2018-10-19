@@ -42,6 +42,9 @@ Specifically, the following directories and files are expected to exist:
   [Elephant](https://github.com/ParallelMeaningBank/elephant) tokenizer
 * `models/tok.iob/{eng,deu,ita,nld}.model`, Elephant models for English,
   German, Italian and Dutch.
+* `models/ud-2.2-conll18-baseline-models`,
+  [models for UDPipe](http://ufal.mff.cuni.cz/udpipe#language_models)
+  (used for tokenization)
 * `ext/produce`, the [Produce](https://github.com/texttheater/produce) build
   system.
 * `ext/viasock`, the [Viasock](https://github.com/texttheater/viasock)
@@ -49,7 +52,8 @@ Specifically, the following directories and files are expected to exist:
 
 Further dependencies can be installed as follows on Ubuntu 16.04:
 
-    sudo apt install python-lxml swi-prolog
+    sudo apt install python-lxml swi-prolog python3-pip
+    pip3 install --user ufal.udpipe
 
 REST API
 --------
