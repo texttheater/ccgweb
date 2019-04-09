@@ -8,12 +8,18 @@
 import ccgweb
 import ccgweb.sentences
 import ccgweb.util
-import derxml
 import pathlib
 import re
 import subprocess
 import sys
 import tempfile
+
+
+lang_version_map = {
+    'deu': 'xl.1.feats',
+    'ita': 'xl.2.feats',
+    'nld': 'xl.3.feats',
+}
 
 
 if __name__ == '__main__':
@@ -25,12 +31,14 @@ if __name__ == '__main__':
         sys.exit(1)
     # Delete old data:
     ccgweb.db.execute('''DELETE FROM correct
-                         WHERE user_id in ("xl.1.feats", "xl.2.feats")''')
+                         WHERE user_id in ("xl.1.feats", "xl.2.feats",
+                                           "xl.3.feats", "xl.4.feats",
+                                           "xl.5.feats")''')
     # Import:
     xlci_path = pathlib.Path(xlci_dir)
     data_path = xlci_path / 'data'
     out_path = xlci_path / 'out'
-    for lang in ('deu', 'ita', 'nld'):
+    for lang in lang_version_map:
         for portion in ('dev', 'test'):
             raw_path = data_path / '{}.{}-eng.trg.raw'.format(portion, lang)
             sentence_ids = []
@@ -38,7 +46,7 @@ if __name__ == '__main__':
                 for line in f:
                     sentence, sentence_id = ccgweb.sentences.sentid(line)
                     sentence_ids.append(sentence_id)
-            for user_id in ('xl.1.feats', 'xl.2.feats'):
+            for user_id in (lang_version_map[lang],):
                 parse_path = out_path / '{}.{}-eng.trg.{}.parse.tags'.format(portion, lang, user_id)
                 try:
                     with open(parse_path) as f:
