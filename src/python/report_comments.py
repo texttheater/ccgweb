@@ -21,8 +21,10 @@ def level(comment):
 
 
 if __name__ == '__main__':
-    rows = ccgweb.db.get('''SELECT text
-                            FROM comment''')
-    for (text,) in rows:
-        print(level(text))
+    rows = ccgweb.db.get('''SELECT c.lang, c.sentence_id, c.text, s.sentence
+                            FROM comment AS c
+                            INNER JOIN sentences AS s
+                            ON (c.lang, c.sentence_id) = (s.lang, s.sentence_id)''')
+    for lang, sentence_id, comment, sentence in rows:
+        print(lang, sentence_id, level(comment), sentence, end='')
 
