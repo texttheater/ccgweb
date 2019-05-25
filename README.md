@@ -52,7 +52,7 @@ Specifically, the following directories and files are expected to exist:
 
 Further dependencies can be installed as follows on Ubuntu 16.04:
 
-    sudo apt install python-lxml swi-prolog python3-pip
+    sudo apt install python-lxml swi-prolog python3-pip python3-setuptools python3-wheel python3-dev build-essentials
     pip3 install --user ufal.udpipe
 
 REST API
