@@ -186,6 +186,7 @@ for ($i = 0; $i < $annotations_count; $i++) {
 	</div>
 	<div class="view" data-view-type="latex">
 		<p>LaTeX rendering coming soon.</p>
+		<p>Use with <a href="tex/ccgsym.sty">ccgsym.sty</a> and <a href="tex/tikzlibraryccgder.code.tex">tikzlibraryccgder.code.tex</a>.</p>
 	</div>
 </div>
 
