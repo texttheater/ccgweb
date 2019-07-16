@@ -137,6 +137,7 @@ for ($i = 0; $i < $annotations_count; $i++) {
 	$active = $annotation->user_id == $body->active_version;
 	$editable = $is_user_logged_in && $annotation->user_id == $user_name;
 	$derivation_html = xslTransform('xsl/der.xsl', $annotation->derxml);
+	$derivation_latex = xslTransform('xsl/der2tex.xsl', $annotation->derxml);
 ?>
 
 <div id="parse<?= $i ?>" class="parse tab-pane<?= $active ? ' active' : '' ?><?= $editable ? ' editable' : '' ?>" data-user_id="<?= htmlspecialchars($annotation->user_id) ?>">
@@ -185,7 +186,7 @@ for ($i = 0; $i < $annotations_count; $i++) {
 		<p>Use with <a href="css/der.css">der.css</a>.</p>
 	</div>
 	<div class="view" data-view-type="latex">
-		<p>LaTeX rendering coming soon.</p>
+		<textarea class="form-control" readonly rows="10"><?= htmlspecialchars($derivation_latex) ?></textarea>
 		<p>Use with <a href="tex/ccgsym.sty">ccgsym.sty</a> and <a href="tex/tikzlibraryccgder.code.tex">tikzlibraryccgder.code.tex</a>.</p>
 	</div>
 </div>
