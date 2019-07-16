@@ -1,0 +1,170 @@
+\usepackage{suffix}
+
+\usetikzlibrary{backgrounds, calc, fit}
+
+\newcommand\ccgword[2]{
+ \node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt] (#1) {{#2}};
+}
+
+% Arguments:
+% name
+% word
+% cat
+% sem
+\newcommand\lexnode[4]{
+ % Word:
+ \node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt] (#1) {{#2}};
+ % Category:
+ \path let \p1 = (#1.west), \p2 = (#1.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#1.base)+(0, -31.6pt)$) (#1-cat) {\footnotesize{${#3}\vphantom{/}$}\\${#4}$\vphantom{Üg}};
+ % Line between them:
+ \draw (#1-cat.north west)--(#1-cat.north east);
+}
+
+% Version of the above that puts syntax and semantics on one line:
+\WithSuffix\newcommand\lexnode*[4]{
+ % Word:
+ \node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt] (#1) {{#2}};
+ % Category:
+ \path let \p1 = (#1.west), \p2 = (#1.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#1.base)+(0, -16.6pt)$) (#1-cat) {\footnotesize{${#3}\vphantom{/}\ifstrempty{#4}{}{:}{#4}$\vphantom{Üg}}};
+ % Line between them:
+ \draw (#1-cat.north west)--(#1-cat.north east);
+}
+
+% Vertically flipped version of the above
+\newcommand\Lexnode[4]{
+ % Word:
+ \node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt] (#1) {\vphantom{Üg}{#2}};
+ % Category:
+ \path let \p1 = (#1.west), \p2 = (#1.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#1.base)+(0, 16.6pt)$) (#1-cat) {\footnotesize{${#3}\vphantom{/}$}\\${#4}$\vphantom{Üg}};
+ % Line between them:
+ \draw (#1-cat.south west)--(#1-cat.south east);
+}
+
+% Version of the above that puts syntax and semantics on one line:
+\WithSuffix\newcommand\Lexnode*[4]{
+ % Word:
+ \node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt] (#1) {\vphantom{Üg}{#2}};
+ % Category:
+\path let \p1 = (#1.west), \p2 = (#1.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#1.base)+(0, 16.6pt)$) (#1-cat) {\footnotesize{${#3}\vphantom{/}\ifstrempty{#4}{}{:}{#4}$\vphantom{Üg}}};
+ % Line between them:
+ \draw (#1-cat.south west)--(#1-cat.south east);
+}
+
+% Arguments:
+% name
+% name of left node to anchor to
+% name of right node to anchor to
+% schema
+% cat
+% sem
+\newcommand\binnode[6]{
+ % Make a dummy node that spans the bases of both daughters in order to make
+ % sure we always align to the lower one:
+ \node [anchor=south, fit={(#2.base) (#3.base)}, inner sep=0pt, outer sep=0pt] (#1-dummy) {};
+ % Create the binary node with a fixed distance from the dummy node and
+ % spanning the whole width of both daughters:
+ \path let \p1 = (#2.west), \p2 = (#1-dummy.south), \p3 = (#3.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x3-\x1] at ($(\x1,\y2)!0.5!(\x3,\y2)+(0, -31.6pt)$) (#1) {\footnotesize{${#5}$}\\${#6}$};
+ % Schema name:
+ \node [anchor=east] at ($(#1.north east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#4}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.north east) in (#1.north west) -- (\x1,\y2);
+}
+
+% Vertically flipped version of the above
+\newcommand\Binnode[6]{
+ % Make a dummy node that spans the bases of both daughters in order to make
+ % sure we always align to the higher one:
+ \node [anchor=north, fit={(#2.base) (#3.base)}, inner sep=0pt, outer sep=0pt] (#1-dummy) {};
+ % Create the binary node with a fixed distance from the dummy node and
+ % spanning the whole width of both daughters:
+ \path let \p1 = (#2.west), \p2 = (#1-dummy.north), \p3 = (#3.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x3-\x1] at ($(\x1,\y2)!0.5!(\x3,\y2)+(0, 31.6pt)$) (#1) {\footnotesize{${#5}$}\\${#6}$};
+ % Schema name:
+ \node [anchor=east] at ($(#1.south east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#4}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.south east) in (#1.south west) -- (\x1,\y2);
+}
+
+% Versions that put syntax and semantics on one line
+
+\WithSuffix\newcommand\binnode*[6]{
+ % Make a dummy node that spans the bases of both daughters in order to make
+ % sure we always align to the lower one:
+ \node [anchor=south, fit={(#2.base) (#3.base)}, inner sep=0pt, outer sep=0pt] (#1-dummy) {};
+ % Create the binary node with a fixed distance from the dummy node and
+ % spanning the whole width of both daughters:
+ \path let \p1 = (#2.west), \p2 = (#1-dummy.south), \p3 = (#3.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x3-\x1] at ($(\x1,\y2)!0.5!(\x3,\y2)+(0, -18pt)$) (#1) {\footnotesize{${#5}\ifstrempty{#6}{}{:}{#6}$}};
+ % Schema name:
+ \node [anchor=east] at ($(#1.north east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#4}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.north east) in (#1.north west) -- (\x1,\y2);
+}
+
+% Vertically flipped version of the above
+\WithSuffix\newcommand\Binnode*[6]{
+ % Make a dummy node that spans the north points of both daughters in order to make
+ % sure we always align to the higher one (HACK: we should align to the bases for
+ % consistent spacing but then we would have to know the height of the nodes we align
+ % to. As long as the categories don't have overlengths, we should be fine)
+ \node [anchor=north, fit={(#2.north) (#3.north)}, inner sep=0pt, outer sep=0pt] (#1-dummy) {};
+ % Create the binary node with a fixed distance from the dummy node and
+ % spanning the whole width of both daughters:
+ \path let \p1 = (#2.west), \p2 = (#1-dummy.north), \p3 = (#3.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x3-\x1] at ($(\x1,\y2)!0.5!(\x3,\y2)+(0, 9pt)$) (#1) {\footnotesize{${#5}\ifstrempty{#6}{}{:}{#6}$}};
+ % Schema name:
+ \node [anchor=east] at ($(#1.south east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#4}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.south east) in (#1.south west) -- (\x1,\y2);
+}
+
+% Arguments:
+% name
+% name of node to anchor to
+% schema
+% cat
+% sem
+\newcommand\unnode[5]{
+ % Create the unary node with a fixed distance from the daughter node and
+ % spanning the whole width of it:
+ \path let \p1 = (#2.west), \p2 = (#2.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#2.base)+(0, -31.6pt)$) (#1) {\footnotesize{${#4}$}\\${#5}$};
+ % Schema name:
+ \node [anchor=east] at ($(#1.north east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#3}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.north east) in (#1.north west) -- (\x1,\y2);
+}
+
+% Vertically flipped version of the above
+\newcommand\Unnode[5]{
+ % Create the unary node with a fixed distance from the daughter node and
+ % spanning the whole width of it:
+ \path let \p1 = (#2.west), \p2 = (#2.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#2.base)+(0, 31.6pt)$) (#1) {\footnotesize{${#4}$}\\${#5}$};
+ % Schema name:
+ \node [anchor=east] at ($(#1.south east) + (5pt, 1pt)$) (#1-schema) {\footnotesize{${#3}$}};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.south east) in (#1.south west) -- (\x1,\y2);
+}
+
+% Versions that put syntax and semantics on one line
+
+\WithSuffix\newcommand\unnode*[5]{
+ % Create the unary node with a fixed distance from the daughter node and
+ % spanning the whole width of it:
+ \path let \p1 = (#2.west), \p2 = (#2.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#2.base)+(0, -16.6pt)$) (#1) {\footnotesize{${#4}\ifstrempty{#5}{}{:}#5$}};
+ % Schema name:
+ \node [anchor=east] at ($(#1.north east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#3}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.north east) in (#1.north west) -- (\x1,\y2);
+}
+
+% Vertically flipped version of the above
+\WithSuffix\newcommand\Unnode*[5]{
+ % Create the unary node with a fixed distance from the daughter node and
+ % spanning the whole width of it:
+ \path let \p1 = (#2.west), \p2 = (#2.east) in node [anchor=base, align=center, inner xsep=0pt, outer xsep=0pt, minimum width=\x2-\x1] at ($(#2.base)+(0, 18pt)$) (#1) {\footnotesize{${#4}\ifstrempty{#5}{}{:}#5$}};
+ % Schema name:
+ \node [anchor=east] at ($(#1.south east) + (5pt, 1pt)$) (#1-schema) {\footnotesize${#3}$};
+ % Draw the line along the top of the node, leaving space for the schema name:
+ \draw let \p1 = (#1-schema.west), \p2 = (#1.south east) in (#1.south west) -- (\x1,\y2);
+}
+
+\newcommand\wordalign[2]{
+ \draw (#1.south)--(#2.north);
+}
