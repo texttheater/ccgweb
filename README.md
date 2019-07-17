@@ -1,8 +1,22 @@
-CCGWeb
+CCGweb
 ======
 
-CCGWeb is a Web platform for CCG parsing and annotation. It consists of three
-parts:
+CCGweb is a Web-based annotation platform for Combinatory Categorial Grammar
+(CCG).
+
+A live demo is available here: https://ccgweb.phil.hhu.de/
+
+CCGweb is described in the following paper:
+
+Kilian Evang, Lasha Abzianidze, Johan Bos (2019): CCGweb: a New Annotation Tool
+and a First Quadrilingual CCG Treebank. In *Proceedings of the 13th Linguistic
+Annotation Workshop*. Florence, Italy: Association for Computational
+Linguistics.
+
+Technical Overview
+------------------
+
+CCGweb consists of three parts:
 
 * a natural language processing pipeline that turns raw text into CCG
   derivations, optionally aided by human annotation decisions
