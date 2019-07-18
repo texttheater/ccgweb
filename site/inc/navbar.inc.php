@@ -7,19 +7,9 @@
 			<li>
 				<a href="about.php">About</a>
 			</li>
-
-<?php
-if ($is_user_logged_in) {
-?>
-
 			<li>
 				<a href="manual.php">Manual</a>
 			</li>
-
-<?php
-}
-?>
-
 			<li>
 				<a href="download.php">Download</a>
 			</li>
