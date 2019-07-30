@@ -17,7 +17,7 @@ if (!isset($_GET['section']) || !isset($manual_sections[$_GET['section']])) {
 $section = $_GET['section'];
 $section_title = $manual_sections[$section];
 
-$title = 'CCGWeb - Manual - ' . strip_tags($section_title);
+$title = 'CCGweb - Manual - ' . strip_tags($section_title);
 require('inc/head.inc.php');
 ?>
 

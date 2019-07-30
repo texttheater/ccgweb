@@ -23,7 +23,7 @@ if (!$response->success) {
 
 $body = json_decode($response->body);
 
-$title = 'CCGWeb - Monitor';
+$title = 'CCGweb - Monitor';
 require('inc/head.inc.php');
 ?>
 

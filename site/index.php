@@ -18,7 +18,7 @@ if (!$response->success) {
 
 $assignment = json_decode($response->body);
 
-$title = 'CCGWeb';
+$title = 'CCGweb';
 
 require('inc/head.inc.php');
 ?>

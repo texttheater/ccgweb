@@ -49,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 if ($is_user_logged_in) {
-	$title = $user_name . ' – CCGWeb';
+	$title = $user_name . ' – CCGweb';
 } else {
-	$title = 'Login – CCGWeb';
+	$title = 'Login – CCGweb';
 }
 
 require('inc/head.inc.php');
