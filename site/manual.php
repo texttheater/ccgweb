@@ -17,7 +17,7 @@ if (!isset($_GET['section']) || !isset($manual_sections[$_GET['section']])) {
 $section = $_GET['section'];
 $section_title = $manual_sections[$section];
 
-$title = 'CCGWeb - Manual - ' . strip_tags($section_title);
+$title = 'CCGweb - Manual - ' . strip_tags($section_title);
 require('inc/head.inc.php');
 ?>
 
@@ -44,7 +44,7 @@ require('inc/head.inc.php');
 		
 <?php } ?>
 		
-<li role="presentation"><a href="mailto:evang@hhu.de?subject=<?= rawurlencode('CCGWeb: update request') ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> request update</a></li>
+<li role="presentation"><a href="https://github.com/texttheater/ccgweb/issues/new"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> request update</a></li>
 			</ul>
 		</div>
 		<div class=col-md-9>
