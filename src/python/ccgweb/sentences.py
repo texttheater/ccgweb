@@ -12,6 +12,9 @@ import subprocess
 class Sentence:
 
     def on_get(self, req, res, lang, sentence):
+        # Validation:
+        if lang not in ccgweb.supported_languages:
+            raise ValueError('invalid language')
         # Preliminaries:
         sentence = ccgweb.util.fix_encoding(sentence)
         user = ccgweb.users.current_user(req)
