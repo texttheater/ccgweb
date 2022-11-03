@@ -1,5 +1,6 @@
 \usepackage{amsmath}
 \usepackage{etoolbox}
+\usepackage{suffix}
 
 % basic categories
 \newcommand{\catS}[1][]{\operatorname{S}\ifstrempty{#1}{}{[\operatorname{#1}]}}
@@ -14,7 +15,9 @@
 % shorthands for common complex categories
 \newcommand{\catIV}[1][]{\catS[#1]\?\catNP}
 \newcommand{\catTV}[1][]{(\catIV[#1])/\catNP}
+\WithSuffix\newcommand\catTV*[1][]{(\catIV[#1])/\catPP}
 \newcommand{\catIVmod}{(\catIV)\?(\catIV)}
+\WithSuffix\newcommand\catDTV*[1][]{(\catTV*[#1])/\catNP}
 \newcommand{\catDET}{\catNP/\catN}
 \newcommand{\catNrmod}{\catN\?\catN}
 \newcommand{\catconj}{\operatorname{conj}}
