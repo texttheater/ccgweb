@@ -24,9 +24,13 @@
 
 % shorthands for modifiers and conjunctions
 \newcommand{\lmod}[1]{(#1)/(#1)}
+\WithSuffix\newcommand\lmod*[1]{#1/#1}
 \newcommand{\rmod}[1]{(#1)\?(#1)}
+\WithSuffix\newcommand\rmod*[1]{#1\?#1}
 \newcommand{\emod}[1]{(#1)|(#1)}
+\WithSuffix\newcommand\emod*[1]{#1|#1}
 \newcommand{\conj}[1]{(\rmod{#1})/(#1)}
+\WithSuffix\newcommand\conj*[1]{(\rmod*{#1})/#1}
 
 % combinator symbols
 \newcommand{\FC}[1]{>^{#1}}
