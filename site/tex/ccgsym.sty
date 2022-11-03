@@ -1,14 +1,17 @@
 \usepackage{amsmath}
 \usepackage{etoolbox}
 
+% basic categories
 \newcommand{\catS}[1][]{\operatorname{S}\ifstrempty{#1}{}{[\operatorname{#1}]}}
 \newcommand{\catNP}{\operatorname{NP}}
 \newcommand{\catN}{\operatorname{N}}
 \newcommand{\catPP}{\operatorname{PP}}
 \newcommand{\catPR}{\operatorname{PR}}
 
+% backslash
 \newcommand{\?}{\backslash}
 
+% shorthands for common complex categories
 \newcommand{\catIV}[1][]{\catS[#1]\?\catNP}
 \newcommand{\catTV}[1][]{(\catIV[#1])/\catNP}
 \newcommand{\catIVmod}{(\catIV)\?(\catIV)}
@@ -16,11 +19,13 @@
 \newcommand{\catNrmod}{\catN\?\catN}
 \newcommand{\catconj}{\operatorname{conj}}
 
+% shorthands for modifiers and conjunctions
 \newcommand{\lmod}[1]{(#1)/(#1)}
 \newcommand{\rmod}[1]{(#1)\?(#1)}
 \newcommand{\emod}[1]{(#1)|(#1)}
 \newcommand{\conj}[1]{(\rmod{#1})/(#1)}
 
+% combinator symbols
 \newcommand{\FC}[1]{>^{#1}}
 \newcommand{\FXC}[1]{>_\times^{#1}}
 \newcommand{\BC}[1]{<^{#1}}
@@ -29,5 +34,6 @@
 \newcommand{\BTR}{T^<}
 \newcommand{\TC}{*}
 
+% shorthands for math symbols
 \newcommand{\on}[1]{\operatorname{#1}}
 \newcommand{\mi}[1]{\mathit{#1}}
