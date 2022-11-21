@@ -74,12 +74,20 @@
 	</xsl:template>
 	<xsl:template match="binaryrule">
 		<xsl:apply-templates select="binaryrule|unaryrule"/>
+		<xsl:var name="child1">
+			<xsl:value-of select="(binaryrule|unaryrule|lex)[1]"/>
+		</xsl:var>
+		<xsl:var name="child2">
+			<xsl:value-of select="(binaryrule|unaryrule|lex)[2]"/>
+		</xsl:var>
 		<xsl:text>	\binnode*{</xsl:text>
 		<xsl:value-of select="generate-id()"/>
 		<xsl:text>}{</xsl:text>
-		<xsl:value-of select="generate-id((binaryrule|unaryrule|lex)[1])"/>
+		<xsl:value-of select="generate-id($child1)"/>
+		<xsl:if test="name($child1) eq 'lex'">-cat</xsl:if>
 		<xsl:text>}{</xsl:text>
-		<xsl:value-of select="generate-id((binaryrule|unaryrule|lex)[2])"/>
+		<xsl:value-of select="generate-id($child2)"/>
+		<xsl:if test="name($child1) eq 'lex'">-cat</xsl:if>
 		<xsl:text>}{</xsl:text>
 		<xsl:choose>
 			<xsl:when test="@type='fa'">\FC{0}</xsl:when>
