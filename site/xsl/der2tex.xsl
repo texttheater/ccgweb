@@ -58,10 +58,12 @@
 	</xsl:template>
 	<xsl:template match="unaryrule">
 		<xsl:apply-templates select="binaryrule|unaryrule"/>
+		<xsl:variable name="child" select="(binaryrule|unaryrule|lex)[1]"/>
 		<xsl:text>	\unnode*{</xsl:text>
 		<xsl:value-of select="generate-id()"/>
 		<xsl:text>}{</xsl:text>
-		<xsl:value-of select="generate-id((binaryrule|unaryrule|lex)[1])"/>
+		<xsl:value-of select="generate-id($child)"/>
+		<xsl:if test="name($child) = 'lex'">-cat</xsl:if>
 		<xsl:text>}{</xsl:text>
 		<xsl:choose>
 			<xsl:when test="@type = 'ftr'">\FTR</xsl:when>
