@@ -32,6 +32,10 @@
 \newcommand{\conj}[1]{(\rmod{#1})/(#1)}
 \WithSuffix\newcommand\conj*[1]{(\rmod*{#1})/#1}
 
+% type raising
+\newcommand{\ftr}[2]{#1/(#1\?#2)}
+\newcommand{\btr}[2]{#1\?(#1/#2)}
+
 % combinator symbols
 \newcommand{\FC}[1]{>^{#1}}
 \newcommand{\FXC}[1]{>_\times^{#1}}
@@ -41,6 +45,10 @@
 \newcommand{\BTR}{T^<}
 \newcommand{\TC}{*}
 
-% shorthands for math symbols
+% math formatting shorthands
 \newcommand{\on}[1]{\operatorname{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}}
 \newcommand{\mi}[1]{\mathit{#1}}
+
+% semantics
+\newcommand{\sy}[1]{\mi{#1}'}
